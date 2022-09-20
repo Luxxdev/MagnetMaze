@@ -8,15 +8,18 @@ public class PlayerScript : MonoBehaviour
     private float speed = 8;
     private float jumpingPower = 16;
     private bool isFacingRight = true;
-
+    private bool isToolActive = false;
+    private bool currentPole = false;
+    [SerializeField] private GameObject tool;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
-    /* Start is called before the first frame update
-    void Start()
+    
+   /* void Start()
     {
-       
+       private GameObject tool
+       tool = this.gameObject.transform.GetChild(1).GetChild(0).gameObject;
     }*/
 
 
@@ -24,6 +27,16 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetButtonDown("ToggleTool"))
+        {
+            currentPole = !currentPole;
+        }
+
+        if (Input.GetButtonDown("ActivateTool"))
+        {
+            isToolActive = !isToolActive;
+        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
