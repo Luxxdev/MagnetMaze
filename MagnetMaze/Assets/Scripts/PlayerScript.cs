@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
     private float horizontal;
     private float speed = 3;
     private float jumpingPower = 5;
+    private bool isFacingRight = true;
     private bool isToolActive = false;
     private bool currentPole = false;
     private bool canInteract = false;
@@ -33,12 +34,12 @@ public class PlayerScript : MonoBehaviour
             currentPole = !currentPole;
             if (currentPole && isToolActive)
             {
-                this.gameObject.layer = LayerMask.NameToLayer("Positive");
+                this.gameObject.layer = LayerMask.NameToLayer("ToolPositive");
                 tool.GetComponent<SpriteRenderer>().color = new Color (1,0,0,0.3f);
             }
             else if (!currentPole && isToolActive)
             {
-                this.gameObject.layer = LayerMask.NameToLayer("Negative");
+                this.gameObject.layer = LayerMask.NameToLayer("ToolNegative");
                 tool.GetComponent<SpriteRenderer>().color = new Color (0,0,1,0.3f);
             }
 
@@ -48,19 +49,20 @@ public class PlayerScript : MonoBehaviour
         {
             isToolActive = !isToolActive;
             tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
+            tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
             if (currentPole && isToolActive)
             {
-                this.gameObject.layer = LayerMask.NameToLayer("Positive");
+                this.gameObject.layer = LayerMask.NameToLayer("ToolPositive");
                 tool.GetComponent<SpriteRenderer>().color = new Color (1,0,0,0.3f);
             }
             else if (!currentPole && isToolActive)
             {
-                this.gameObject.layer = LayerMask.NameToLayer("Negative");
+                this.gameObject.layer = LayerMask.NameToLayer("ToolNegative");
                 tool.GetComponent<SpriteRenderer>().color = new Color (0,0,1,0.3f);
             }
             else if (!isToolActive)
             {
-                this.gameObject.layer = LayerMask.NameToLayer("Default");
+                this.gameObject.layer = LayerMask.NameToLayer("Player");
             }
         }
 
@@ -71,6 +73,23 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetButtonDown("Interact") && canInteract)
         {
+            if (objects[0].layer == 7 || objects[0].layer == 8)
+            {
+                objects[0].layer = 9;
+            }
+            else if (objects[0].layer == 9)
+            {
+                if (!currentPole)
+                {
+                    objects[0].layer = 8;
+                    Debug.Log(objects[0] + " " + "negativou");
+                }
+                else if (currentPole)
+                {
+                    objects[0].layer = 7;
+                    Debug.Log(objects[0] + " " + "positivou");
+                }
+            }
             Debug.Log("interacting");
         }
 
@@ -89,17 +108,17 @@ public class PlayerScript : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.1f,0.02f), 0, groundLayer);
+        //return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
     private void Flip()
     {
-        if (horizontal > 0f)
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if (horizontal < 0f)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale; 
         }
     }
     /// Sent when an incoming collider makes contact with this object's

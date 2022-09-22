@@ -123,7 +123,7 @@ AreaEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
   m_UseGlobalAngle: 0
   m_ForceAngle: 90
   m_ForceMagnitude: 25
@@ -201,7 +201,7 @@ AreaEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
   m_UseGlobalAngle: 0
   m_ForceAngle: -90
   m_ForceMagnitude: 25
