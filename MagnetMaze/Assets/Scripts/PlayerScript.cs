@@ -78,17 +78,21 @@ public class PlayerScript : MonoBehaviour
          if (objects[0].layer == 7 || objects[0].layer == 8)
          {
             objects[0].layer = 9;
-         }
-         else if (objects[0].layer == 9)
+            objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+
+            }
+            else if (objects[0].layer == 9)
          {
             if (!currentPole)
             {
                objects[0].layer = 8;
+               objects[0].GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 1);
                Debug.Log(objects[0] + " " + "negativou");
             }
             else if (currentPole)
             {
                objects[0].layer = 7;
+               objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
                Debug.Log(objects[0] + " " + "positivou");
             }
          }
@@ -131,20 +135,50 @@ public class PlayerScript : MonoBehaviour
 
    private void OnCollisionEnter2D(Collision2D other)
    {
-      if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
+      //if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
+      if (other.gameObject.layer == 12 && (other.transform.parent.gameObject.layer >= 7 && other.transform.parent.gameObject.layer <= 9))
       {
          canInteract = true;
-         objects.Add(other.gameObject);
+         objects.Add(other.transform.parent.gameObject);
          Debug.Log(canInteract + " " + objects);
       }
    }
    private void OnCollisionExit2D(Collision2D other)
    {
-      if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
+      // if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
+      if (other.gameObject.layer == 12 && (other.transform.parent.gameObject.layer >= 7 && other.transform.parent.gameObject.layer <= 9))
       {
-         canInteract = false;
-         objects.Remove(other.gameObject);
-         Debug.Log(canInteract);
+          canInteract = false;
+          objects.Remove(other.transform.parent.gameObject);
+          Debug.Log(canInteract);
       }
    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 7)
+        {
+            if (currentPole)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10,0));
+            }
+            else if (!currentPole)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10,0));
+
+            }
+        }
+
+        if (collision.gameObject.layer == 8)
+        {
+            if (currentPole)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10, 0));
+            }
+            else if (!currentPole)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10, 0));
+            }
+        }
+    }
 }
