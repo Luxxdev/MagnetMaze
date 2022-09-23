@@ -6,22 +6,44 @@ public class MagnetBox : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     public bool canInteract = false;
-    // Start is called before the first frame update
-    void Start()
+ 
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        
+        int direction = 0;
+        if (collision.transform.position.x - transform.position.x > 0)
+        {
+            direction = 1;
+        }
+        else if (collision.transform.position.x - transform.position.x < 0)
+        {
+            direction = -1;
+        }
+
+        if (collision.gameObject.layer == 7)
+        {
+            if (gameObject.layer == 7)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * direction, 0));
+            }
+            else if (gameObject.layer == 8)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10 * direction, 0));
+            }
+        }
+
+        if (collision.gameObject.layer == 8)
+        {
+            if (gameObject.layer == 7)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10 * direction, 0));
+            }
+            else if (gameObject.layer == 8)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * direction, 0));
+            }
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    /// Sent when an incoming collider makes contact with this object's
-    /// collider (2D physics only).
-    /// <param name="other">The Collision2D data associated with this collision.</param>
-    private void OnCollisionEnter2D(Collision2D other)
+   /* private void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("entrou");
         if (other.gameObject.layer == 7)

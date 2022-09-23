@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-   private float horizontal;
-   private float speed = 3;
-   private float jumpingPower = 5;
-   private bool isFacingRight = true;
-   private bool isToolActive = false;
-   private bool currentPole = false;
-   private bool canInteract = false;
-   private List<GameObject> objects = new List<GameObject>();
-   [SerializeField] protected Animator anim;
-   [SerializeField] private GameObject tool;
-   [SerializeField] private Rigidbody2D rb;
-   [SerializeField] private Transform groundCheck;
-   [SerializeField] private LayerMask groundLayer;
+    private float horizontal;
+    private float speed = 3;
+    private float jumpingPower = 5;
+    private bool isFacingRight = true;
+    private bool isToolActive = false;
+    private bool currentPole = false;
+    private bool canInteract = false;
+    private List<GameObject> objects = new List<GameObject>();
+    [SerializeField] protected Animator anim;
+    [SerializeField] private GameObject tool;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float magneticForce = 10;
 
    void Start()
    {
@@ -79,20 +80,24 @@ public class PlayerScript : MonoBehaviour
          {
             objects[0].layer = 9;
             objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
          }
          else if (objects[0].layer >= 7 && objects[0].layer <= 9)
          {
+            objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
             if (!currentPole)
             {
                objects[0].layer = 8;
                objects[0].GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 1);
+               objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
                Debug.Log(objects[0] + " " + "negativou");
             }
             else if (currentPole)
             {
                objects[0].layer = 7;
                objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+               objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
                Debug.Log(objects[0] + " " + "positivou");
             }
          }
@@ -161,37 +166,40 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        int direction = 0;
-        if (collision.transform.position.x - transform.position.x > 0)
+        if (isToolActive)
         {
-            direction = 1;
-        }
-        else if (collision.transform.position.x - transform.position.x < 0)
-        {
-            direction = -1;
-        }
+            int direction = 0;
+            if (collision.transform.position.x - transform.position.x > 0)
+            {
+                direction = 1;
+            }
+            else if (collision.transform.position.x - transform.position.x < 0)
+            {
+                direction = -1;
+            }
 
-        if (collision.gameObject.layer == 7)
-        {
-            if (currentPole)
+            if (collision.gameObject.layer == 7)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * direction, 0));
+                if (currentPole)
+                {
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(magneticForce * direction, 0));
+                }
+                else if (!currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
+                {
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-magneticForce * direction, 0));
+                }
             }
-            else if (!currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
-            {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10 * direction, 0));
-            }
-        }
 
-        if (collision.gameObject.layer == 8)
-        {
-            if (currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
+            if (collision.gameObject.layer == 8)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10 * direction, 0));
-            }
-            else if (!currentPole)
-            {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * direction, 0));
+                if (currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
+                {
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-magneticForce * direction, 0));
+                }
+                else if (!currentPole)
+                {
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(magneticForce * direction, 0));
+                }
             }
         }
     }
