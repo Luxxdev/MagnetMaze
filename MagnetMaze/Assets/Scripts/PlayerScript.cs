@@ -75,13 +75,13 @@ public class PlayerScript : MonoBehaviour
 
       if (Input.GetButtonDown("Interact") && canInteract)
       {
-         if (objects[0].layer == 7 || objects[0].layer == 8)
+         if (objects[0].layer == 7 && currentPole || objects[0].layer == 8 && !currentPole)
          {
             objects[0].layer = 9;
             objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 
-            }
-            else if (objects[0].layer == 9)
+         }
+         else if (objects[0].layer >= 7 && objects[0].layer <= 9)
          {
             if (!currentPole)
             {
@@ -138,8 +138,9 @@ public class PlayerScript : MonoBehaviour
       //if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
       if (other.gameObject.layer == 12 && (other.transform.parent.gameObject.layer >= 7 && other.transform.parent.gameObject.layer <= 9))
       {
+         objects.Insert(0, other.transform.parent.gameObject);
+         objects[0].GetComponent<MagnetBox>().canInteract = true;
          canInteract = true;
-         objects.Add(other.transform.parent.gameObject);
          Debug.Log(canInteract + " " + objects);
       }
    }
@@ -148,8 +149,12 @@ public class PlayerScript : MonoBehaviour
       // if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
       if (other.gameObject.layer == 12 && (other.transform.parent.gameObject.layer >= 7 && other.transform.parent.gameObject.layer <= 9))
       {
-          canInteract = false;
+          objects[0].GetComponent<MagnetBox>().canInteract = false;
           objects.Remove(other.transform.parent.gameObject);
+          if (objects.Count == 0)
+          {
+                canInteract = false;
+          }
           Debug.Log(canInteract);
       }
    }
@@ -170,9 +175,9 @@ public class PlayerScript : MonoBehaviour
         {
             if (currentPole)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * direction,0));
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * direction, 0));
             }
-            else if (!currentPole)
+            else if (!currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
             {
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10 * direction, 0));
             }
@@ -180,7 +185,7 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.layer == 8)
         {
-            if (currentPole)
+            if (currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
             {
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10 * direction, 0));
             }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MagnetBox : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    public bool canInteract = false;
     // Start is called before the first frame update
     void Start()
     {
