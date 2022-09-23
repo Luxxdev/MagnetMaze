@@ -156,16 +156,25 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        int direction = 0;
+        if (collision.transform.position.x - transform.position.x > 0)
+        {
+            direction = 1;
+        }
+        else if (collision.transform.position.x - transform.position.x < 0)
+        {
+            direction = -1;
+        }
+
         if (collision.gameObject.layer == 7)
         {
             if (currentPole)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10,0));
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * direction,0));
             }
             else if (!currentPole)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10,0));
-
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10 * direction, 0));
             }
         }
 
@@ -173,11 +182,11 @@ public class PlayerScript : MonoBehaviour
         {
             if (currentPole)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10, 0));
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-10 * direction, 0));
             }
             else if (!currentPole)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10, 0));
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * direction, 0));
             }
         }
     }
