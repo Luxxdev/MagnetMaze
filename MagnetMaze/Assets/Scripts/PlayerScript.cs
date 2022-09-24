@@ -149,7 +149,8 @@ public class PlayerScript : MonoBehaviour
          Debug.Log(canInteract + " " + objects);
       }
    }
-   private void OnCollisionExit2D(Collision2D other)
+//collision stay pra checar qual objeto interagir
+    private void OnCollisionExit2D(Collision2D other)
    {
       // if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
       if (other.gameObject.layer == 12 && (other.transform.parent.gameObject.layer >= 7 && other.transform.parent.gameObject.layer <= 9))
@@ -168,25 +169,34 @@ public class PlayerScript : MonoBehaviour
     {
         if (isToolActive)
         {
-            int direction = 0;
-            if (collision.transform.position.x - transform.position.x > 0)
+            Vector2 direction = new Vector2(0,0);
+            if (collision.transform.position.x - transform.position.x > 0.3)
             {
-                direction = 1;
+                direction.x = 1;
             }
-            else if (collision.transform.position.x - transform.position.x < 0)
+            else if (collision.transform.position.x - transform.position.x < -0.3)
             {
-                direction = -1;
+                direction.x = -1;
+            }
+            if (collision.transform.position.y - transform.position.y > 0.6)
+            {
+                direction.y = 1;
+            }
+            else if (collision.transform.position.y - transform.position.y < -0.6)
+            {
+                direction.y = -1;
             }
 
             if (collision.gameObject.layer == 7)
             {
                 if (currentPole)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(magneticForce * direction, 0));
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
                 }
                 else if (!currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-magneticForce * direction, 0));
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
+
                 }
             }
 
@@ -194,11 +204,11 @@ public class PlayerScript : MonoBehaviour
             {
                 if (currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-magneticForce * direction, 0));
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
                 }
                 else if (!currentPole)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(magneticForce * direction, 0));
+                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
                 }
             }
         }
