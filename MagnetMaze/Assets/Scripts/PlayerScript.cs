@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     private float horizontal;
     private float speed = 3;
-    private float jumpingPower = 5;
+    private float jumpingPower = 5.0f;
     private bool isFacingRight = true;
     private bool isToolActive = false;
     private bool currentPole = false;
@@ -170,11 +170,11 @@ public class PlayerScript : MonoBehaviour
         if (isToolActive)
         {
             Vector2 direction = new Vector2(0,0);
-            if (collision.transform.position.x - transform.position.x > 0.3)
+            if (collision.transform.position.x - transform.position.x > 0.2)
             {
                 direction.x = 1;
             }
-            else if (collision.transform.position.x - transform.position.x < -0.3)
+            else if (collision.transform.position.x - transform.position.x < -0.2)
             {
                 direction.x = -1;
             }
@@ -193,7 +193,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
                 }
-                else if (!currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
+                else if (!currentPole && !collision.gameObject.GetComponent<MagnetBox>().canInteract)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
 
