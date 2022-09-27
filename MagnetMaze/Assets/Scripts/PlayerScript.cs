@@ -71,6 +71,10 @@ public class PlayerScript : MonoBehaviour
 
       if (Input.GetButtonDown("Jump") && IsGrounded())
       {
+         if (objects.Count != 0)
+            {
+                objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rb.velocity.x, -jumpingPower);
+            }
          rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
       }
 
@@ -91,17 +95,14 @@ public class PlayerScript : MonoBehaviour
                objects[0].layer = 8;
                objects[0].GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 1);
                objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-               Debug.Log(objects[0] + " " + "negativou");
             }
             else if (currentPole)
             {
                objects[0].layer = 7;
                objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
                objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
-               Debug.Log(objects[0] + " " + "positivou");
             }
          }
-         Debug.Log("interacting");
       }
 
       if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -124,9 +125,11 @@ public class PlayerScript : MonoBehaviour
 
    private bool IsGrounded()
    {
-      return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.1f, 0.02f), 0, groundLayer);
+       print(gameObject.GetComponent<CapsuleCollider2D>().bounds.extents);
+       return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.1f, 0.02f), 0, groundLayer);
+
       //return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-   }
+    }
    private void Flip()
    {
       if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
@@ -146,7 +149,6 @@ public class PlayerScript : MonoBehaviour
          objects.Insert(0, other.transform.parent.gameObject);
          objects[0].GetComponent<MagnetBox>().canInteract = true;
          canInteract = true;
-         Debug.Log(canInteract + " " + objects);
       }
    }
 //collision stay pra checar qual objeto interagir
@@ -161,7 +163,6 @@ public class PlayerScript : MonoBehaviour
           {
                 canInteract = false;
           }
-          Debug.Log(canInteract);
       }
    }
 
@@ -192,10 +193,14 @@ public class PlayerScript : MonoBehaviour
                 if (currentPole)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
+
                 }
                 else if (!currentPole && !collision.gameObject.GetComponent<MagnetBox>().canInteract)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
+
 
                 }
             }
@@ -205,10 +210,14 @@ public class PlayerScript : MonoBehaviour
                 if (currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
+
                 }
                 else if (!currentPole)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
+
                 }
             }
         }
