@@ -492,6 +492,10 @@ PrefabInstance:
       value: 1.4475068
       objectReference: {fileID: 0}
     - target: {fileID: 416565260069767683, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416565260069767683, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.64
       objectReference: {fileID: 0}
@@ -1160,6 +1164,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032501, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644896693509032501, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644896693509032501, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
@@ -1167,7 +1179,24 @@ PrefabInstance:
       propertyPath: magneticForce
       value: 20
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5968601832341726686, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_Size.y
+      value: 0.56043744
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968601832341726686, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7a303a3af07a837c1a6c69657a55df09, type: 2}
+    - target: {fileID: 5968601832341726686, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.016871572
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968601832341726686, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4644896693509032502, guid: 66719b5968f4f1caf83389a041939300, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66719b5968f4f1caf83389a041939300, type: 3}
 --- !u!1001 &7187966515350282226
 PrefabInstance:
