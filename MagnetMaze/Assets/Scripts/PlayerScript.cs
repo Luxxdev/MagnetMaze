@@ -74,9 +74,11 @@ public class PlayerScript : MonoBehaviour
       {
          if (objects.Count != 0)
             {
+                print("empurrei");
                 objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rb.velocity.x, -jumpingPower);
             }
          rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+         print("pulei");
       }
 
       if (Input.GetButtonDown("Interact") && canInteract)
@@ -133,8 +135,8 @@ public class PlayerScript : MonoBehaviour
 
    private bool IsGrounded()
    {
-       print(gameObject.GetComponent<CapsuleCollider2D>().bounds.extents);
-       return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.1f, 0.02f), 0, groundLayer);
+       return Physics2D.Raycast(transform.position, -Vector2.up, gameObject.GetComponent<BoxCollider2D>().bounds.extents.y + 0.1f, groundLayer);
+       //return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.1f, 0.02f), 0, groundLayer);
 
       //return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
@@ -149,7 +151,7 @@ public class PlayerScript : MonoBehaviour
       }
    }
 
-   private void OnCollisionEnter2D(Collision2D other)
+   /*private void OnCollisionEnter2D(Collision2D other)
    {
       //if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
       if (other.gameObject.layer == 12 && (other.transform.parent.gameObject.layer >= 7 && other.transform.parent.gameObject.layer <= 9))
@@ -172,8 +174,17 @@ public class PlayerScript : MonoBehaviour
                 canInteract = false;
           }
       }
-   }
+   }*/
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 12 && (collision.transform.parent.gameObject.layer >= 7 && collision.transform.parent.gameObject.layer <= 9))
+        {
+            objects.Insert(0, collision.transform.parent.gameObject);
+            objects[0].GetComponent<MagnetBox>().canInteract = true;
+            canInteract = true;
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (isToolActive)
@@ -227,6 +238,19 @@ public class PlayerScript : MonoBehaviour
                     gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
 
                 }
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 12 && (collision.transform.parent.gameObject.layer >= 7 && collision.transform.parent.gameObject.layer <= 9))
+        {
+            objects[0].GetComponent<MagnetBox>().canInteract = false;
+            objects.Remove(collision.transform.parent.gameObject);
+            if (objects.Count == 0)
+            {
+                canInteract = false;
             }
         }
     }
