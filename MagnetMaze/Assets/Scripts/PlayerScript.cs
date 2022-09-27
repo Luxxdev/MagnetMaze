@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     private bool currentPole = false;
     private bool canInteract = false;
     private List<GameObject> objects = new List<GameObject>();
+    private GameObject lastObjectInteracted = null;
     [SerializeField] protected Animator anim;
     [SerializeField] private GameObject tool;
     [SerializeField] private Rigidbody2D rb;
@@ -80,12 +81,12 @@ public class PlayerScript : MonoBehaviour
 
       if (Input.GetButtonDown("Interact") && canInteract)
       {
-         if (objects[0].layer == 7 && currentPole || objects[0].layer == 8 && !currentPole)
+        if (objects[0].layer == 7 && currentPole || objects[0].layer == 8 && !currentPole)
          {
             objects[0].layer = 9;
             objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
+            lastObjectInteracted = null;
          }
          else if (objects[0].layer >= 7 && objects[0].layer <= 9)
          {
@@ -102,6 +103,13 @@ public class PlayerScript : MonoBehaviour
                objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
                objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
             }
+            if (lastObjectInteracted != null && lastObjectInteracted != objects[0])
+            {
+               lastObjectInteracted.layer = 9;
+               lastObjectInteracted.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+               lastObjectInteracted.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            lastObjectInteracted = objects[0];
          }
       }
 
