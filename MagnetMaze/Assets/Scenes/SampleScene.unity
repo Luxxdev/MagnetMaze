@@ -4021,13 +4021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb57943e0f78e7f0ac77754707ce12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1483831716}
+  rigidBody: {fileID: 0}
   canInteract: 0
---- !u!50 &1483831716 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 218974754592445755, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
-  m_PrefabInstance: {fileID: 1515667765}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1515667765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4324,11 +4319,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 338452962463733333, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
   m_PrefabInstance: {fileID: 7187966515350282226}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &1997691705 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 218974754592445755, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
-  m_PrefabInstance: {fileID: 7187966515350282226}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1997691709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4341,7 +4331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb57943e0f78e7f0ac77754707ce12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1997691705}
+  rigidBody: {fileID: 0}
   canInteract: 0
 --- !u!1001 &456473072889495338
 PrefabInstance:
@@ -4350,6 +4340,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4644896692451211687, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032496, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_Name
       value: Scientist

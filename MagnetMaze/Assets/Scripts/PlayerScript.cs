@@ -15,7 +15,7 @@ public class PlayerScript : MonoBehaviour
     private GameObject lastObjectInteracted = null;
     [SerializeField] protected Animator anim;
     [SerializeField] private GameObject tool;
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float magneticForce = 10;
@@ -33,112 +33,140 @@ public class PlayerScript : MonoBehaviour
 
       if (Input.GetButtonDown("ToggleTool"))
       {
-         anim.SetTrigger("toolClick");
-         currentPole = !currentPole;
-         if (currentPole && isToolActive)
-         {
-            this.gameObject.layer = LayerMask.NameToLayer("ToolPositive");
-            tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
-         }
-         else if (!currentPole && isToolActive)
-         {
-            this.gameObject.layer = LayerMask.NameToLayer("ToolNegative");
-            tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
-         }
-
+            ToggleTool();
       }
 
       if (Input.GetButtonDown("ActivateTool"))
       {
-         anim.SetTrigger("toolOn");
-         isToolActive = !isToolActive;
-         tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
-         tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
-         if (currentPole && isToolActive)
-         {
-            this.gameObject.layer = LayerMask.NameToLayer("ToolPositive");
-            tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
-         }
-         else if (!currentPole && isToolActive)
-         {
-            this.gameObject.layer = LayerMask.NameToLayer("ToolNegative");
-            tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
-         }
-         else if (!isToolActive)
-         {
-            this.gameObject.layer = LayerMask.NameToLayer("Player");
-         }
+            ActivateTool();
       }
 
       if (Input.GetButtonDown("Jump") && IsGrounded())
       {
-         if (objects.Count != 0)
-            {
-                print("empurrei");
-                objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rb.velocity.x, -jumpingPower);
-            }
-         rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-         print("pulei");
+            Jump();
       }
 
       if (Input.GetButtonDown("Interact") && canInteract)
       {
-        if (objects[0].layer == 7 && currentPole || objects[0].layer == 8 && !currentPole)
-         {
-            objects[0].layer = 9;
-            objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            lastObjectInteracted = null;
-         }
-         else if (objects[0].layer >= 7 && objects[0].layer <= 9)
-         {
-            objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            if (!currentPole)
-            {
-               objects[0].layer = 8;
-               objects[0].GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 1);
-               objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-            }
-            else if (currentPole)
-            {
-               objects[0].layer = 7;
-               objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
-               objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
-            }
-            if (lastObjectInteracted != null && lastObjectInteracted != objects[0])
-            {
-               lastObjectInteracted.layer = 9;
-               lastObjectInteracted.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-               lastObjectInteracted.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
-            lastObjectInteracted = objects[0];
-         }
+            Interact();
       }
 
-      if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+      if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0f)
       {
-         anim.SetFloat("Yvelocity", rb.velocity.y);
-         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+         anim.SetFloat("Yvelocity", rigidBody.velocity.y);
+         rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * 0.5f);
       }
 
       Flip();
    }
+    private void ActivateTool()
+    {
+        anim.SetTrigger("toolOn");
+        isToolActive = !isToolActive;
+        tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
+        tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
+        if (currentPole && isToolActive)
+        {
+            gameObject.layer = LayerMask.NameToLayer("ToolPositive");
+            tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
+        }
+        else if (!currentPole && isToolActive)
+        {
+            gameObject.layer = LayerMask.NameToLayer("ToolNegative");
+            tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
+        }
+        else if (!isToolActive)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
+    }
+    private void ToggleTool()
+    {
+        anim.SetTrigger("toolClick");
+        currentPole = !currentPole;
+        if (currentPole && isToolActive)
+        {
+            gameObject.layer = LayerMask.NameToLayer("ToolPositive");
+            tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
+        }
+        else if (!currentPole && isToolActive)
+        {
+            gameObject.layer = LayerMask.NameToLayer("ToolNegative");
+            tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
+        }
+    }
+    private void Jump()
+    {
+        if (objects.Count != 0)
+        {
+            print("empurrei");
+            objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rigidBody.velocity.x, -jumpingPower);
+        }
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
+        print("pulei");
+    }
+    private void Interact()
+    {
+        if (objects[0].layer == 7 && currentPole || objects[0].layer == 8 && !currentPole)
+        {
+            objects[0].layer = 9;
+            objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            lastObjectInteracted = null;
+        }
+        else if (objects[0].layer >= 7 && objects[0].layer <= 9)
+        {
+            objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            if (!currentPole)
+            {
+                objects[0].layer = 8;
+                objects[0].GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 1);
+                objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
+            }
+            else if (currentPole)
+            {
+                objects[0].layer = 7;
+                objects[0].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+                objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
+            }
+            if (lastObjectInteracted != null && lastObjectInteracted != objects[0])
+            {
+                lastObjectInteracted.layer = 9;
+                lastObjectInteracted.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                lastObjectInteracted.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            lastObjectInteracted = objects[0];
+        }
+    }
 
    private void FixedUpdate()
    {
-      anim.SetFloat("Yvelocity", rb.velocity.y);
-      anim.SetBool("isOnFloor", rb.velocity.y != 0 ? false : true);
-      anim.SetBool("isMoving", rb.velocity.x != 0 ? true : false);
+      anim.SetFloat("Yvelocity", rigidBody.velocity.y);
+      anim.SetBool("isOnFloor", rigidBody.velocity.y != 0 ? false : true);
+      anim.SetBool("isMoving", rigidBody.velocity.x != 0 ? true : false);
 
-      rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+      rigidBody.velocity = new Vector2(horizontal * speed, rigidBody.velocity.y);
+  
+      if (objects.Count > 0 && objects[0].GetComponent<MagnetBox>().canInteract && isToolActive)
+        {
+            if (objects[0].layer == 7 && !currentPole)
+            {
+                objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(horizontal * speed / 2, rigidBody.velocity.y);
+                print("apply");
+            }
+            else if(objects[0].layer == 8 && currentPole)
+            {
+                objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(horizontal * speed / 2, rigidBody.velocity.y);
+
+                print("apply");
+
+            }
+        }
    }
 
    private bool IsGrounded()
    {
        return Physics2D.Raycast(transform.position, -Vector2.up, gameObject.GetComponent<BoxCollider2D>().bounds.extents.y + 0.1f, groundLayer);
-       //return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.1f, 0.02f), 0, groundLayer);
-
-      //return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
    private void Flip()
    {
@@ -150,31 +178,6 @@ public class PlayerScript : MonoBehaviour
          transform.localScale = localScale;
       }
    }
-
-   /*private void OnCollisionEnter2D(Collision2D other)
-   {
-      //if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
-      if (other.gameObject.layer == 12 && (other.transform.parent.gameObject.layer >= 7 && other.transform.parent.gameObject.layer <= 9))
-      {
-         objects.Insert(0, other.transform.parent.gameObject);
-         objects[0].GetComponent<MagnetBox>().canInteract = true;
-         canInteract = true;
-      }
-   }
-//collision stay pra checar qual objeto interagir
-    private void OnCollisionExit2D(Collision2D other)
-   {
-      // if (other.gameObject.layer >= 7 && other.gameObject.layer <= 9)
-      if (other.gameObject.layer == 12 && (other.transform.parent.gameObject.layer >= 7 && other.transform.parent.gameObject.layer <= 9))
-      {
-          objects[0].GetComponent<MagnetBox>().canInteract = false;
-          objects.Remove(other.transform.parent.gameObject);
-          if (objects.Count == 0)
-          {
-                canInteract = false;
-          }
-      }
-   }*/
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -190,6 +193,7 @@ public class PlayerScript : MonoBehaviour
         if (isToolActive)
         {
             Vector2 direction = new Vector2(0,0);
+
             if (collision.transform.position.x - transform.position.x > 0.2)
             {
                 direction.x = 1;
@@ -212,42 +216,37 @@ public class PlayerScript : MonoBehaviour
                 if (currentPole)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
-                    gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
-
+                    rigidBody.AddForce(-magneticForce * direction);
                 }
                 else if (!currentPole && !collision.gameObject.GetComponent<MagnetBox>().canInteract)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
-                    gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
-
-
+                    rigidBody.AddForce(magneticForce * direction);
                 }
             }
 
             if (collision.gameObject.layer == 8)
             {
-                if (currentPole && collision.gameObject.GetComponent<MagnetBox>().canInteract == false)
+                if (currentPole && !collision.gameObject.GetComponent<MagnetBox>().canInteract)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
-                    gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
-
+                    rigidBody.AddForce(magneticForce * direction);
                 }
                 else if (!currentPole)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
-                    gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
-
+                    rigidBody.AddForce(-magneticForce * direction);
                 }
             }
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 12 && (collision.transform.parent.gameObject.layer >= 7 && collision.transform.parent.gameObject.layer <= 9))
         {
             objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
+
             if (objects.Count == 0)
             {
                 canInteract = false;

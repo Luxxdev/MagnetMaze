@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4644896692451211686}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 4058572531331260509}
   tool: {fileID: 4409534455192989937}
-  rb: {fileID: 4644896693509032501}
+  rigidBody: {fileID: 4644896693509032501}
   groundCheck: {fileID: 4644896692451211686}
   groundLayer:
     serializedVersion: 2
