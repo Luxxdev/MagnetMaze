@@ -283,6 +283,11 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void ChangeText(int count)
+    {
+        UIText.GetComponent<TMPro.TextMeshProUGUI>().text = "X " + count.ToString();
+    }
+
     private void UpdateAnimation()
     {
         MovementState state;
