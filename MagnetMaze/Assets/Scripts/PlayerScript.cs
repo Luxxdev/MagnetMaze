@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float magneticForce = 10;
+    private enum MovementState {idle, running, jumping, falling}
 
    void Start()
    {
@@ -51,12 +52,13 @@ public class PlayerScript : MonoBehaviour
             Interact();
       }
 
-      if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0f)
+      if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0.1f)
       {
          anim.SetFloat("Yvelocity", rigidBody.velocity.y);
          rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * 0.5f);
       }
 
+        UpdateAnimation();
       Flip();
    }
     private void ActivateTool()
@@ -99,11 +101,9 @@ public class PlayerScript : MonoBehaviour
     {
         if (objects.Count != 0)
         {
-            print("empurrei");
             objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rigidBody.velocity.x, -jumpingPower);
         }
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
-        print("pulei");
     }
     private void Interact()
     {
@@ -142,29 +142,13 @@ public class PlayerScript : MonoBehaviour
    private void FixedUpdate()
    {
       anim.SetFloat("Yvelocity", rigidBody.velocity.y);
-      anim.SetBool("isOnFloor", rigidBody.velocity.y != 0 ? false : true);
-      anim.SetBool("isMoving", rigidBody.velocity.x != 0 ? true : false);
+        anim.SetBool("isOnFloor", rigidBody.velocity.y != 0 ? false : true);
+        anim.SetBool("isMoving", rigidBody.velocity.x != 0 ? true : false);
 
-      rigidBody.velocity = new Vector2(horizontal * speed, rigidBody.velocity.y);
-  
-      if (objects.Count > 0 && objects[0].GetComponent<MagnetBox>().canInteract && isToolActive)
-        {
-            if (objects[0].layer == 7 && !currentPole)
-            {
-                objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(horizontal * speed / 2, rigidBody.velocity.y);
-                print("apply");
-            }
-            else if(objects[0].layer == 8 && currentPole)
-            {
-                objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(horizontal * speed / 2, rigidBody.velocity.y);
+        rigidBody.velocity = new Vector2(horizontal * speed, rigidBody.velocity.y);
+    }
 
-                print("apply");
-
-            }
-        }
-   }
-
-   private bool IsGrounded()
+    private bool IsGrounded()
    {
        return Physics2D.Raycast(transform.position, -Vector2.up, gameObject.GetComponent<BoxCollider2D>().bounds.extents.y + 0.1f, groundLayer);
     }
@@ -253,4 +237,29 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+
+    private void UpdateAnimation()
+    {
+        MovementState state;
+
+        if(horizontal != 0)
+        {
+            state = MovementState.running;
+        }
+        else
+        {
+            state = MovementState.idle;
+        }
+        if (rigidBody.velocity.y > 0.1f)
+        {
+            state = MovementState.jumping;
+        }
+        else if (rigidBody.velocity.y < -0.1f)
+        {
+            state = MovementState.falling;
+        }
+
+        anim.SetInteger("state", (int)state);
+    }
+
 }
