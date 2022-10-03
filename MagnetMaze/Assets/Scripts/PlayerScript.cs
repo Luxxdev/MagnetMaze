@@ -62,11 +62,10 @@ public class PlayerScript : MonoBehaviour
 
       if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0.1f)
       {
-         anim.SetFloat("Yvelocity", rigidBody.velocity.y);
          rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * 0.5f);
       }
 
-        UpdateAnimation();
+      UpdateAnimation();
       Flip();
    }
     private void ActivateTool()
@@ -166,10 +165,6 @@ public class PlayerScript : MonoBehaviour
 
    private void FixedUpdate()
    {
-      anim.SetFloat("Yvelocity", rigidBody.velocity.y);
-        anim.SetBool("isOnFloor", rigidBody.velocity.y != 0 ? false : true);
-        anim.SetBool("isMoving", rigidBody.velocity.x != 0 ? true : false);
-
       rigidBody.velocity = new Vector2(horizontal * speed, rigidBody.velocity.y);
   
     //   if (objects.Count > 0 && objects[0].GetComponent<MagnetBox>().canInteract && isToolActive)

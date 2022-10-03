@@ -5,6 +5,8 @@ using UnityEngine;
 public class PressureButton : MonoBehaviour
 {
     [SerializeField] private GameObject interactableObject;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite[] sprite;
     private bool pressed = false;
     private List<Collider2D> objectsInArea = new List<Collider2D>();
 
@@ -16,6 +18,7 @@ public class PressureButton : MonoBehaviour
             if (!pressed)
             {
                 pressed = true;
+                spriteRenderer.sprite = sprite[1];
                 OnButtonPressed();
             }
         }
@@ -28,6 +31,7 @@ public class PressureButton : MonoBehaviour
             objectsInArea.Remove(collision);
             if(objectsInArea.Count == 0)
             {
+                spriteRenderer.sprite = sprite[0];
                 pressed = false;
             }
         }

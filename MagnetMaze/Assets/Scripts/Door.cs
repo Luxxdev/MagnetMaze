@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Door : ButtonInteractableObject
 {
+    [SerializeField]private Animator anim;
+    [SerializeField] private Collider2D collider;
     public override void Activate()
     {
-        transform.Translate(new Vector3(1, 0, 0));
-        print("movi");
+        anim.SetBool("isOpen", collider.enabled);
+        collider.enabled = !collider.enabled;
     }
 }
