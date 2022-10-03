@@ -12,7 +12,7 @@ public class PressureButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.tag == "Player" || collision.gameObject.tag == "Box") && !collision.isTrigger)
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Box") && !collision.isTrigger))
         {
             objectsInArea.Add(collision);
             if (!pressed)
@@ -26,7 +26,7 @@ public class PressureButton : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if ((collision.gameObject.tag == "Player" || collision.gameObject.tag == "Box") && !collision.isTrigger)
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Box") && !collision.isTrigger))
         {
             objectsInArea.Remove(collision);
             if(objectsInArea.Count == 0)
