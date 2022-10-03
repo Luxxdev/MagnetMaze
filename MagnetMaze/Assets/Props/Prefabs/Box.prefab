@@ -85,7 +85,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &2966877202435946940
@@ -148,6 +148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
+  spriteArray:
+  - {fileID: -860264664590275695, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
+  - {fileID: 6725727613379955586, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
+  - {fileID: -6149412955217794276, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
+  - {fileID: -5768267191352871723, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
+  - {fileID: 6160296599583732815, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
   canInteract: 0
 --- !u!58 &840501666103083550
 CircleCollider2D:
