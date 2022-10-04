@@ -13,6 +13,7 @@ public class BottomTextManagement : MonoBehaviour
    protected float transTime = 0.5f;
    [SerializeField] protected RectTransform panelTransform;
    public TMPro.TextMeshProUGUI textDisplay;
+   public bool isPaused = false;
    protected Dictionary<string, Vector2> positions = new Dictionary<string, Vector2>(){
     {"hidden", new Vector2(0, -178)},
     {"onScreen", new Vector2(0, 0)}
@@ -28,6 +29,7 @@ public class BottomTextManagement : MonoBehaviour
       explanationImage.DOFade(1, 0.8f);
       charExpression.DOFade(1, 0.8f);
       ResetPhrases();
+      isPaused = true;
    }
    public void CloseDialog()
    {
@@ -35,6 +37,7 @@ public class BottomTextManagement : MonoBehaviour
       charExpression.DOFade(0, 0.2f);
       explanationImage.DOFade(0, 0.2f);
       textDisplay.text = "";
+      isPaused = false;
    }
 
    public void NextPhrase()
@@ -51,6 +54,8 @@ public class BottomTextManagement : MonoBehaviour
       phraseIndex = 0;
       textDisplay.text = frases[phraseIndex];
    }
+
+   public bool GetIsPaused() { return isPaused; }
    void Update()
    {
 
