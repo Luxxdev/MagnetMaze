@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigMagnet : MonoBehaviour
+public class BigMagnet : SwitchesInteractableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private AreaEffector2D positive;
+    [SerializeField] private AreaEffector2D negative;
 
-    // Update is called once per frame
-    void Update()
+
+    public override void Activate()
     {
-        
+        throw new System.NotImplementedException();
     }
 }
