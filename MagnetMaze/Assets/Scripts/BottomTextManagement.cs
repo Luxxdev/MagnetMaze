@@ -46,6 +46,7 @@ public class BottomTextManagement : MonoBehaviour
       if (phraseIndex >= frases.Count)
       {
          CloseDialog();
+         return;
       }
       textDisplay.text = frases[phraseIndex];
    }

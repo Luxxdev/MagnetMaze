@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BigMagnet : SwitchesInteractableObject
 {
+    [SerializeField] private bool pole;
+    [SerializeField] private bool isActive;
+    [SerializeField] private Mode interactionMode;
     [SerializeField] private AreaEffector2D positive;
     [SerializeField] private AreaEffector2D negative;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] sprites;
-    [SerializeField] private interactionMode currentType;
-    [SerializeField] private bool pole;
-    [SerializeField] private bool isActive;
-    private enum interactionMode{ onOff, invert }
+    private enum Mode{ onOff, invert }
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class BigMagnet : SwitchesInteractableObject
     }
     public override void Activate()
     {
-        switch ((int)currentType)
+        switch ((int)interactionMode)
         {
             case 0:
                 isActive = !isActive;
