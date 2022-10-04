@@ -6,14 +6,12 @@ using DG.Tweening;
 
 public class BottomTextManagement : MonoBehaviour
 {
-   [SerializeField]
-   public List<string> frases;
+   [SerializeField] public List<string> frases;
    public Image charExpression;
    public Image explanationImage;
    protected int phraseIndex = 0;
    protected float transTime = 0.5f;
-   [SerializeField]
-   protected RectTransform panelTransform;
+   [SerializeField] protected RectTransform panelTransform;
    public TMPro.TextMeshProUGUI textDisplay;
    protected Dictionary<string, Vector2> positions = new Dictionary<string, Vector2>(){
     {"hidden", new Vector2(0, -178)},
