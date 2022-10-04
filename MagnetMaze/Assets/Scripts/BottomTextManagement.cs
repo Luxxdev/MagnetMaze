@@ -6,14 +6,14 @@ using DG.Tweening;
 
 public class BottomTextManagement : MonoBehaviour
 {
-   [SerializeField] public List<string> frases;
+   [SerializeField] private List<string> frases;
    public Image charExpression;
    public Image explanationImage;
    protected int phraseIndex = 0;
    protected float transTime = 0.5f;
    [SerializeField] protected RectTransform panelTransform;
    public TMPro.TextMeshProUGUI textDisplay;
-   public bool isPaused = false;
+   private bool isPaused = false;
    protected Dictionary<string, Vector2> positions = new Dictionary<string, Vector2>(){
     {"hidden", new Vector2(0, -178)},
     {"onScreen", new Vector2(0, 0)}
@@ -46,6 +46,7 @@ public class BottomTextManagement : MonoBehaviour
       if (phraseIndex >= frases.Count)
       {
          CloseDialog();
+         return;
       }
       textDisplay.text = frases[phraseIndex];
    }

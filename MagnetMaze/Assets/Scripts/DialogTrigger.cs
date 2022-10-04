@@ -23,11 +23,9 @@ public class DialogTrigger : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        print("entrou");
         print(textShown);
         if (other.gameObject.CompareTag("Player") && !textShown)
         {
-            print("foi");
             hudObject.GetComponent<BottomTextManagement>().CallDialog();
             textShown = true;
         }
