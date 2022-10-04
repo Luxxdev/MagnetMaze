@@ -26,7 +26,6 @@ public class MagnetBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
         {
-            print(collision.gameObject.name);
             conducting = true;
             touchingConductingBoxes.Add(collision.gameObject);
         }
@@ -34,15 +33,27 @@ public class MagnetBox : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") && !collision.gameObject.GetComponent<MagnetBox>().conducting)
+        if (collision.gameObject.CompareTag("Box"))
         {
-            if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
+
+            if (!collision.gameObject.GetComponent<MagnetBox>().conducting)
             {
-                touchingConductingBoxes.Remove(collision.gameObject);
+                if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
+                {
+                    touchingConductingBoxes.Remove(collision.gameObject);
+                    if(touchingConductingBoxes.Count == 0)
+                    {
+                        conducting = false;
+                    }
+                }
             }
-            if(touchingConductingBoxes.Count == 0)
+            else if (collision.gameObject.GetComponent<MagnetBox>().conducting)
             {
-                conducting = false;
+                if (touchingConductingBoxes.Count == 0 || !touchingConductingBoxes.Contains(collision.gameObject))
+                {
+                    touchingConductingBoxes.Add(collision.gameObject);
+                    conducting = true;
+                }
             }
         }
     }
@@ -51,7 +62,6 @@ public class MagnetBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
         {
-            print("descolidi");
             if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
             {
                 touchingConductingBoxes.Remove(collision.gameObject);

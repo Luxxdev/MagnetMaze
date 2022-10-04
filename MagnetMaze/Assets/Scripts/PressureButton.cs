@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressureButton : MonoBehaviour
+public class PressureButton : Switches
 {
-    [SerializeField] private GameObject interactableObject;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite[] sprite;
-    private bool pressed = false;
     private List<Collider2D> objectsInArea = new List<Collider2D>();
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,11 +15,10 @@ public class PressureButton : MonoBehaviour
             {
                 pressed = true;
                 spriteRenderer.sprite = sprite[1];
-                OnButtonPressed();
+                OnSwitchActivate();
             }
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Box") && !collision.isTrigger))
@@ -36,9 +31,9 @@ public class PressureButton : MonoBehaviour
             }
         }
     }
-
-    private void OnButtonPressed()
+    public override void OnSwitchActivate()
     {
-        interactableObject.GetComponent<ButtonInteractableObject>().Activate();
+        base.OnSwitchActivate();
     }
+
 }

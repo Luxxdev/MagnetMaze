@@ -286,6 +286,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4160
   magneticForce: 10
+  coll: {fileID: 5968601832341726686}
 --- !u!95 &4058572531331260509
 Animator:
   serializedVersion: 3

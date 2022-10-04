@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float magneticForce = 10;
+    [SerializeField] private Collider2D coll;
     private enum MovementState {idle, running, jumping, falling}
 
    void Start()
@@ -184,7 +185,8 @@ public class PlayerScript : MonoBehaviour
 
    private bool IsGrounded()
    {
-       return Physics2D.Raycast(transform.position, -Vector2.up, gameObject.GetComponent<BoxCollider2D>().bounds.extents.y + 0.1f, groundLayer);
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.03f, groundLayer);
+      // return Physics2D.Raycast(transform.position, -Vector2.up, gameObject.GetComponent<BoxCollider2D>().bounds.extents.y + 0.1f, groundLayer);
     }
    private void Flip()
    {

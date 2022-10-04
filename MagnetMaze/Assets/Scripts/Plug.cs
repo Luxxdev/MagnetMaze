@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Plug : MonoBehaviour
 {
-    public bool emmiting;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Box") && !collision.isTrigger)
