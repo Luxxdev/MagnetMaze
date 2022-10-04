@@ -128,7 +128,10 @@ public class PlayerScript : MonoBehaviour
     {
         if (objects.Count != 0)
         {
-            objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rigidBody.velocity.x, -jumpingPower);
+            if (objects[0].CompareTag("Box"))
+            {
+                objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rigidBody.velocity.x, -jumpingPower);
+            }
         }
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
     }

@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: 10
+  hud: {fileID: 0}
   anim: {fileID: 4058572531331260509}
   tool: {fileID: 4409534455192989937}
   UIText: {fileID: 0}
