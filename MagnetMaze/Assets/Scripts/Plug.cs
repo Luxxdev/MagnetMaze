@@ -7,7 +7,7 @@ public class Plug : MonoBehaviour
     public bool emmiting;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Box")
+        if (collision.gameObject.CompareTag("Box") && !collision.isTrigger)
         {
             collision.gameObject.GetComponent<MagnetBox>().conducting = true;
         }
@@ -15,7 +15,7 @@ public class Plug : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Box")
+        if (collision.gameObject.CompareTag("Box") && !collision.isTrigger)
         {
             collision.gameObject.GetComponent<MagnetBox>().conducting = false;
         }
