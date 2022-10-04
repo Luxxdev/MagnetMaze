@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Box
   - Energy
+  - Interactable
   layers:
   - Default
   - TransparentFX

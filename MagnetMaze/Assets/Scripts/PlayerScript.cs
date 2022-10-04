@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     private bool canInteract = false;
     private List<GameObject> objects = new List<GameObject>();
     private GameObject lastObjectInteracted = null;
+    [SerializeField] private GameObject hud;
     [SerializeField] protected Animator anim;
     [SerializeField] private GameObject tool;
     [SerializeField] private GameObject UIText;
@@ -33,38 +34,41 @@ public class PlayerScript : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      horizontal = Input.GetAxisRaw("Horizontal");
-
-      if (Input.GetButtonDown("ToggleTool"))
-      {
-        if (energy > 0)
+        if (!hud.GetComponent<BottomTextManagement>().GetIsPaused())
         {
-            ToggleTool();
+            horizontal = Input.GetAxisRaw("Horizontal");
+
+            if (Input.GetButtonDown("ToggleTool"))
+            {
+            if (energy > 0)
+            {
+                ToggleTool();
+            }
+            }
+
+            if (Input.GetButtonDown("ActivateTool"))
+            {
+                ActivateTool();
+            }
+
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                Jump();
+            }
+
+            if (Input.GetButtonDown("Interact") && canInteract)
+            {
+            if (energy > 0)
+            {
+                Interact();
+            }
+            }
+
+            if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0.1f)
+            {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * 0.5f);
+            }
         }
-      }
-
-      if (Input.GetButtonDown("ActivateTool"))
-      {
-            ActivateTool();
-      }
-
-      if (Input.GetButtonDown("Jump") && IsGrounded())
-      {
-            Jump();
-      }
-
-      if (Input.GetButtonDown("Interact") && canInteract)
-      {
-        if (energy > 0)
-        {
-            Interact();
-        }
-      }
-
-      if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0.1f)
-      {
-         rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * 0.5f);
-      }
 
       UpdateAnimation();
       Flip();
@@ -161,6 +165,11 @@ public class PlayerScript : MonoBehaviour
             }
             lastObjectInteracted = objects[0];
         }
+        else if (objects[0].CompareTag("Interactable"))
+        {
+            energy += 1;
+            objects[0].GetComponent<Switches>().OnSwitchActivate();
+        }
         ChangeText(energy);
     }
 
@@ -201,13 +210,18 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 12 && (collision.transform.parent.gameObject.layer >= 7 && collision.transform.parent.gameObject.layer <= 9))
+        if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
         }
-        else if (collision.gameObject.tag == "Energy")
+        else if (collision.gameObject.CompareTag("Interactable"))
+        {
+            objects.Insert(0, collision.gameObject);
+            canInteract = true;
+        }
+        else if (collision.gameObject.CompareTag("Energy"))
         {
             energy += 1;
             Destroy(collision.gameObject);
@@ -216,7 +230,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isToolActive)
+        if (isToolActive && collision.gameObject.CompareTag("Box"))
         {
             Vector2 direction = new Vector2(0,0);
 
@@ -268,7 +282,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 12 && (collision.transform.parent.gameObject.layer >= 7 && collision.transform.parent.gameObject.layer <= 9))
+        if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
             objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
