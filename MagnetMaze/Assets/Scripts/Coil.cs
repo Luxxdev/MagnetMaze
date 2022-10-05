@@ -15,7 +15,7 @@ public class Coil : Switches
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (layers.Contains(collision.gameObject.layer) || (collision.gameObject.CompareTag("Box") && layers.Contains(collision.transform.parent.gameObject.layer)))
+        if (layers.Contains(collision.gameObject.layer) || (collision.gameObject.CompareTag("Box") && layers.Contains(collision.gameObject.layer)))
         {
             if (collision.attachedRigidbody.velocity.x > 0.1f || collision.attachedRigidbody.velocity.x < -0.1f)
             {

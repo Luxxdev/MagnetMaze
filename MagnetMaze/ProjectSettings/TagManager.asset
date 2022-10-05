@@ -7,6 +7,7 @@ TagManager:
   - Box
   - Energy
   - Interactable
+  - Battery
   layers:
   - Default
   - TransparentFX

@@ -7,11 +7,23 @@ public abstract class Switches : MonoBehaviour
     [SerializeField] protected GameObject interactableObject;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Sprite[] sprite;
-    protected bool pressed = false;
+    protected bool canActivate = true;
+    protected bool hasBattery = false;
+
+    private void Start()
+    {
+        if (interactableObject.CompareTag("Battery"))
+        {
+            hasBattery = true;
+        }
+    }
 
     public virtual void OnSwitchActivate()
     {
-        interactableObject.GetComponent<SwitchesInteractableObject>().Activate();
+        if (canActivate)
+        {
+            interactableObject.GetComponent<SwitchesInteractableObject>().Activate();
+        }
     }
 
 }

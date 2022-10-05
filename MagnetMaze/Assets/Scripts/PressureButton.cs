@@ -5,6 +5,7 @@ using UnityEngine;
 public class PressureButton : Switches
 {
     private List<Collider2D> objectsInArea = new List<Collider2D>();
+    private bool pressed = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
