@@ -7,6 +7,7 @@ public class Coil : Switches
     [SerializeField] private float energyRequired;
     [SerializeField] private Collider2D coll;
     private List<int> layers = new List<int> {7,8,10,11};
+    private int steps = 1;
     private float energy = 0.0f;
     public override void OnSwitchActivate()
     {
@@ -21,10 +22,18 @@ public class Coil : Switches
             {
                 energy += Time.deltaTime;
             }
+            if (energy >= steps && hasBattery)
+            {
+                steps += 1;
+                OnSwitchActivate();
+            } 
             if (energy >= energyRequired)
             {
                 coll.enabled = false;
-                OnSwitchActivate();
+                if (!hasBattery)
+                {
+                    OnSwitchActivate();
+                }
             }
         }
     }

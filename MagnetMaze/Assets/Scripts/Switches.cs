@@ -10,7 +10,7 @@ public abstract class Switches : MonoBehaviour
     protected bool canActivate = true;
     protected bool hasBattery = false;
 
-    private void Start()
+    protected void Awake()
     {
         if (interactableObject.CompareTag("Battery"))
         {

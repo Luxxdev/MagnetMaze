@@ -394,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271424242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.15, y: -0.75, z: 30.970009}
+  m_LocalPosition: {x: -2.15, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4565,7 +4565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171797859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.59570944, y: -2.0010965, z: 30.971245}
+  m_LocalPosition: {x: 0.59570944, y: -2.0010965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4705,11 +4705,6 @@ PrefabInstance:
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5376859064819473374, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
   m_PrefabInstance: {fileID: 5376859063965587243}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1625743536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5693530924544845852, guid: 356281acbec41ee4c95386ce9cfa0eb5, type: 3}
-  m_PrefabInstance: {fileID: 5693530924018600108}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1694370489 stripped
 GameObject:
@@ -5265,7 +5260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286808836243730855, guid: 383195a2da352e143bfd1e1a9cecabf6, type: 3}
       propertyPath: requiredEnergy
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8286808836243730855, guid: 383195a2da352e143bfd1e1a9cecabf6, type: 3}
       propertyPath: interactableObject
@@ -5273,6 +5268,10 @@ PrefabInstance:
       objectReference: {fileID: 1838080629}
     - target: {fileID: 8792278711719375164, guid: 383195a2da352e143bfd1e1a9cecabf6, type: 3}
       propertyPath: m_Name
+      value: Battery
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792278711719375164, guid: 383195a2da352e143bfd1e1a9cecabf6, type: 3}
+      propertyPath: m_TagString
       value: Battery
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5294,7 +5293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5376859064819473373, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.154
+      value: -1.72
       objectReference: {fileID: 0}
     - target: {fileID: 5376859064819473373, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5333,6 +5332,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5376859064819473375, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
+      propertyPath: isPressure
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376859064819473375, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 1457868021}
@@ -5343,7 +5346,7 @@ PrefabInstance:
     - target: {fileID: 5376859064819473375, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
       propertyPath: interactableObject
       value: 
-      objectReference: {fileID: 1625743536}
+      objectReference: {fileID: 1900163262}
     - target: {fileID: 5376859064819473375, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
       propertyPath: sprite.Array.data[0]
       value: 
@@ -5441,22 +5444,22 @@ PrefabInstance:
     - target: {fileID: 6898171436097745019, guid: 5d2397c3bd2fcac4a836e586c473194d, type: 3}
       propertyPath: interactableObject
       value: 
-      objectReference: {fileID: 1900163262}
+      objectReference: {fileID: 1838080629}
     - target: {fileID: 6898171436097745022, guid: 5d2397c3bd2fcac4a836e586c473194d, type: 3}
       propertyPath: m_RootOrder
       value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6898171436097745022, guid: 5d2397c3bd2fcac4a836e586c473194d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.102
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 6898171436097745022, guid: 5d2397c3bd2fcac4a836e586c473194d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.56
+      value: -0.47
       objectReference: {fileID: 0}
     - target: {fileID: 6898171436097745022, guid: 5d2397c3bd2fcac4a836e586c473194d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.479096
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6898171436097745022, guid: 5d2397c3bd2fcac4a836e586c473194d, type: 3}
       propertyPath: m_LocalRotation.w
