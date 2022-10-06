@@ -5,8 +5,8 @@ using UnityEngine;
 public class Battery : SwitchesInteractableObject
 {
     [SerializeField] private GameObject interactableObject;
-    [SerializeField] private float requiredEnergy;
     [SerializeField] private GameObject energyBar;
+    public int requiredEnergy;
     private float energy;
     public override void Activate()
     {

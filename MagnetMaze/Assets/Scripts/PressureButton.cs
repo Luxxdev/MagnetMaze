@@ -6,9 +6,6 @@ public class PressureButton : Switches
 {
     private List<Collider2D> objectsInArea = new List<Collider2D>();
     [SerializeField] private bool isPressure = false;
-    [SerializeField] private int energyRequired = 3;
-    private int steps = 1;
-    private float energy = 0;
     private bool pressed = false;
     
     void Start()

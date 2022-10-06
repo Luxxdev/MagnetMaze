@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlugReceptor : Switches
 {
     private List<GameObject> touchingObjects = new List<GameObject>();
-    [SerializeField] private int energyRequired = 3;
-    private int steps = 1;
-    private float energy = 0;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Box") && !collision.isTrigger && collision.gameObject.GetComponent<MagnetBox>().conducting)
@@ -24,6 +22,7 @@ public class PlugReceptor : Switches
     {
         if (collision.gameObject.CompareTag("Box") && !collision.isTrigger)
         {
+            print("entrou");
             if (collision.gameObject.GetComponent<MagnetBox>().conducting && !touchingObjects.Contains(collision.gameObject))
             {
                 if(touchingObjects.Count == 0 && !hasBattery)
@@ -42,6 +41,10 @@ public class PlugReceptor : Switches
             }
             if (hasBattery && touchingObjects.Contains(collision.gameObject))
             {
+                if (collision.attachedRigidbody.sleepMode != RigidbodySleepMode2D.NeverSleep)
+                {
+                    collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.NeverSleep;
+                }
                 energy += Time.deltaTime;
                 if (energy >= steps)
                 {
@@ -50,6 +53,7 @@ public class PlugReceptor : Switches
                 }
                 if (energy >= energyRequired)
                 {
+                    collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.StartAsleep;
                     canActivate = false;
                 }
             }
