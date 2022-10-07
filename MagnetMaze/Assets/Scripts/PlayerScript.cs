@@ -58,10 +58,10 @@ public class PlayerScript : MonoBehaviour
 
             if (Input.GetButtonDown("Interact") && canInteract)
             {
-            if (energy > 0)
-            {
-                Interact();
-            }
+                if (energy > 0)
+                {
+                    Interact();
+                }
             }
 
             if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0.1f)
@@ -236,21 +236,20 @@ public class PlayerScript : MonoBehaviour
         if (isToolActive && collision.gameObject.CompareTag("Box"))
         {
             Vector2 direction = new Vector2(0,0);
-
-            if (collision.transform.position.x - transform.position.x > 0.2)
+            if (collision.transform.position.x - transform.position.x > 0)
             {
                 direction.x = 1;
             }
-            else if (collision.transform.position.x - transform.position.x < -0.2)
+            else if (collision.transform.position.x - transform.position.x < 0)
             {
                 direction.x = -1;
             }
-            if (collision.transform.position.y - transform.position.y > 0.6)
+            if (collision.transform.position.y - transform.position.y > 0.2f)
             {
                 direction.y = 1;
             }
-            else if (collision.transform.position.y - transform.position.y < -0.6)
-            {
+            else if (collision.transform.position.y - transform.position.y < -0.2f)
+           {
                 direction.y = -1;
             }
 
@@ -258,12 +257,12 @@ public class PlayerScript : MonoBehaviour
             {
                 if (currentPole)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
+                    collision.attachedRigidbody.AddForce(magneticForce * direction);
                     rigidBody.AddForce(-magneticForce * direction);
                 }
                 else if (!currentPole && !collision.gameObject.GetComponent<MagnetBox>().canInteract)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
+                    collision.attachedRigidbody.AddForce(-magneticForce * direction);
                     rigidBody.AddForce(magneticForce * direction);
                 }
             }
@@ -272,14 +271,15 @@ public class PlayerScript : MonoBehaviour
             {
                 if (currentPole && !collision.gameObject.GetComponent<MagnetBox>().canInteract)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-magneticForce * direction);
+                    collision.attachedRigidbody.AddForce(-magneticForce * direction);
                     rigidBody.AddForce(magneticForce * direction);
                 }
                 else if (!currentPole)
                 {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(magneticForce * direction);
+                    collision.attachedRigidbody.AddForce(magneticForce * direction);
                     rigidBody.AddForce(-magneticForce * direction);
                 }
+
             }
         }
     }

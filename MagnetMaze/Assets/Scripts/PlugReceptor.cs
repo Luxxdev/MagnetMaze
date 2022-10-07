@@ -48,7 +48,6 @@ public class PlugReceptor : Switches
                 energy += Time.deltaTime;
                 if (energy >= steps)
                 {
-                    steps += 1;
                     OnSwitchActivate();
                 }
                 if (energy >= energyRequired)
