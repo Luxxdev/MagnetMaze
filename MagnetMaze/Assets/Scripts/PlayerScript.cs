@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
     private bool isToolActive = false;
     private bool currentPole = false;
     private bool canInteract = false;
-    private List<GameObject> objects = new List<GameObject>();
+    [SerializeField] private List<GameObject> objects = new List<GameObject>();
     private GameObject lastObjectInteracted = null;
     [SerializeField] private GameObject hud;
     [SerializeField] protected Animator anim;
@@ -218,6 +218,11 @@ public class PlayerScript : MonoBehaviour
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
+            if ((gameObject.layer == 11 && collision.transform.parent.gameObject.layer == 7) || (gameObject.layer == 10 && collision.transform.parent.gameObject.layer == 8))
+            {
+                collision.attachedRigidbody.bodyType = RigidbodyType2D.Dynamic;
+                collision.transform.parent.transform.parent = transform;
+            }
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
@@ -231,22 +236,15 @@ public class PlayerScript : MonoBehaviour
             ChangeText(energy);
         }
 
-
-
-
-
-
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    if ((gameObject.layer == 7 && collision.gameObject.layer == 11) || (gameObject.layer == 8 && collision.gameObject.layer == 10))
-        //    {
-        //        transform.parent = collision.transform;
-        //    }
+        // if (collision.gameObject.CompareTag("Box"))
+        // {
+        //    
         //    else
         //    {
-        //        transform.parent = collision.transform.parent
+        //         print("saiu");
+        //        transform.parent = collision.transform.parent;
         //    }
-        //}
+        // }
 
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -307,7 +305,11 @@ public class PlayerScript : MonoBehaviour
         {
             objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
-
+            if (collision.transform.parent.transform.parent == transform)
+            {
+                collision.transform.parent.transform.parent = transform.parent;
+                collision.attachedRigidbody.bodyType = RigidbodyType2D.Kinematic;
+            }
             if (objects.Count == 0)
             {
                 canInteract = false;
