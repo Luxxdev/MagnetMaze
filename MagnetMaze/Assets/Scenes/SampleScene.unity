@@ -4532,6 +4532,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 218974754592445755, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 338452962463733333, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
       propertyPath: m_Name
       value: Box
@@ -4931,6 +4935,10 @@ PrefabInstance:
       propertyPath: UIText
       value: 
       objectReference: {fileID: 900729738}
+    - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: energy
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: magneticForce
       value: 20

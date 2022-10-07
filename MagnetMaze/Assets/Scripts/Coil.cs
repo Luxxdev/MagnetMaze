@@ -22,7 +22,6 @@ public class Coil : Switches
             }
             if (energy >= steps && hasBattery)
             {
-                steps += 1;
                 OnSwitchActivate();
             } 
             if (energy >= energyRequired)

@@ -7,17 +7,19 @@ public abstract class Switches : MonoBehaviour
     [SerializeField] protected GameObject interactableObject;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Sprite[] sprite;
-    protected int energyRequired;
+    protected float energyRequired;
     protected bool canActivate = true;
     protected bool hasBattery = false;
-    protected int steps = 1;
+    [SerializeField] protected float steps = 1.0f;
+    protected float stepsCount;
     protected float energy = 0;
 
     protected void Awake()
     {
         if (interactableObject.CompareTag("Battery"))
         {
-            energyRequired = interactableObject.GetComponent<Battery>().requiredEnergy;
+            stepsCount = steps;
+            energyRequired = interactableObject.GetComponent<Battery>().requiredEnergy * stepsCount;
             hasBattery = true;
             print(steps);
         }
@@ -27,6 +29,10 @@ public abstract class Switches : MonoBehaviour
     {
         if (canActivate)
         {
+            if (hasBattery)
+            {
+                steps += stepsCount;
+            }
             interactableObject.GetComponent<SwitchesInteractableObject>().Activate();
         }
     }
