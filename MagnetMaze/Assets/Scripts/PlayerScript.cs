@@ -230,6 +230,24 @@ public class PlayerScript : MonoBehaviour
             Destroy(collision.gameObject);
             ChangeText(energy);
         }
+
+
+
+
+
+
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    if ((gameObject.layer == 7 && collision.gameObject.layer == 11) || (gameObject.layer == 8 && collision.gameObject.layer == 10))
+        //    {
+        //        transform.parent = collision.transform;
+        //    }
+        //    else
+        //    {
+        //        transform.parent = collision.transform.parent
+        //    }
+        //}
+
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
