@@ -250,72 +250,70 @@ public class PlayerScript : MonoBehaviour
     {
         if (isToolActive && collision.gameObject.CompareTag("Box"))
         {
-            Vector2 direction = new Vector2(0,0);
-            if (collision.transform.position.x - transform.position.x > 0)
-            {
-                direction.x = 1;
-            }
-            else if (collision.transform.position.x - transform.position.x < 0)
-            {
-                direction.x = -1;
-            }
-            if (collision.transform.position.y - transform.position.y > 0.2f)
-            {
-                direction.y = 1;
-            }
-            else if (collision.transform.position.y - transform.position.y < -0.2f)
-           {
-                direction.y = -1;
-            }
+            CheckIfAttractingLayers(collision);
+           // Vector2 direction = new Vector2(0,0);
+           // if (collision.transform.position.x - transform.position.x > 0)
+           // {
+           //     direction.x = 1;
+           // }
+           // else if (collision.transform.position.x - transform.position.x < 0)
+           // {
+           //     direction.x = -1;
+           // }
+           // if (collision.transform.position.y - transform.position.y > 0.2f)
+           // {
+           //     direction.y = 1;
+           // }
+           // else if (collision.transform.position.y - transform.position.y < -0.2f)
+           //{
+           //     direction.y = -1;
+           // }
 
-            if (collision.gameObject.layer == 7)
-            {
-                if (currentPole)
-                {
-                    collision.attachedRigidbody.AddForce(magneticForce * direction);
-                    rigidBody.AddForce(-magneticForce * direction);
-                }
-                else if (!currentPole)
-                {
-                    print(collision.gameObject.GetComponent<MagnetBox>().canInteract);
+           // if (collision.gameObject.layer == 7)
+           // {
+           //     if (currentPole)
+           //     {
+           //         collision.attachedRigidbody.AddForce(magneticForce * direction);
+           //         rigidBody.AddForce(-magneticForce * direction);
+           //     }
+           //     else if (!currentPole)
+           //     {
+           //         if (collision.gameObject.GetComponent<MagnetBox>().canInteract && currentBoxHolded == null)
+           //         {
+           //             currentBoxHolded = collision.gameObject.GetComponent<MagnetBox>();
+           //             print("podeinteragir");
 
-                    if (collision.gameObject.GetComponent<MagnetBox>().canInteract && currentBoxHolded == null)
-                    {
-                        currentBoxHolded = collision.gameObject.GetComponent<MagnetBox>();
-                        print("podeinteragir");
+           //         }
+           //         if (!collision.gameObject.GetComponent<MagnetBox>().canInteract && !collision.gameObject.GetComponent<MagnetBox>().holded)
+           //         {
+           //             collision.attachedRigidbody.AddForce(-magneticForce * direction);
+           //             rigidBody.AddForce(magneticForce * direction);
+           //         }
+           //     }
+           // }
 
-                    }
-                    if (!collision.gameObject.GetComponent<MagnetBox>().canInteract && !collision.gameObject.GetComponent<MagnetBox>().holded)
-                    {
-                        collision.attachedRigidbody.AddForce(-magneticForce * direction);
-                        rigidBody.AddForce(magneticForce * direction);
-                    }
-                }
-            }
+           // if (collision.gameObject.layer == 8)
+           // {
+           //     if (!currentPole)
+           //     {
+           //         collision.attachedRigidbody.AddForce(magneticForce * direction);
+           //         rigidBody.AddForce(-magneticForce * direction);
+           //     }
 
-            if (collision.gameObject.layer == 8)
-            {
-                if (!currentPole)
-                {
-                    collision.attachedRigidbody.AddForce(magneticForce * direction);
-                    rigidBody.AddForce(-magneticForce * direction);
-                }
-
-                else if (currentPole)
-                {
-                    print(collision.gameObject.GetComponent<MagnetBox>().canInteract);
-                    if (collision.gameObject.GetComponent<MagnetBox>().canInteract && currentBoxHolded == null)
-                    {
-                        currentBoxHolded = collision.gameObject.GetComponent<MagnetBox>();
-
-                    }
-                    if (!collision.gameObject.GetComponent<MagnetBox>().canInteract && !collision.gameObject.GetComponent<MagnetBox>().holded)
-                    {
-                        collision.attachedRigidbody.AddForce(-magneticForce * direction);
-                        rigidBody.AddForce(magneticForce * direction);
-                    }
-                }
-            }
+           //     else if (currentPole)
+           //     {
+           //         print(collision.gameObject.GetComponent<MagnetBox>().canInteract);
+           //         if (collision.gameObject.GetComponent<MagnetBox>().canInteract && currentBoxHolded == null)
+           //         {
+           //             currentBoxHolded = collision.gameObject.GetComponent<MagnetBox>();
+           //         }
+           //         if (!collision.gameObject.GetComponent<MagnetBox>().canInteract && !collision.gameObject.GetComponent<MagnetBox>().holded)
+           //         {
+           //             collision.attachedRigidbody.AddForce(-magneticForce * direction);
+           //             rigidBody.AddForce(magneticForce * direction);
+           //         }
+           //     }
+           // }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -328,6 +326,61 @@ public class PlayerScript : MonoBehaviour
             {
                 canInteract = false;
             }
+        }
+    }
+
+    private Vector2 MagneticForceDirection(Collider2D obj)
+    {
+        Vector2 direction = new Vector2(0, 0);
+        if (obj.transform.position.x - transform.position.x > 0)
+        {
+            direction.x = 1;
+        }
+        else if (obj.transform.position.x - transform.position.x < 0)
+        {
+            direction.x = -1;
+        }
+        if (obj.transform.position.y - transform.position.y > 0.2f)
+        {
+            direction.y = 1;
+        }
+        else if (obj.transform.position.y - transform.position.y < -0.2f)
+        {
+            direction.y = -1;
+        }
+        return direction;
+    }
+
+    private void MagnetMovement(Collider2D obj, bool isAttracting)
+    {
+        if (isAttracting)
+        {
+            if (obj.gameObject.GetComponent<MagnetBox>().canInteract && currentBoxHolded == null)
+            {
+                currentBoxHolded = obj.gameObject.GetComponent<MagnetBox>();
+            }
+            else if(!obj.gameObject.GetComponent<MagnetBox>().canInteract && !obj.gameObject.GetComponent<MagnetBox>().holded)
+            {
+                obj.attachedRigidbody.AddForce(-magneticForce * MagneticForceDirection(obj));
+                rigidBody.AddForce(magneticForce * MagneticForceDirection(obj));
+            }
+        }
+        else
+        {
+            obj.attachedRigidbody.AddForce(magneticForce * MagneticForceDirection(obj));
+            rigidBody.AddForce(-magneticForce * MagneticForceDirection(obj));
+        }
+    }
+
+    private void CheckIfAttractingLayers(Collider2D obj)
+    {
+        if ((gameObject.layer == 11 && obj.gameObject.layer == 7) || (gameObject.layer == 10 && obj.gameObject.layer == 8))
+        {
+            MagnetMovement(obj, true);
+        }
+        else if ((gameObject.layer == 11 && obj.gameObject.layer == 8) || (gameObject.layer == 10 && obj.gameObject.layer == 7))
+        {
+            MagnetMovement(obj, false);
         }
     }
 
