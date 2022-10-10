@@ -5,8 +5,10 @@ using UnityEngine;
 public class MagnetBox : MonoBehaviour
 {
     //[SerializeField] private Rigidbody2D rigidBody;
+    [SerializeField] private Transform playerBoxHolder;
     public Sprite[] spriteArray;
     public bool canInteract = false;
+    public bool holded = false;
     public bool conducting = false;
     private List<GameObject> touchingConductingBoxes = new List<GameObject>();
 
@@ -19,6 +21,19 @@ public class MagnetBox : MonoBehaviour
         else
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
+        if (holded)
+        {
+            transform.parent = playerBoxHolder;
+            transform.position = playerBoxHolder.position;
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+        else
+        {
+            transform.parent = null;
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+
         }
     }
 
@@ -35,7 +50,6 @@ public class MagnetBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Box"))
         {
-
             if (!collision.gameObject.GetComponent<MagnetBox>().conducting)
             {
                 if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
