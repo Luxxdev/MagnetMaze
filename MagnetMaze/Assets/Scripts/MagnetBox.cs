@@ -5,7 +5,7 @@ using UnityEngine;
 public class MagnetBox : MonoBehaviour
 {
     //[SerializeField] private Rigidbody2D rigidBody;
-    [SerializeField] private Transform playerBoxHolder;
+    public Transform playerBoxHolder;
     public Sprite[] spriteArray;
     public bool canInteract = false;
     public bool holded = false;
@@ -33,7 +33,6 @@ public class MagnetBox : MonoBehaviour
         {
             transform.parent = null;
             gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-
         }
     }
 
