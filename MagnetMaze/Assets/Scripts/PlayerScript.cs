@@ -149,41 +149,35 @@ public class PlayerScript : MonoBehaviour
         }
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
     }
+
+    //private void MagnetizeBox()
+    //{
+        
+    //}
+
     private void Interact()
     {
         energy -= 1;
-        if (objects[0].layer == 7 && currentPole || objects[0].layer == 8 && !currentPole)
+        if (CheckIfSameOrOppositeBoxPole(objects[0].layer) == "Same")
         {
-            objects[0].layer = 9;
-            objects[0].GetComponent<SpriteRenderer>().sprite = objects[0].GetComponent<MagnetBox>().spriteArray[0];
-            objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            objects[0].GetComponent<MagnetBox>().ChangePole("Neutral");
             lastObjectInteracted = null;
             currentBoxMagnetized = null;
-
         }
-        else if (objects[0].layer >= 7 && objects[0].layer <= 9)
+        else if (CheckIfSameOrOppositeBoxPole(objects[0].layer) == "Opposite" || CheckIfSameOrOppositeBoxPole(objects[0].layer) == "Neutral")
         {
-            objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
             if (!currentPole)
-            {   
-                objects[0].layer = 8;
-                objects[0].GetComponent<SpriteRenderer>().sprite = objects[0].GetComponent<MagnetBox>().spriteArray[1];
-                objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-                currentBoxMagnetized = objects[0].GetComponent<MagnetBox>();
+            {
+                objects[0].GetComponent<MagnetBox>().ChangePole("Negative");
             }
             else if (currentPole)
             {
-                objects[0].layer = 7;
-                objects[0].GetComponent<SpriteRenderer>().sprite = objects[0].GetComponent<MagnetBox>().spriteArray[2];
-                objects[0].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
-                currentBoxMagnetized = objects[0].GetComponent<MagnetBox>();
+                objects[0].GetComponent<MagnetBox>().ChangePole("Positive");
             }
+            currentBoxMagnetized = objects[0].GetComponent<MagnetBox>();
             if (lastObjectInteracted != null && lastObjectInteracted != objects[0])
             {
-                lastObjectInteracted.layer = 9;
-                lastObjectInteracted.GetComponent<MagnetBox>().holded = false;
-                lastObjectInteracted.GetComponent<SpriteRenderer>().sprite = objects[0].GetComponent<MagnetBox>().spriteArray[0];
-                lastObjectInteracted.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                lastObjectInteracted.GetComponent<MagnetBox>().ChangePole("Neutral");
             }
             lastObjectInteracted = objects[0];
         }
@@ -223,6 +217,10 @@ public class PlayerScript : MonoBehaviour
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
+            if(CheckIfSameOrOppositeBoxPole(collision.transform.parent.gameObject.layer) == "Opposite")
+            {
+                currentBoxMagnetized.holded = true;
+            }
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
@@ -240,7 +238,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (isToolActive && collision.gameObject.CompareTag("Box"))
         {
-            CheckIfAttractingLayers(collision);
+            MagnetMovement(collision);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -278,25 +276,33 @@ public class PlayerScript : MonoBehaviour
         return direction;
     }
 
-    private void CheckIfAttractingLayers(Collider2D obj)
+    private string CheckIfSameOrOppositeBoxPole(int objLayer)
     {
-        if ((gameObject.layer == 11 && obj.gameObject.layer == 7) || (gameObject.layer == 10 && obj.gameObject.layer == 8)) 
+        if ((!currentPole && objLayer == 7) || (currentPole && objLayer == 8)) 
         {
-            MagnetMovement(obj, true);
+            return "Opposite";
         }
-        else if ((gameObject.layer == 11 && obj.gameObject.layer == 8) || (gameObject.layer == 10 && obj.gameObject.layer == 7)) 
+        else if ((!currentPole && objLayer == 8) || (currentPole && objLayer == 7)) 
         {
-            MagnetMovement(obj, false);
+            return "Same";
+        }
+        else if(objLayer == 9)
+        {
+            return "Neutral";
+        }
+        else
+        {
+            return "NotABox";
         }
     }
 
-    private void MagnetMovement(Collider2D obj, bool isAttracting)
+    private void MagnetMovement(Collider2D obj)
     {
-        if (currentBoxMagnetized == null)
-        {
-            currentBoxMagnetized = obj.gameObject.GetComponent<MagnetBox>();
-        }
-        if (isAttracting)
+        //if (currentBoxMagnetized == null && CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) != "NotABox" && CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) != "Neutral")
+        //{
+        //    currentBoxMagnetized = obj.gameObject.GetComponent<MagnetBox>();
+        //}
+        if (CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) == "Opposite")
         {
             if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
             {
@@ -308,7 +314,7 @@ public class PlayerScript : MonoBehaviour
                 rigidBody.AddForce(magneticForce * MagneticForceDirection(obj));
             }
         }
-        else
+        else if(CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) == "Same")
         {
             currentBoxMagnetized.holded = false;
             obj.attachedRigidbody.AddForce(magneticForce * MagneticForceDirection(obj));
