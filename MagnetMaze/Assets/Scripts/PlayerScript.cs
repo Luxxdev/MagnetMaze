@@ -42,10 +42,14 @@ public class PlayerScript : MonoBehaviour
 
             if (Input.GetButtonDown("ToggleTool"))
             {
-            if (energy > 0)
-            {
-                ToggleTool();
-            }
+                if (energy > 0)
+                {
+                    ToggleTool();
+                }
+                else
+                {
+                    ActivateRestartPanel();
+                }
             }
 
             if (Input.GetButtonDown("ActivateTool"))
@@ -63,6 +67,10 @@ public class PlayerScript : MonoBehaviour
                 if (energy > 0)
                 {
                     Interact();
+                }
+                else
+                {
+                    ActivateRestartPanel();
                 }
             }
 
@@ -103,6 +111,10 @@ public class PlayerScript : MonoBehaviour
             tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
             tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
         }
+        else if (energy == 0)
+        {
+            ActivateRestartPanel();
+        }
         if (currentPole && isToolActive && energy > 0)
         {
             gameObject.layer = LayerMask.NameToLayer("ToolPositive");
@@ -119,7 +131,7 @@ public class PlayerScript : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
         }
-        ChangeText(energy);
+        ChangeText();
     }
     private void ToggleTool()
     {
@@ -136,7 +148,7 @@ public class PlayerScript : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("ToolNegative");
             tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
         }
-        ChangeText(energy);
+        ChangeText();
     }
     private void Jump()
     {
@@ -186,7 +198,7 @@ public class PlayerScript : MonoBehaviour
             energy += 1;
             objects[0].GetComponent<Switches>().OnSwitchActivate();
         }
-        ChangeText(energy);
+        ChangeText();
     }
 
    private void FixedUpdate()
@@ -231,7 +243,7 @@ public class PlayerScript : MonoBehaviour
         {
             energy += 1;
             Destroy(collision.gameObject);
-            ChangeText(energy);
+            ChangeText();
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -323,9 +335,14 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    private void ChangeText(int count)
+    private void ChangeText()
     {
-        UIText.GetComponent<TMPro.TextMeshProUGUI>().text = "X " + count.ToString();
+        UIText.GetComponent<TMPro.TextMeshProUGUI>().text = "X " + energy.ToString();
+    }
+
+    private void ActivateRestartPanel()
+    {
+        UIText.transform.parent.transform.parent.GetChild(2).gameObject.SetActive(true);
     }
 
     private void UpdateAnimation()
