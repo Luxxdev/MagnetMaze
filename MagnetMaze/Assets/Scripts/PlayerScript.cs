@@ -231,10 +231,6 @@ public class PlayerScript : MonoBehaviour
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
-            //if(CheckIfSameOrOppositeBoxPole(collision.transform.parent.gameObject.layer) == "Opposite")
-            //{
-            //    currentBoxMagnetized.holded = true;
-            //}
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
@@ -273,13 +269,10 @@ public class PlayerScript : MonoBehaviour
             }
             else if (positiveCollision.Distance(coll).distance > negativeCollision.Distance(coll).distance)
             {
-                print("negativo");
                 MagnetMovement(negativeCollision);
             }
             else
             {
-                print("positivo");
-
                 MagnetMovement(positiveCollision);
             }
         }
@@ -353,9 +346,6 @@ public class PlayerScript : MonoBehaviour
             if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
             {
                currentBoxMagnetized.holded = true;
-                // print(currentBoxMagnetized.holded);
-               // print(obj);
-
             }
             else if(!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
             {
@@ -365,9 +355,6 @@ public class PlayerScript : MonoBehaviour
         }
         else if(CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) == "Same")
         {
-            //print(obj);
-
-            //print("sai");
             currentBoxMagnetized.holded = false;
             obj.attachedRigidbody.AddForce(magneticForce * MagneticForceDirection(obj));
             rigidBody.AddForce(-magneticForce * MagneticForceDirection(obj));

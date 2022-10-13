@@ -103,18 +103,6 @@ public class MagnetBox : MonoBehaviour
         }
     }
 
-    private void SpriteUpdate(string pole, Vector2 direction)
-    {
-        if (pole == "Neutral")
-        {
-            spriteRenderer.sprite = spriteArray[0];
-        }
-        else
-        {
-            spriteRenderer.sprite = spriteArray[1];
-        }
-    }
-
     public void ChangePole(string pole, Vector2 direction)
     {
         if ((direction != magnetOrientation || pole != lastPole) && pole != "Neutral")
@@ -142,16 +130,17 @@ public class MagnetBox : MonoBehaviour
                     transform.localScale = new Vector3(1, -1, 1);
                 }
             }
+            spriteRenderer.sprite = spriteArray[1];
             lastPole = pole;
             magnetOrientation = direction;
         }
         else
         {
+            spriteRenderer.sprite = spriteArray[0];
             polesAreaObject.SetActive(false);
             holded = false;
             lastPole = "Neutral";
             magnetOrientation = new Vector2(0,0);
         }
-        SpriteUpdate(lastPole, magnetOrientation);
     }
 }
