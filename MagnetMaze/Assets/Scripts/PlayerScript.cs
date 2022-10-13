@@ -12,10 +12,12 @@ public class PlayerScript : MonoBehaviour
     private bool isToolActive = false;
     private bool currentPole = false;
     private bool canInteract = false;
+    private Collider2D positiveCollision;
+    private Collider2D negativeCollision;
     private MagnetBox currentBoxMagnetized = null;
     public Transform boxHolder;
     [SerializeField] private List<GameObject> objects = new List<GameObject>();
-    private GameObject lastObjectInteracted = null;
+    private GameObject lastBoxInteracted = null;
     [SerializeField] private GameObject hud;
     [SerializeField] protected Animator anim;
     [SerializeField] private GameObject tool;
@@ -137,6 +139,10 @@ public class PlayerScript : MonoBehaviour
             tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
         }
         ChangeText(energy);
+        if(currentBoxMagnetized != null)
+        {
+            currentBoxMagnetized.holded = false;
+        }
     }
     private void Jump()
     {
@@ -150,37 +156,33 @@ public class PlayerScript : MonoBehaviour
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
     }
 
-    //private void MagnetizeBox()
-    //{
-        
-    //}
-
     private void Interact()
     {
         energy -= 1;
-        if (CheckIfSameOrOppositeBoxPole(objects[0].layer) == "Same")
+        if (objects[0].CompareTag("Box"))
         {
-            objects[0].GetComponent<MagnetBox>().ChangePole("Neutral");
-            lastObjectInteracted = null;
-            currentBoxMagnetized = null;
-        }
-        else if (CheckIfSameOrOppositeBoxPole(objects[0].layer) == "Opposite" || CheckIfSameOrOppositeBoxPole(objects[0].layer) == "Neutral")
-        {
+            if(lastBoxInteracted != null && lastBoxInteracted != objects[0])
+            {
+                lastBoxInteracted.GetComponent<MagnetBox>().ChangePole("Neutral", Vector2.zero);
+            }
             if (!currentPole)
             {
-                objects[0].GetComponent<MagnetBox>().ChangePole("Negative");
+                objects[0].GetComponent<MagnetBox>().ChangePole("Negative", MagneticForceDirection(objects[0].GetComponent<Collider2D>()));
             }
             else if (currentPole)
             {
-                objects[0].GetComponent<MagnetBox>().ChangePole("Positive");
+                objects[0].GetComponent<MagnetBox>().ChangePole("Positive", MagneticForceDirection(objects[0].GetComponent<Collider2D>()));
             }
             currentBoxMagnetized = objects[0].GetComponent<MagnetBox>();
-            if (lastObjectInteracted != null && lastObjectInteracted != objects[0])
+            lastBoxInteracted = objects[0];
+            if(currentBoxMagnetized.lastPole == "Neutral")
             {
-                lastObjectInteracted.GetComponent<MagnetBox>().ChangePole("Neutral");
+                currentBoxMagnetized = null;
+                lastBoxInteracted = null;
             }
-            lastObjectInteracted = objects[0];
+
         }
+
         else if (objects[0].CompareTag("Interactable"))
         {
             energy += 1;
@@ -217,10 +219,10 @@ public class PlayerScript : MonoBehaviour
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
-            if(CheckIfSameOrOppositeBoxPole(collision.transform.parent.gameObject.layer) == "Opposite")
-            {
-                currentBoxMagnetized.holded = true;
-            }
+            //if(CheckIfSameOrOppositeBoxPole(collision.transform.parent.gameObject.layer) == "Opposite")
+            //{
+            //    currentBoxMagnetized.holded = true;
+            //}
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
@@ -236,9 +238,38 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isToolActive && collision.gameObject.CompareTag("Box"))
+        if (isToolActive && collision.gameObject.CompareTag("BoxMagnetArea"))
         {
-            MagnetMovement(collision);
+            if (collision.gameObject.layer == 7 && positiveCollision != collision)
+            {
+                 positiveCollision = collision;
+                //currentBoxMagnetized.polesArea[1].enabled = false;
+            }
+            else if (collision.gameObject.layer == 8 && negativeCollision != collision)
+            {
+                 negativeCollision = collision;
+
+                //currentBoxMagnetized.polesArea[0].enabled = false;
+            }
+            if(positiveCollision == null)
+            {
+                MagnetMovement(negativeCollision);
+            }
+            else if(negativeCollision == null)
+            {
+                MagnetMovement(positiveCollision);
+            }
+            else if (positiveCollision.Distance(coll).distance > negativeCollision.Distance(coll).distance)
+            {
+                print("negativo");
+                MagnetMovement(negativeCollision);
+            }
+            else
+            {
+                print("positivo");
+
+                MagnetMovement(positiveCollision);
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -252,16 +283,23 @@ public class PlayerScript : MonoBehaviour
                 canInteract = false;
             }
         }
+        if (collision.gameObject.layer == 7)
+        {
+            currentBoxMagnetized.polesArea[1].enabled = true;
+        }
+        else if (collision.gameObject.layer == 8)
+        {
+            currentBoxMagnetized.polesArea[0].enabled = true;
+        }
     }
-
     private Vector2 MagneticForceDirection(Collider2D obj)
     {
         Vector2 direction = new Vector2(0, 0);
-        if (obj.transform.position.x - transform.position.x > 0)
+        if (obj.transform.position.x - transform.position.x > 0.25)
         {
             direction.x = 1;
         }
-        else if (obj.transform.position.x - transform.position.x < 0)
+        else if (obj.transform.position.x - transform.position.x < -0.25)
         {
             direction.x = -1;
         }
@@ -298,15 +336,14 @@ public class PlayerScript : MonoBehaviour
 
     private void MagnetMovement(Collider2D obj)
     {
-        //if (currentBoxMagnetized == null && CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) != "NotABox" && CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) != "Neutral")
-        //{
-        //    currentBoxMagnetized = obj.gameObject.GetComponent<MagnetBox>();
-        //}
         if (CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) == "Opposite")
         {
             if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
             {
-                currentBoxMagnetized.holded = true;
+               currentBoxMagnetized.holded = true;
+                // print(currentBoxMagnetized.holded);
+               // print(obj);
+
             }
             else if(!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
             {
@@ -316,6 +353,9 @@ public class PlayerScript : MonoBehaviour
         }
         else if(CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) == "Same")
         {
+            //print(obj);
+
+            //print("sai");
             currentBoxMagnetized.holded = false;
             obj.attachedRigidbody.AddForce(magneticForce * MagneticForceDirection(obj));
             rigidBody.AddForce(-magneticForce * MagneticForceDirection(obj));

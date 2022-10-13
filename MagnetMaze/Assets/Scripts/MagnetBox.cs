@@ -10,9 +10,12 @@ public class MagnetBox : MonoBehaviour
     public bool canInteract = false;
     public bool holded = false;
     public bool conducting = false;
+    public Vector2 magnetOrientation;
+    public string lastPole = "Neutral";
+    public List<Collider2D> polesArea;
+    public GameObject polesAreaObject;
     private List<GameObject> touchingConductingBoxes = new List<GameObject>();
-    private string currentPole = "Neutral";
-
+    [SerializeField] private Collider2D coll;
     private void Update()
     {
         if (conducting)
@@ -23,6 +26,11 @@ public class MagnetBox : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
+        if (!polesArea[0].enabled && !polesArea[1].enabled)
+        {
+            polesArea[0].enabled = true;
+            polesArea[1].enabled = true;
+        }
 
         if (holded)
         {
@@ -30,9 +38,14 @@ public class MagnetBox : MonoBehaviour
             transform.position = playerBoxHolder.position;
             gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            polesAreaObject.SetActive(false);
         }
         else
         {
+            if (lastPole != "Neutral")
+            {
+                polesAreaObject.SetActive(true);
+            }
             transform.parent = null;
             gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         }
@@ -89,28 +102,43 @@ public class MagnetBox : MonoBehaviour
         }
     }
 
-    public void ChangePole(string pole)
+    public void ChangePole(string pole, Vector2 direction)
     {
-        if(pole == "Positive")
+        if ((direction != magnetOrientation || pole != lastPole) && pole != "Neutral")
         {
-            gameObject.layer = 7;
-            GetComponent<SpriteRenderer>().sprite = spriteArray[2];
-            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.4f);
+            polesAreaObject.transform.localScale = new Vector3(1, 1, 1);
+            polesAreaObject.transform.eulerAngles = new Vector3(0, 0, 0);
+
+            if (direction.y == 0)
+            {
+                polesAreaObject.transform.eulerAngles = new Vector3(0,0,90);
+            }
+            if (pole == "Positive")
+            {
+                polesAreaObject.SetActive(true);
+                if (direction.x == -1 || direction.y > 0)
+                {
+                    polesAreaObject.transform.localScale = new Vector3(1, -1, 1);
+                }
+            }
+            else if (pole == "Negative")
+            {
+                polesAreaObject.SetActive(true);
+                if (direction.x == 1 || direction.y < 0)
+                {
+                    polesAreaObject.transform.localScale = new Vector3(1, -1, 1);
+                }
+            }
+            lastPole = pole;
+            magnetOrientation = direction;
         }
-        else if (pole == "Negative")
+        else
         {
-            gameObject.layer = 8;
-            GetComponent<SpriteRenderer>().sprite = spriteArray[1];
-            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.4f);
-        }
-        else if (pole == "Neutral")
-        {
-            gameObject.layer = 9;
-            GetComponent<SpriteRenderer>().sprite = spriteArray[0];
-            transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            polesAreaObject.SetActive(false);
             holded = false;
+            lastPole = "Neutral";
+            magnetOrientation = new Vector2(0,0);
         }
+
     }
 }

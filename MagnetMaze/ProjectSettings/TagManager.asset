@@ -8,6 +8,7 @@ TagManager:
   - Energy
   - Interactable
   - Battery
+  - BoxMagnetArea
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - ToolNegative
   - CollisionBlocker
   - ToolArea
-  - 
+  - MagnetizedBox
   - 
   - 
   - 
