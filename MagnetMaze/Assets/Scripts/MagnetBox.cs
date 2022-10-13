@@ -7,6 +7,7 @@ public class MagnetBox : MonoBehaviour
     //[SerializeField] private Rigidbody2D rigidBody;
     public Transform playerBoxHolder;
     public Sprite[] spriteArray;
+    public SpriteRenderer spriteRenderer;
     public bool canInteract = false;
     public bool holded = false;
     public bool conducting = false;
@@ -20,11 +21,11 @@ public class MagnetBox : MonoBehaviour
     {
         if (conducting)
         {
-            GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+            spriteRenderer.color = new Color(0, 0, 0, 1);
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            spriteRenderer.color = new Color(1, 1, 1, 1);
         }
         if (!polesArea[0].enabled && !polesArea[1].enabled)
         {
@@ -102,23 +103,35 @@ public class MagnetBox : MonoBehaviour
         }
     }
 
+    private void SpriteUpdate(string pole, Vector2 direction)
+    {
+        if (pole == "Neutral")
+        {
+            spriteRenderer.sprite = spriteArray[0];
+        }
+        else
+        {
+            spriteRenderer.sprite = spriteArray[1];
+        }
+    }
+
     public void ChangePole(string pole, Vector2 direction)
     {
         if ((direction != magnetOrientation || pole != lastPole) && pole != "Neutral")
         {
-            polesAreaObject.transform.localScale = new Vector3(1, 1, 1);
-            polesAreaObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            transform.localScale = new Vector3(1, 1, 1);
+            transform.eulerAngles = new Vector3(0, 0, 0);
 
             if (direction.y == 0)
             {
-                polesAreaObject.transform.eulerAngles = new Vector3(0,0,90);
+                transform.eulerAngles = new Vector3(0,0,90);
             }
             if (pole == "Positive")
             {
                 polesAreaObject.SetActive(true);
                 if (direction.x == -1 || direction.y > 0)
                 {
-                    polesAreaObject.transform.localScale = new Vector3(1, -1, 1);
+                    transform.localScale = new Vector3(1, -1, 1);
                 }
             }
             else if (pole == "Negative")
@@ -126,7 +139,7 @@ public class MagnetBox : MonoBehaviour
                 polesAreaObject.SetActive(true);
                 if (direction.x == 1 || direction.y < 0)
                 {
-                    polesAreaObject.transform.localScale = new Vector3(1, -1, 1);
+                    transform.localScale = new Vector3(1, -1, 1);
                 }
             }
             lastPole = pole;
@@ -139,6 +152,6 @@ public class MagnetBox : MonoBehaviour
             lastPole = "Neutral";
             magnetOrientation = new Vector2(0,0);
         }
-
+        SpriteUpdate(lastPole, magnetOrientation);
     }
 }

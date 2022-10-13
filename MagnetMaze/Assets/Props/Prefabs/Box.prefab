@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -860264664590275695, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
@@ -149,10 +149,8 @@ MonoBehaviour:
   playerBoxHolder: {fileID: 0}
   spriteArray:
   - {fileID: -860264664590275695, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
-  - {fileID: 6725727613379955586, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
-  - {fileID: -6149412955217794276, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
-  - {fileID: -5768267191352871723, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
   - {fileID: 6160296599583732815, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
+  spriteRenderer: {fileID: 8213227179994490894}
   canInteract: 0
   holded: 0
   conducting: 0

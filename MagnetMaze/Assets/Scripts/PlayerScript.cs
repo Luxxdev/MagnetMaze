@@ -150,7 +150,7 @@ public class PlayerScript : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("ToolNegative");
             tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
         }
-        ChangeText(energy);
+        ChangeText();
         if(currentBoxMagnetized != null)
         {
             currentBoxMagnetized.holded = false;
