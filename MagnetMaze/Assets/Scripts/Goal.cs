@@ -15,7 +15,7 @@ public class Goal : MonoBehaviour
        }    
     }
 
-    void LoadNextScene(int scene)
+    public void LoadNextScene(int scene)
     {
         SceneManager.LoadScene(scene);
     }
