@@ -301,6 +301,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &550694504 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1649734305575213251, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+  m_PrefabInstance: {fileID: 456473072889495338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &581713315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4337,11 +4342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4985736897360297060, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.064
+      value: -2.544
       objectReference: {fileID: 0}
     - target: {fileID: 4985736897360297060, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.189
+      value: -2.881
       objectReference: {fileID: 0}
     - target: {fileID: 4985736897360297060, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4490,6 +4495,11 @@ PrefabInstance:
 CapsuleCollider2D:
   m_CorrespondingSourceObject: {fileID: 4468655557850726234, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
   m_PrefabInstance: {fileID: 1520689493}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &1721653483 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5678423450447932571, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+  m_PrefabInstance: {fileID: 456473072889495338}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1781482156 stripped
 GameObject:
@@ -4759,6 +4769,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2585071552387085814, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: selfCollider
+      value: 
+      objectReference: {fileID: 1721653483}
+    - target: {fileID: 4409534455192989937, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4644896692451211687, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -4843,6 +4861,10 @@ PrefabInstance:
       propertyPath: magneticForce
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5481672144336528937, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: selfCollider
+      value: 
+      objectReference: {fileID: 550694504}
     m_RemovedComponents:
     - {fileID: 4644896693509032502, guid: 66719b5968f4f1caf83389a041939300, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66719b5968f4f1caf83389a041939300, type: 3}

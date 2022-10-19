@@ -14,13 +14,15 @@ public class PlayerScript : MonoBehaviour
     private bool canInteract = false;
     private Collider2D positiveCollision;
     private Collider2D negativeCollision;
-    private MagnetBox currentBoxMagnetized = null;
+    public MagnetBox currentBoxMagnetized = null;
     public Transform boxHolder;
     [SerializeField] private List<GameObject> objects = new List<GameObject>();
     private GameObject lastBoxInteracted = null;
     [SerializeField] private GameObject hud;
     [SerializeField] protected Animator anim;
     [SerializeField] private GameObject tool;
+    [SerializeField] public Collider2D positiveToolArea;
+    [SerializeField] public Collider2D negativeToolArea;
     [SerializeField] private GameObject UIText;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private Transform groundCheck;
@@ -103,15 +105,17 @@ public class PlayerScript : MonoBehaviour
         {
             anim.SetTrigger("toolOn");
             isToolActive = !isToolActive;
-            tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
-            tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
+            tool.SetActive(true);
+            //tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
+            //tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
         }
         else if (isToolActive)
         {
             anim.SetTrigger("toolOn");
             isToolActive = !isToolActive;
-            tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
-            tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
+            tool.SetActive(false);
+            //tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
+            //tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
         }
         else if (energy == 0)
         {
@@ -119,19 +123,17 @@ public class PlayerScript : MonoBehaviour
         }
         if (currentPole && isToolActive && energy > 0)
         {
-            gameObject.layer = LayerMask.NameToLayer("ToolPositive");
-            tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
+            //tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
             energy -= 1;
         }
         else if (!currentPole && isToolActive && energy > 0)
         {
-            gameObject.layer = LayerMask.NameToLayer("ToolNegative");
-            tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
+            //tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
             energy -= 1;
         }
         else if (!isToolActive)
         {
-            gameObject.layer = LayerMask.NameToLayer("Player");
+            //gameObject.layer = LayerMask.NameToLayer("Player");
         }
         ChangeText();
     }
@@ -142,13 +144,15 @@ public class PlayerScript : MonoBehaviour
         energy -= 1;
         if (currentPole && isToolActive)
         {
-            gameObject.layer = LayerMask.NameToLayer("ToolPositive");
-            tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
+            //gameObject.layer = LayerMask.NameToLayer("ToolPositive");
+            //tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
+            tool.transform.localScale *= -1;
         }
         else if (!currentPole && isToolActive)
         {
-            gameObject.layer = LayerMask.NameToLayer("ToolNegative");
-            tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
+            tool.transform.localScale *= -1;
+            //gameObject.layer = LayerMask.NameToLayer("ToolNegative");
+            //tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
         }
         ChangeText();
         if(currentBoxMagnetized != null)
@@ -228,6 +232,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
+            print("entrou");
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
@@ -244,39 +249,39 @@ public class PlayerScript : MonoBehaviour
             ChangeText();
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (isToolActive && collision.gameObject.CompareTag("BoxMagnetArea"))
-        {
-            if (collision.gameObject.layer == 7 && positiveCollision != collision)
-            {
-                 positiveCollision = collision;
-                //currentBoxMagnetized.polesArea[1].enabled = false;
-            }
-            else if (collision.gameObject.layer == 8 && negativeCollision != collision)
-            {
-                 negativeCollision = collision;
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (isToolActive && collision.gameObject.CompareTag("BoxMagnetArea"))
+    //    {
+    //        if (collision.gameObject.layer == 7 && positiveCollision != collision)
+    //        {
+    //            positiveCollision = collision;
+    //            //currentBoxMagnetized.polesArea[1].enabled = false;
+    //        }
+    //        else if (collision.gameObject.layer == 8 && negativeCollision != collision)
+    //        {
+    //            negativeCollision = collision;
 
-                //currentBoxMagnetized.polesArea[0].enabled = false;
-            }
-            if(positiveCollision == null)
-            {
-                MagnetMovement(negativeCollision);
-            }
-            else if(negativeCollision == null)
-            {
-                MagnetMovement(positiveCollision);
-            }
-            else if (positiveCollision.Distance(coll).distance > negativeCollision.Distance(coll).distance)
-            {
-                MagnetMovement(negativeCollision);
-            }
-            else
-            {
-                MagnetMovement(positiveCollision);
-            }
-        }
-    }
+    //            //currentBoxMagnetized.polesArea[0].enabled = false;
+    //        }
+    //        if (positiveCollision == null)
+    //        {
+    //            MagnetMovement(negativeCollision);
+    //        }
+    //        else if (negativeCollision == null)
+    //        {
+    //            MagnetMovement(positiveCollision);
+    //        }
+    //        else if (positiveCollision.Distance(coll).distance > negativeCollision.Distance(coll).distance)
+    //        {
+    //            MagnetMovement(negativeCollision);
+    //        }
+    //        else
+    //        {
+    //            MagnetMovement(positiveCollision);
+    //        }
+    //    }
+    //}
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
@@ -319,17 +324,17 @@ public class PlayerScript : MonoBehaviour
         return direction;
     }
 
-    private string CheckIfSameOrOppositeBoxPole(int objLayer)
+    private string CheckIfSameOrOppositeBoxPole(Collider2D obj, Collider2D area)
     {
-        if ((!currentPole && objLayer == 7) || (currentPole && objLayer == 8)) 
+        if ((area.gameObject.layer == 11 && obj.gameObject.layer == 7) || (area.gameObject.layer == 10 && obj.gameObject.layer == 8))
         {
             return "Opposite";
         }
-        else if ((!currentPole && objLayer == 8) || (currentPole && objLayer == 7)) 
+        else if ((area.gameObject.layer == 11 && obj.gameObject.layer == 8) || (area.gameObject.layer == 10 && obj.gameObject.layer == 7))
         {
             return "Same";
         }
-        else if(objLayer == 9)
+        else if (obj.gameObject.layer == 9)
         {
             return "Neutral";
         }
@@ -339,21 +344,21 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void MagnetMovement(Collider2D obj)
+    public void MagnetMovement(Collider2D obj, Collider2D area)
     {
-        if (CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) == "Opposite")
+        if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite")
         {
             if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
             {
-               currentBoxMagnetized.holded = true;
+                currentBoxMagnetized.holded = true;
             }
-            else if(!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+            else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
             {
                 obj.attachedRigidbody.AddForce(-magneticForce * MagneticForceDirection(obj));
                 rigidBody.AddForce(magneticForce * MagneticForceDirection(obj));
             }
         }
-        else if(CheckIfSameOrOppositeBoxPole(obj.gameObject.layer) == "Same")
+        else if (CheckIfSameOrOppositeBoxPole(obj, area) == "Same")
         {
             currentBoxMagnetized.holded = false;
             obj.attachedRigidbody.AddForce(magneticForce * MagneticForceDirection(obj));
