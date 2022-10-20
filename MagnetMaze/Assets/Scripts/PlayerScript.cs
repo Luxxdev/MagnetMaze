@@ -106,16 +106,12 @@ public class PlayerScript : MonoBehaviour
             anim.SetTrigger("toolOn");
             isToolActive = !isToolActive;
             tool.SetActive(true);
-            //tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
-            //tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
         }
         else if (isToolActive)
         {
             anim.SetTrigger("toolOn");
             isToolActive = !isToolActive;
             tool.SetActive(false);
-            //tool.GetComponent<SpriteRenderer>().enabled = isToolActive;
-            //tool.GetComponent<CapsuleCollider2D>().enabled = isToolActive;
         }
         else if (energy == 0)
         {
@@ -142,18 +138,7 @@ public class PlayerScript : MonoBehaviour
         anim.SetTrigger("toolClick");
         currentPole = !currentPole;
         energy -= 1;
-        if (currentPole && isToolActive)
-        {
-            //gameObject.layer = LayerMask.NameToLayer("ToolPositive");
-            //tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
-            tool.transform.localScale *= -1;
-        }
-        else if (!currentPole && isToolActive)
-        {
-            tool.transform.localScale *= -1;
-            //gameObject.layer = LayerMask.NameToLayer("ToolNegative");
-            //tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
-        }
+        tool.transform.localScale *= -1;
         ChangeText();
         if(currentBoxMagnetized != null)
         {
@@ -360,7 +345,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (CheckIfSameOrOppositeBoxPole(obj, area) == "Same")
         {
-            currentBoxMagnetized.holded = false;
+            //currentBoxMagnetized.holded = false;
             obj.attachedRigidbody.AddForce(magneticForce * MagneticForceDirection(obj));
             rigidBody.AddForce(-magneticForce * MagneticForceDirection(obj));
         }
