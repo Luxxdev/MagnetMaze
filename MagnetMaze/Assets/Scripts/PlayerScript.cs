@@ -42,6 +42,7 @@ public class PlayerScript : MonoBehaviour
    {
         if (!hud.GetComponent<BottomTextManagement>().GetIsPaused())
         {
+            // -1 esquerda, 1 direita
             horizontal = Input.GetAxisRaw("Horizontal");
 
             if (Input.GetButtonDown("ToggleTool"))
@@ -81,6 +82,17 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0.1f)
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * 0.5f);
+            }
+            //1 pra cima, -1 pra baixo
+            if (Input.GetButtonDown("Vertical") && isToolActive && Input.GetAxisRaw("Vertical") != 0)
+            {
+                tool.transform.eulerAngles = new Vector3(0,0,0);
+                tool.transform.localScale = new Vector3(tool.transform.localScale.x, Input.GetAxisRaw("Vertical") * -1.7f, ((byte)tool.transform.localScale.z));
+            }
+            else if (Input.GetAxisRaw("Vertical") == 0)
+            {
+                tool.transform.eulerAngles = new Vector3(0,0,90);
+                tool.transform.localScale = new Vector3(tool.transform.localScale.x, 1.7f,tool.transform.localScale.z);
             }
         }
 
@@ -138,7 +150,7 @@ public class PlayerScript : MonoBehaviour
         anim.SetTrigger("toolClick");
         currentPole = !currentPole;
         energy -= 1;
-        tool.transform.localScale *= -1;
+        tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
         ChangeText();
         if(currentBoxMagnetized != null)
         {
