@@ -4773,6 +4773,10 @@ PrefabInstance:
       propertyPath: selfCollider
       value: 
       objectReference: {fileID: 1721653483}
+    - target: {fileID: 3408284011303929671, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4409534455192989937, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_IsActive
       value: 0

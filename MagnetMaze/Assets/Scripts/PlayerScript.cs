@@ -84,16 +84,34 @@ public class PlayerScript : MonoBehaviour
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * 0.5f);
             }
             //1 pra cima, -1 pra baixo
-            if (Input.GetButtonDown("Vertical") && isToolActive && Input.GetAxisRaw("Vertical") != 0)
+            //if (Input.GetAxisRaw("Vertical") > 0)
+            //{
+            //    tool.transform.eulerAngles = new Vector3()
+            //}
+
+            if (Input.GetAxisRaw("Vertical") > 0)
             {
-                tool.transform.eulerAngles = new Vector3(0,0,0);
-                tool.transform.localScale = new Vector3(tool.transform.localScale.x, Input.GetAxisRaw("Vertical") * -1.7f, ((byte)tool.transform.localScale.z));
+                tool.transform.eulerAngles = new Vector3(0, 0, 180);
             }
-            else if (Input.GetAxisRaw("Vertical") == 0)
+            else if (Input.GetAxisRaw("Vertical") < 0)
             {
-                tool.transform.eulerAngles = new Vector3(0,0,90);
-                tool.transform.localScale = new Vector3(tool.transform.localScale.x, 1.7f,tool.transform.localScale.z);
+                tool.transform.eulerAngles = new Vector3(0, 0, 0);
             }
+            else
+            {
+                tool.transform.eulerAngles = new Vector3(0, 0, 90 * transform.localScale.x);
+            }
+
+            //if (Input.GetButtonDown("Vertical") && isToolActive && Input.GetAxisRaw("Vertical") != 0)
+            //{
+            //    tool.transform.eulerAngles = new Vector3(0,0,0);
+            //    tool.transform.localScale = new Vector3(tool.transform.localScale.x, Input.GetAxisRaw("Vertical") * -1f, tool.transform.localScale.z);
+            //}
+            //else if (Input.GetAxisRaw("Vertical") == 0)
+            //{
+            //    tool.transform.eulerAngles = new Vector3(0,0,90);
+            //    //tool.transform.localScale = new Vector3(tool.transform.localScale.x, 1f, tool.transform.localScale.z);
+            //}
         }
 
         if (currentBoxMagnetized != null)
@@ -150,7 +168,9 @@ public class PlayerScript : MonoBehaviour
         anim.SetTrigger("toolClick");
         currentPole = !currentPole;
         energy -= 1;
+        print(tool.transform.localScale);
         tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
+        print(tool.transform.localScale);
         ChangeText();
         if(currentBoxMagnetized != null)
         {
@@ -218,11 +238,11 @@ public class PlayerScript : MonoBehaviour
    {
       if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
       {
-         isFacingRight = !isFacingRight;
-         Vector3 localScale = transform.localScale;
-         localScale.x *= -1f;
-         transform.localScale = localScale;
-      }
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
    }
 
     private void OnTriggerEnter2D(Collider2D collision)

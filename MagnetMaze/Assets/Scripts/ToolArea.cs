@@ -29,18 +29,25 @@ public class ToolArea : MonoBehaviour
             }
             if (positiveCollision == null)
             {
+                //print("entrou1");
                 playerScript.MagnetMovement(negativeCollision, selfCollider);
             }
             else if (negativeCollision == null)
             {
+                //print("entrou2");
+
                 playerScript.MagnetMovement(positiveCollision, selfCollider);
             }
             else if (positiveCollision.Distance(playerColl).distance > negativeCollision.Distance(playerColl).distance)
             {
+                //print("entrou3");
+
                 playerScript.MagnetMovement(negativeCollision, selfCollider);
             }
             else
             {
+                //print(selfCollider);
+
                 playerScript.MagnetMovement(positiveCollision, selfCollider);
             }
         }
