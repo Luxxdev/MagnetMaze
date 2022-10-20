@@ -10,12 +10,24 @@ public class ToolArea : MonoBehaviour
     private Collider2D negativeCollision;
     public Collider2D playerColl;
     public Collider2D selfCollider;
+    public Collider2D opositeCollider;
+    private Collider2D boxBodyCollider;
     public float magneticForce = 20;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("BoxMagnetArea"))
+        {
+            boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
+            boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
+
             if (collision.gameObject.layer == 7 && positiveCollision != collision)
             {
                 positiveCollision = collision;
@@ -30,26 +42,44 @@ public class ToolArea : MonoBehaviour
             if (positiveCollision == null)
             {
                 //print("entrou1");
-                playerScript.MagnetMovement(negativeCollision, selfCollider);
+                playerScript.MagnetMovement(negativeCollision, CheckWhichArea(boxBodyCollider));
             }
             else if (negativeCollision == null)
             {
                 //print("entrou2");
 
-                playerScript.MagnetMovement(positiveCollision, selfCollider);
+                playerScript.MagnetMovement(positiveCollision, CheckWhichArea(boxBodyCollider));
             }
             else if (positiveCollision.Distance(playerColl).distance > negativeCollision.Distance(playerColl).distance)
             {
                 //print("entrou3");
 
-                playerScript.MagnetMovement(negativeCollision, selfCollider);
+                playerScript.MagnetMovement(negativeCollision, CheckWhichArea(boxBodyCollider));
             }
             else
             {
                 //print(selfCollider);
 
-                playerScript.MagnetMovement(positiveCollision, selfCollider);
+                playerScript.MagnetMovement(positiveCollision, CheckWhichArea(boxBodyCollider));
             }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("BoxMagnetArea"))
+        {
+            boxBodyCollider = null;
+            print(boxBodyCollider);
+        }
+    }
+
+    private Collider2D CheckWhichArea(Collider2D a)
+    {
+        if (selfCollider.Distance(a).distance < opositeCollider.Distance(a).distance)
+        {
+            return selfCollider;
+        }
+        else return opositeCollider;
     }
 }

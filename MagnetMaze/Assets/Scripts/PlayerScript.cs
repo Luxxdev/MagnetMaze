@@ -249,7 +249,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
-            print("entrou");
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
