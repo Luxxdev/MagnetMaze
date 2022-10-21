@@ -4,143 +4,143 @@ using UnityEngine;
 
 public class MagnetBox : MonoBehaviour
 {
-    //[SerializeField] private Rigidbody2D rigidBody;
-    public Transform playerBoxHolder;
-    public Sprite[] spriteArray;
-    public SpriteRenderer spriteRenderer;
-    public bool canInteract = false;
-    public bool holded = false;
-    public bool conducting = false;
-    public Vector2 magnetOrientation;
-    public string lastPole = "Neutral";
-    public List<Collider2D> polesArea;
-    public GameObject polesAreaObject;
-    private List<GameObject> touchingConductingBoxes = new List<GameObject>();
-    [SerializeField] private Collider2D coll;
-    private void Update()
-    {
-        if (conducting)
-        {
-            spriteRenderer.color = new Color(0, 0, 0, 1);
-        }
-        else
-        {
-            spriteRenderer.color = new Color(1, 1, 1, 1);
-        }
-        if (!polesArea[0].enabled && !polesArea[1].enabled)
-        {
-            polesArea[0].enabled = true;
-            polesArea[1].enabled = true;
-        }
+   //[SerializeField] private Rigidbody2D rigidBody;
+   public Transform playerBoxHolder;
+   public Sprite[] spriteArray;
+   public SpriteRenderer spriteRenderer;
+   public bool canInteract = false;
+   public bool holded = false;
+   public bool conducting = false;
+   public Vector2 magnetOrientation;
+   public string lastPole = "Neutral";
+   public List<Collider2D> polesArea;
+   public GameObject polesAreaObject;
+   private List<GameObject> touchingConductingBoxes = new List<GameObject>();
+   [SerializeField] private Collider2D coll;
+   private void Update()
+   {
+      if (conducting)
+      {
+         spriteRenderer.sprite = spriteArray[2];
+      }
+      else
+      {
+         spriteRenderer.sprite = spriteArray[0];
+      }
+      if (!polesArea[0].enabled && !polesArea[1].enabled)
+      {
+         polesArea[0].enabled = true;
+         polesArea[1].enabled = true;
+      }
 
-        if (holded)
-        {
-            transform.parent = playerBoxHolder;
-            transform.position = playerBoxHolder.position;
-            gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            polesAreaObject.SetActive(false);
-        }
-        else
-        {
-            if (lastPole != "Neutral")
-            {
-                polesAreaObject.SetActive(true);
-            }
-            transform.parent = null;
-            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-        }
-    }
+      if (holded)
+      {
+         transform.parent = playerBoxHolder;
+         transform.position = playerBoxHolder.position;
+         gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+         gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+         polesAreaObject.SetActive(false);
+      }
+      else
+      {
+         if (lastPole != "Neutral")
+         {
+            polesAreaObject.SetActive(true);
+         }
+         transform.parent = null;
+         gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+      }
+   }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
-        {
-            conducting = true;
-            touchingConductingBoxes.Add(collision.gameObject);
-        }
-    }
+   private void OnCollisionEnter2D(Collision2D collision)
+   {
+      if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
+      {
+         conducting = true;
+         touchingConductingBoxes.Add(collision.gameObject);
+      }
+   }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Box"))
-        {
-            if (!collision.gameObject.GetComponent<MagnetBox>().conducting)
-            {
-                if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
-                {
-                    touchingConductingBoxes.Remove(collision.gameObject);
-                    if(touchingConductingBoxes.Count == 0)
-                    {
-                        conducting = false;
-                    }
-                }
-            }
-            else if (collision.gameObject.GetComponent<MagnetBox>().conducting)
-            {
-                if (touchingConductingBoxes.Count == 0 || !touchingConductingBoxes.Contains(collision.gameObject))
-                {
-                    touchingConductingBoxes.Add(collision.gameObject);
-                    conducting = true;
-                }
-            }
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
-        {
+   private void OnCollisionStay2D(Collision2D collision)
+   {
+      if (collision.gameObject.CompareTag("Box"))
+      {
+         if (!collision.gameObject.GetComponent<MagnetBox>().conducting)
+         {
             if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
             {
-                touchingConductingBoxes.Remove(collision.gameObject);
+               touchingConductingBoxes.Remove(collision.gameObject);
+               if (touchingConductingBoxes.Count == 0)
+               {
+                  conducting = false;
+               }
             }
+         }
+         else if (collision.gameObject.GetComponent<MagnetBox>().conducting)
+         {
+            if (touchingConductingBoxes.Count == 0 || !touchingConductingBoxes.Contains(collision.gameObject))
+            {
+               touchingConductingBoxes.Add(collision.gameObject);
+               conducting = true;
+            }
+         }
+      }
+   }
 
-            if (touchingConductingBoxes.Count == 0)
-            {
-                conducting = false;
-            }
-        }
-    }
+   private void OnCollisionExit2D(Collision2D collision)
+   {
+      if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
+      {
+         if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
+         {
+            touchingConductingBoxes.Remove(collision.gameObject);
+         }
 
-    public void ChangePole(string pole, Vector2 direction)
-    {
-        if ((direction != magnetOrientation || pole != lastPole) && pole != "Neutral")
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-            transform.eulerAngles = new Vector3(0, 0, 0);
+         if (touchingConductingBoxes.Count == 0)
+         {
+            conducting = false;
+         }
+      }
+   }
 
-            if (direction.y == 0)
+   public void ChangePole(string pole, Vector2 direction)
+   {
+      if ((direction != magnetOrientation || pole != lastPole) && pole != "Neutral")
+      {
+         transform.localScale = new Vector3(1, 1, 1);
+         transform.eulerAngles = new Vector3(0, 0, 0);
+
+         if (direction.y == 0)
+         {
+            transform.eulerAngles = new Vector3(0, 0, 90);
+         }
+         if (pole == "Positive")
+         {
+            polesAreaObject.SetActive(true);
+            if (direction.x == -1 || direction.y > 0)
             {
-                transform.eulerAngles = new Vector3(0,0,90);
+               transform.localScale = new Vector3(1, -1, 1);
             }
-            if (pole == "Positive")
+         }
+         else if (pole == "Negative")
+         {
+            polesAreaObject.SetActive(true);
+            if (direction.x == 1 || direction.y < 0)
             {
-                polesAreaObject.SetActive(true);
-                if (direction.x == -1 || direction.y > 0)
-                {
-                    transform.localScale = new Vector3(1, -1, 1);
-                }
+               transform.localScale = new Vector3(1, -1, 1);
             }
-            else if (pole == "Negative")
-            {
-                polesAreaObject.SetActive(true);
-                if (direction.x == 1 || direction.y < 0)
-                {
-                    transform.localScale = new Vector3(1, -1, 1);
-                }
-            }
-            spriteRenderer.sprite = spriteArray[1];
-            lastPole = pole;
-            magnetOrientation = direction;
-        }
-        else
-        {
-            spriteRenderer.sprite = spriteArray[0];
-            polesAreaObject.SetActive(false);
-            holded = false;
-            lastPole = "Neutral";
-            magnetOrientation = new Vector2(0,0);
-        }
-    }
+         }
+         spriteRenderer.sprite = spriteArray[1];
+         lastPole = pole;
+         magnetOrientation = direction;
+      }
+      else
+      {
+         spriteRenderer.sprite = spriteArray[0];
+         polesAreaObject.SetActive(false);
+         holded = false;
+         lastPole = "Neutral";
+         magnetOrientation = new Vector2(0, 0);
+      }
+   }
 }

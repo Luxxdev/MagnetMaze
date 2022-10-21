@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public MagnetBox currentBoxMagnetized = null;
+    public Transform boxHolder;
+    public Collider2D positiveToolArea;
+    public Collider2D negativeToolArea;
+    public AudioManager AUM;
+    public int energy = 10;
     private float horizontal;
     private float speed = 2.5f;
     private float jumpingPower = 3.0f;
-    public int energy = 10;
     private bool isFacingRight = true;
     private bool isToolActive = false;
     private bool currentPole = false;
     private bool canInteract = false;
     private Collider2D positiveCollision;
     private Collider2D negativeCollision;
-    public MagnetBox currentBoxMagnetized = null;
-    public Transform boxHolder;
-    [SerializeField] private List<GameObject> objects = new List<GameObject>();
     private GameObject lastBoxInteracted = null;
+    [SerializeField] private List<GameObject> objects = new List<GameObject>();
     [SerializeField] private GameObject hud;
     [SerializeField] protected Animator anim;
     [SerializeField] private GameObject tool;
-    [SerializeField] public Collider2D positiveToolArea;
-    [SerializeField] public Collider2D negativeToolArea;
     [SerializeField] private GameObject UIText;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private Transform groundCheck;
@@ -166,6 +167,7 @@ public class PlayerScript : MonoBehaviour
     private void ToggleTool()
     {
         anim.SetTrigger("toolClick");
+        AUM.Play("click");
         currentPole = !currentPole;
         energy -= 1;
         print(tool.transform.localScale);
@@ -179,6 +181,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void Jump()
     {
+        AUM.Play("jump");
         if (objects.Count != 0)
         {
             if (objects[0].CompareTag("Box"))
