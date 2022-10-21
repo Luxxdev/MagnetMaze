@@ -10,7 +10,7 @@ public class ToolArea : MonoBehaviour
     private Collider2D negativeCollision;
     public Collider2D playerColl;
     public Collider2D selfCollider;
-    public Collider2D opositeCollider;
+    public Collider2D oppositeCollider;
     private Collider2D boxBodyCollider;
     public float magneticForce = 20;
 
@@ -26,7 +26,7 @@ public class ToolArea : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
-            boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
+            // boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
 
             if (collision.gameObject.layer == 7 && positiveCollision != collision)
             {
@@ -70,16 +70,16 @@ public class ToolArea : MonoBehaviour
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
             boxBodyCollider = null;
-            print(boxBodyCollider);
+            //print(boxBodyCollider);
         }
     }
 
     private Collider2D CheckWhichArea(Collider2D a)
     {
-        if (selfCollider.Distance(a).distance < opositeCollider.Distance(a).distance)
+        if (selfCollider.Distance(a).distance < oppositeCollider.Distance(a).distance)
         {
             return selfCollider;
         }
-        else return opositeCollider;
+        else return oppositeCollider;
     }
 }

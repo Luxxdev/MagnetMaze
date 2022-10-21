@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     private float speed = 2.5f;
     private float jumpingPower = 3.0f;
     private bool isFacingRight = true;
+    public bool isHorizontal = true;
     private bool isToolActive = false;
     private bool currentPole = false;
     private bool canInteract = false;
@@ -93,14 +94,17 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetAxisRaw("Vertical") > 0)
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 180);
+                isHorizontal = false;
             }
             else if (Input.GetAxisRaw("Vertical") < 0)
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 0);
+                isHorizontal = false;
             }
             else
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 90 * transform.localScale.x);
+                isHorizontal = true;
             }
 
             //if (Input.GetButtonDown("Vertical") && isToolActive && Input.GetAxisRaw("Vertical") != 0)
@@ -365,23 +369,30 @@ public class PlayerScript : MonoBehaviour
 
     public void MagnetMovement(Collider2D obj, Collider2D area)
     {
-        if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite")
+        float distance = Vector3.Distance(obj.transform.position, rigidBody.transform.position);
+        if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal)
         {
-            if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+            if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
             {
-                currentBoxMagnetized.holded = true;
-            }
-            else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
-            {
-                obj.attachedRigidbody.AddForce(-magneticForce * MagneticForceDirection(obj));
-                rigidBody.AddForce(magneticForce * MagneticForceDirection(obj));
+                if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+                {
+                    currentBoxMagnetized.holded = true;
+                }
+                else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+                {
+                    obj.attachedRigidbody.AddForce((-magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
+                    rigidBody.AddForce((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
+                }
             }
         }
-        else if (CheckIfSameOrOppositeBoxPole(obj, area) == "Same")
+        else if (CheckIfSameOrOppositeBoxPole(obj, area) == "Same" && isHorizontal == currentBoxMagnetized.isHorizontal)
         {
-            //currentBoxMagnetized.holded = false;
-            obj.attachedRigidbody.AddForce(magneticForce * MagneticForceDirection(obj));
-            rigidBody.AddForce(-magneticForce * MagneticForceDirection(obj));
+            if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
+            {
+                //currentBoxMagnetized.holded = false;
+                obj.attachedRigidbody.AddForce((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
+                rigidBody.AddForce((-magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
+            }
         }
     }
 

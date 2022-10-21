@@ -11,6 +11,7 @@ public class MagnetBox : MonoBehaviour
    public bool canInteract = false;
    public bool holded = false;
    public bool conducting = false;
+   public bool isHorizontal = false;
    public Vector2 magnetOrientation;
    public string lastPole = "Neutral";
    public List<Collider2D> polesArea;
@@ -112,7 +113,12 @@ public class MagnetBox : MonoBehaviour
 
          if (direction.y == 0)
          {
+            isHorizontal = true;
             transform.eulerAngles = new Vector3(0, 0, 90);
+         }
+         else
+         {
+            isHorizontal = false;
          }
          if (pole == "Positive")
          {

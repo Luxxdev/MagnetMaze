@@ -4827,6 +4827,10 @@ PrefabInstance:
       propertyPath: selfCollider
       value: 
       objectReference: {fileID: 1721653483}
+    - target: {fileID: 2585071552387085814, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: oppositeCollider
+      value: 
+      objectReference: {fileID: 550694504}
     - target: {fileID: 3408284011303929671, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -4927,6 +4931,10 @@ PrefabInstance:
       propertyPath: selfCollider
       value: 
       objectReference: {fileID: 550694504}
+    - target: {fileID: 5481672144336528937, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: oppositeCollider
+      value: 
+      objectReference: {fileID: 1721653483}
     m_RemovedComponents:
     - {fileID: 4644896693509032502, guid: 66719b5968f4f1caf83389a041939300, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66719b5968f4f1caf83389a041939300, type: 3}

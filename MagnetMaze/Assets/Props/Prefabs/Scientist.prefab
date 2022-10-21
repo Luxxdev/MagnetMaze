@@ -284,6 +284,7 @@ MonoBehaviour:
   boxHolder: {fileID: 9081774356053093786}
   positiveToolArea: {fileID: 1649734305575213251}
   negativeToolArea: {fileID: 5678423450447932571}
+  AUM: {fileID: 0}
   energy: 10
   objects: []
   hud: {fileID: 0}
@@ -528,7 +529,7 @@ MonoBehaviour:
   playerScript: {fileID: 4644896693509032507}
   playerColl: {fileID: 5968601832341726686}
   selfCollider: {fileID: 1649734305575213251}
-  opositeCollider: {fileID: 5678423450447932571}
+  oppositeCollider: {fileID: 5678423450447932571}
   magneticForce: 20
 --- !u!1 &6586399388957629999
 GameObject:
@@ -646,7 +647,7 @@ MonoBehaviour:
   playerScript: {fileID: 4644896693509032507}
   playerColl: {fileID: 5968601832341726686}
   selfCollider: {fileID: 5678423450447932571}
-  opositeCollider: {fileID: 1649734305575213251}
+  oppositeCollider: {fileID: 1649734305575213251}
   magneticForce: 20
 --- !u!1 &8966121624453723248
 GameObject:
