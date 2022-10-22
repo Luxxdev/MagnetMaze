@@ -4253,11 +4253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934317, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.67
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934317, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.648
+      value: -3.88
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934317, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4294,6 +4294,10 @@ PrefabInstance:
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: currentType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
+      propertyPath: magneticForce
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: sprite.Array.size
@@ -4937,6 +4941,7 @@ PrefabInstance:
       objectReference: {fileID: 1721653483}
     m_RemovedComponents:
     - {fileID: 4644896693509032502, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+    - {fileID: 7666303748269358818, guid: 66719b5968f4f1caf83389a041939300, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66719b5968f4f1caf83389a041939300, type: 3}
 --- !u!1001 &2812508103182831590
 PrefabInstance:

@@ -65,14 +65,14 @@ public class ToolArea : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("BoxMagnetArea"))
-        {
-            boxBodyCollider = null;
-            //print(boxBodyCollider);
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("BoxMagnetArea"))
+    //    {
+    //        boxBodyCollider = null;
+    //        //print(boxBodyCollider);
+    //    }
+    //}
 
     private Collider2D CheckWhichArea(Collider2D a)
     {

@@ -17,7 +17,7 @@ public class MagnetBox : MonoBehaviour
    public List<Collider2D> polesArea;
    public GameObject polesAreaObject;
    private List<GameObject> touchingConductingBoxes = new List<GameObject>();
-   [SerializeField] private Collider2D coll;
+   //[SerializeField] private Collider2D coll;
    private void Update()
    {
       if (conducting)

@@ -9,6 +9,7 @@ TagManager:
   - Interactable
   - Battery
   - BoxMagnetArea
+  - PlayerToolArea
   layers:
   - Default
   - TransparentFX

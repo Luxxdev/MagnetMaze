@@ -316,14 +316,14 @@ public class PlayerScript : MonoBehaviour
                 canInteract = false;
             }
         }
-        if (collision.gameObject.layer == 7)
-        {
-            currentBoxMagnetized.polesArea[1].enabled = true;
-        }
-        else if (collision.gameObject.layer == 8)
-        {
-            currentBoxMagnetized.polesArea[0].enabled = true;
-        }
+        //if (collision.gameObject.layer == 7)
+        //{
+        //    currentBoxMagnetized.polesArea[1].enabled = true;
+        //}
+        //else if (collision.gameObject.layer == 8)
+        //{
+        //    currentBoxMagnetized.polesArea[0].enabled = true;
+        //}
     }
     private Vector2 MagneticForceDirection(Collider2D obj)
     {

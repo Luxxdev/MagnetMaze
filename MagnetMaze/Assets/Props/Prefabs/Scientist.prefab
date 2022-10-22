@@ -286,6 +286,7 @@ MonoBehaviour:
   negativeToolArea: {fileID: 5678423450447932571}
   AUM: {fileID: 0}
   energy: 10
+  isHorizontal: 1
   objects: []
   hud: {fileID: 0}
   anim: {fileID: 4058572531331260509}
@@ -427,7 +428,7 @@ GameObject:
   - component: {fileID: 5481672144336528937}
   m_Layer: 10
   m_Name: ToolPositive
-  m_TagString: Untagged
+  m_TagString: PlayerToolArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,7 +546,7 @@ GameObject:
   - component: {fileID: 2585071552387085814}
   m_Layer: 11
   m_Name: ToolNegative
-  m_TagString: Untagged
+  m_TagString: PlayerToolArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
