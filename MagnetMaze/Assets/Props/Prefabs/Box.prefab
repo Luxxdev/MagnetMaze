@@ -155,13 +155,13 @@ MonoBehaviour:
   canInteract: 0
   holded: 0
   conducting: 0
+  isHorizontal: 0
   magnetOrientation: {x: 0, y: 0}
   lastPole: Neutral
   polesArea:
   - {fileID: 4468655557850726234}
   - {fileID: 4784167167552597247}
   polesAreaObject: {fileID: 1677232687680848065}
-  coll: {fileID: 0}
 --- !u!1 &1619444310070080587
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 4468655557850726234}
   m_Layer: 7
   m_Name: Positive
-  m_TagString: Box
+  m_TagString: BoxMagnetArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,7 +408,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4649877447057080982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 171962433145530994}
@@ -427,7 +427,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.55}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 0.97345686}
   m_Direction: 0
 --- !u!1 &7688503435970343917
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 4784167167552597247}
   m_Layer: 8
   m_Name: Negative
-  m_TagString: Box
+  m_TagString: BoxMagnetArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,7 +455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7688503435970343917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 171962433145530994}
@@ -474,6 +474,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.55}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 0.97345686}
   m_Direction: 0

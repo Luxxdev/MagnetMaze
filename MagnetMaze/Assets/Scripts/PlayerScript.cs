@@ -201,6 +201,7 @@ public class PlayerScript : MonoBehaviour
         energy -= 1;
         if (objects[0].CompareTag("Box"))
         {
+            print(objects[0]);
             if(lastBoxInteracted != null && lastBoxInteracted != objects[0])
             {
                 lastBoxInteracted.GetComponent<MagnetBox>().ChangePole("Neutral", Vector2.zero);
@@ -256,6 +257,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
+            print("entroucaixa");
+
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
@@ -309,12 +312,17 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
+            print("saiucaixa");
             objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
             if (objects.Count == 0)
             {
                 canInteract = false;
             }
+        }
+        else if (collision.gameObject.CompareTag("Interactable"))
+        {
+            objects.Remove(collision.gameObject);
         }
         //if (collision.gameObject.layer == 7)
         //{
@@ -328,21 +336,27 @@ public class PlayerScript : MonoBehaviour
     private Vector2 MagneticForceDirection(Collider2D obj)
     {
         Vector2 direction = new Vector2(0, 0);
-        if (obj.transform.position.x - transform.position.x > 0.25)
-        {
-            direction.x = 1;
+        if (isHorizontal)
+        { 
+            if (obj.attachedRigidbody.transform.position.x - transform.position.x > 0.25)
+            {
+                direction.x = 1;
+            }
+            else if (obj.attachedRigidbody.transform.position.x - transform.position.x < -0.25)
+            {
+                direction.x = -1;
+            }
         }
-        else if (obj.transform.position.x - transform.position.x < -0.25)
+        else
         {
-            direction.x = -1;
-        }
-        if (obj.transform.position.y - transform.position.y > 0.2f)
-        {
-            direction.y = 1;
-        }
-        else if (obj.transform.position.y - transform.position.y < -0.2f)
-        {
-            direction.y = -1;
+            if (obj.attachedRigidbody.transform.position.y - transform.position.y > 0.2f)
+            {
+                direction.y = 1;
+            }
+            else if (obj.attachedRigidbody.transform.position.y - transform.position.y < -0.2f)
+            {
+                direction.y = -1;
+            }
         }
         return direction;
     }
@@ -369,7 +383,15 @@ public class PlayerScript : MonoBehaviour
 
     public void MagnetMovement(Collider2D obj, Collider2D area)
     {
-        float distance = Vector3.Distance(obj.transform.position, rigidBody.transform.position);
+        float distance;
+        if (isHorizontal)
+        {
+            distance = Vector2.Distance(new Vector2(obj.attachedRigidbody.transform.position.x, 0), new Vector2(transform.position.x, 0));
+        }
+        else
+        {
+            distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
+        }
         if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal)
         {
             if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))

@@ -20,14 +20,23 @@ public class MagnetBox : MonoBehaviour
    //[SerializeField] private Collider2D coll;
    private void Update()
    {
-      if (conducting)
-      {
-         spriteRenderer.sprite = spriteArray[2];
-      }
-      else
-      {
-         spriteRenderer.sprite = spriteArray[0];
-      }
+        if (conducting)
+        {
+            spriteRenderer.sprite = spriteArray[2];
+        }
+        else
+        {
+            if (lastPole == "Neutral")
+            {
+                spriteRenderer.sprite = spriteArray[0];
+            }
+            else
+            {
+                spriteRenderer.sprite = spriteArray[1];
+            }
+        }
+
+
       if (!polesArea[0].enabled && !polesArea[1].enabled)
       {
          polesArea[0].enabled = true;
