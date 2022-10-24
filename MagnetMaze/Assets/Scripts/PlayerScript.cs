@@ -118,6 +118,10 @@ public class PlayerScript : MonoBehaviour
             //    //tool.transform.localScale = new Vector3(tool.transform.localScale.x, 1f, tool.transform.localScale.z);
             //}
         }
+        else
+        {
+            horizontal = 0;
+        }
 
         if (currentBoxMagnetized != null)
         {
@@ -174,9 +178,9 @@ public class PlayerScript : MonoBehaviour
         AUM.Play("click");
         currentPole = !currentPole;
         energy -= 1;
-        print(tool.transform.localScale);
+        //print(tool.transform.localScale);
         tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
-        print(tool.transform.localScale);
+        //print(tool.transform.localScale);
         ChangeText();
         if(currentBoxMagnetized != null)
         {
@@ -313,7 +317,8 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
             print("saiucaixa");
-            objects[0].GetComponent<MagnetBox>().canInteract = false;
+            collision.transform.parent.GetComponent<MagnetBox>().canInteract = false;
+            //objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
             if (objects.Count == 0)
             {
@@ -411,7 +416,7 @@ public class PlayerScript : MonoBehaviour
         {
             if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
             {
-                //currentBoxMagnetized.holded = false;
+                currentBoxMagnetized.holded = false;
                 obj.attachedRigidbody.AddForce((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
                 rigidBody.AddForce((-magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
             }

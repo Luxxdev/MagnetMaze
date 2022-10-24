@@ -47,6 +47,7 @@ public class MagnetBox : MonoBehaviour
       {
          transform.parent = playerBoxHolder;
          transform.position = playerBoxHolder.position;
+         gameObject.GetComponent<BoxCollider2D>().enabled = false;
          gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
          gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
          polesAreaObject.SetActive(false);
@@ -58,6 +59,7 @@ public class MagnetBox : MonoBehaviour
             polesAreaObject.SetActive(true);
          }
          transform.parent = null;
+         gameObject.GetComponent<BoxCollider2D>().enabled = true;
          gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
       }
    }
