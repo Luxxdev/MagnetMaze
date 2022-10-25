@@ -281,11 +281,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentBoxMagnetized: {fileID: 0}
   boxHolder: {fileID: 9081774356053093786}
+  isHolding: 0
   positiveToolArea: {fileID: 1649734305575213251}
   negativeToolArea: {fileID: 5678423450447932571}
   AUM: {fileID: 0}
   energy: 10
+  vertical: 0
+  isFacingRight: 1
   isHorizontal: 1
+  currentPole: 1
   objects: []
   hud: {fileID: 0}
   anim: {fileID: 4058572531331260509}
@@ -577,7 +581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8966121624453723248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.29999995, y: 0, z: 0}
+  m_LocalPosition: {x: 0.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4644896693509032500}

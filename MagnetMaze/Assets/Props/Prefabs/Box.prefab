@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBoxHolder: {fileID: 0}
+  collisionBlocker: {fileID: 3829858695547634934}
   spriteArray:
   - {fileID: -860264664590275695, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
   - {fileID: -6149412955217794276, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
@@ -154,6 +155,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8213227179994490894}
   canInteract: 0
   holded: 0
+  player: {fileID: 0}
   conducting: 0
   isHorizontal: 0
   magnetOrientation: {x: 0, y: 0}
