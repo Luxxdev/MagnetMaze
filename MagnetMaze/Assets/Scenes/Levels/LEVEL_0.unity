@@ -4442,14 +4442,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 218974754592445755, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 218974754592445755, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 338452962463733333, guid: 4f197dfe3f9163dc1b12e75cdd80a538, type: 3}
       propertyPath: m_Name
       value: Box
@@ -4841,7 +4833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032501, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_Mass
-      value: 2
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032501, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_Interpolate

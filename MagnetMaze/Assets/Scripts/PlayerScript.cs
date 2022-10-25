@@ -71,11 +71,6 @@ public class PlayerScript : MonoBehaviour
                 Jump();
             }
 
-            if (Input.GetButtonDown("Interact"))
-            {
-                print(objects.Count);
-            }
-
             if (Input.GetButtonDown("Interact") && canInteract)
             {
                 if (energy > 0)
@@ -201,13 +196,13 @@ public class PlayerScript : MonoBehaviour
     private void Jump()
     {
         AUM.Play("jump");
-        if (objects.Count != 0)
-        {
-            if (objects[0].CompareTag("Box"))
-            {
-                objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rigidBody.velocity.x, -jumpingPower);
-            }
-        }
+        //if (objects.Count != 0)
+        //{
+        //    if (objects[0].CompareTag("Box"))
+        //    {
+        //        objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rigidBody.velocity.x, -jumpingPower);
+        //    }
+        //}
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
     }
 
@@ -273,6 +268,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
+            print("entrou");
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
@@ -328,6 +324,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
+            print("saiu");
+
             collision.transform.parent.GetComponent<MagnetBox>().canInteract = false;
             //objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
@@ -335,7 +333,6 @@ public class PlayerScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
-            print("saiu");
             objects.Remove(collision.gameObject);
         }
         if (objects.Count == 0)
