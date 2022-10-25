@@ -33,6 +33,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float magneticForce = 10;
     [SerializeField] private Collider2D coll;
+    public GameObject staticArea;
+    public bool onCarpet = false;
     private enum MovementState {idle, running, jumping, falling}
 
    void Start()
@@ -141,7 +143,14 @@ public class PlayerScript : MonoBehaviour
                 isHolding = false;
             }
         }
-
+    if (!onCarpet && staticArea.transform.localScale.x > 0.1f)
+    {
+        staticArea.transform.localScale -= new Vector3(0.001f,0.001f,0.001f);
+    }
+    else if (staticArea.transform.localScale.x <= 0.1)
+    {
+        staticArea.SetActive(false);
+    }
       UpdateAnimation();
       Flip();
    }
