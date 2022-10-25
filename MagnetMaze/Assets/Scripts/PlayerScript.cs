@@ -205,7 +205,6 @@ public class PlayerScript : MonoBehaviour
         energy -= 1;
         if (objects[0].CompareTag("Box"))
         {
-            print(objects[0]);
             if(lastBoxInteracted != null && lastBoxInteracted != objects[0])
             {
                 lastBoxInteracted.GetComponent<MagnetBox>().ChangePole("Neutral", Vector2.zero);
@@ -261,8 +260,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
-            print("entroucaixa");
-
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
@@ -316,7 +313,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
-            print("saiucaixa");
             collision.transform.parent.GetComponent<MagnetBox>().canInteract = false;
             //objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
@@ -397,9 +393,10 @@ public class PlayerScript : MonoBehaviour
         {
             distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
         }
+        float check = transform.position.y - obj.attachedRigidbody.transform.position.y;
         if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal)
         {
-            if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
+            if ((!isHorizontal && (check > 0.4f ||check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {
                 if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
                 {
@@ -414,7 +411,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (CheckIfSameOrOppositeBoxPole(obj, area) == "Same" && isHorizontal == currentBoxMagnetized.isHorizontal)
         {
-            if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
+            if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {
                 currentBoxMagnetized.holded = false;
                 obj.attachedRigidbody.AddForce((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
