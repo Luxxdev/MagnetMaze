@@ -51,7 +51,6 @@ public class PlayerScript : MonoBehaviour
             // -1 esquerda, 1 direita
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
-
             if (Input.GetButtonDown("ToggleTool"))
             {
                 if (energy > 0)
@@ -72,6 +71,11 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
                 Jump();
+            }
+
+            if (Input.GetButtonDown("Interact"))
+            {
+                print(objects.Count);
             }
 
             if (Input.GetButtonDown("Interact") && canInteract)
@@ -254,12 +258,12 @@ public class PlayerScript : MonoBehaviour
         ChangeText();
     }
 
-   private void FixedUpdate()
-   {
-      rigidBody.velocity = new Vector2(horizontal * speed, rigidBody.velocity.y);
-   }
+    private void FixedUpdate()
+    {
+        rigidBody.velocity = new Vector2(horizontal * speed, rigidBody.velocity.y);
+    }
 
-   private bool IsGrounded()
+    private bool IsGrounded()
    {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.03f, groundLayer);
    }
@@ -285,8 +289,10 @@ public class PlayerScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
+            
             objects.Insert(0, collision.gameObject);
             canInteract = true;
+
         }
         else if (collision.gameObject.CompareTag("Energy"))
         {
@@ -335,14 +341,16 @@ public class PlayerScript : MonoBehaviour
             collision.transform.parent.GetComponent<MagnetBox>().canInteract = false;
             //objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
-            if (objects.Count == 0)
-            {
-                canInteract = false;
-            }
+            
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
+            print("saiu");
             objects.Remove(collision.gameObject);
+        }
+        if (objects.Count == 0)
+        {
+            canInteract = false;
         }
         //if (collision.gameObject.layer == 7)
         //{

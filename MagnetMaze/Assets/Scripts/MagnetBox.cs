@@ -6,6 +6,7 @@ public class MagnetBox : MonoBehaviour
 {
    //[SerializeField] private Rigidbody2D rigidBody;
    public Transform playerBoxHolder;
+    public Collider2D collisionBlocker;
    public Sprite[] spriteArray;
    public SpriteRenderer spriteRenderer;
    public bool canInteract = false;
@@ -49,7 +50,8 @@ public class MagnetBox : MonoBehaviour
          
          transform.parent = playerBoxHolder;
          transform.position = playerBoxHolder.position;
-         gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+            collisionBlocker.enabled = false;
          gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
          polesAreaObject.SetActive(false);
             if (!isHorizontal)
@@ -69,17 +71,19 @@ public class MagnetBox : MonoBehaviour
             polesAreaObject.SetActive(true);
          }
          transform.parent = null;
-         gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            collisionBlocker.enabled = true;
+
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
       }
    }
 
    private void OnCollisionEnter2D(Collision2D collision)
    {
-      if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
-      {
-         conducting = true;
-         touchingConductingBoxes.Add(collision.gameObject);
-      }
+        if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
+        {
+            conducting = true;
+            touchingConductingBoxes.Add(collision.gameObject);
+        }
    }
 
    private void OnCollisionStay2D(Collision2D collision)
@@ -110,19 +114,19 @@ public class MagnetBox : MonoBehaviour
 
    private void OnCollisionExit2D(Collision2D collision)
    {
-      if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
-      {
-         if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
-         {
+        if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
+        {
+            if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
+            {
             touchingConductingBoxes.Remove(collision.gameObject);
-         }
+            }
 
-         if (touchingConductingBoxes.Count == 0)
-         {
+            if (touchingConductingBoxes.Count == 0)
+            {
             conducting = false;
-         }
-      }
-   }
+            }
+        }
+    }
 
    public void ChangePole(string pole, Vector2 direction)
    {
@@ -131,8 +135,6 @@ public class MagnetBox : MonoBehaviour
          transform.localScale = new Vector3(1, 1, 1);
          transform.eulerAngles = new Vector3(0, 0, 0);
          float opposite = 1;
-            print(pole);
-
          if (direction.y == 0)
          {
             isHorizontal = true;
@@ -145,12 +147,7 @@ public class MagnetBox : MonoBehaviour
          }
          if (pole == "Negative")
          {
-                print("oposite " + opposite);
-                print("dir x " + direction.x);
-                print("dir y " + direction.y);
-                print("facing right " + player.isFacingRight);
-
-                polesAreaObject.SetActive(true);
+            polesAreaObject.SetActive(true);
             if (direction.x == -1 || (!player.isFacingRight && direction.y == 0))
             {
                transform.localScale = new Vector3(1, -1, 1);
@@ -163,11 +160,7 @@ public class MagnetBox : MonoBehaviour
             }
          else if (pole == "Positive")
          {
-                print("oposite " + opposite);
-                print("dir x " + direction.x);
-                print("dir y " + direction.y);
-                print("facing right " + player.isFacingRight);
-                polesAreaObject.SetActive(true);
+            polesAreaObject.SetActive(true);
             if (direction.x == 1 || (player.isFacingRight && direction.y == 0))
             {
                 transform.localScale = new Vector3(1, -1, 1);
@@ -177,8 +170,7 @@ public class MagnetBox : MonoBehaviour
                 transform.localScale = new Vector3(1, 1 * opposite, 1);
             }
          }
-       
-            spriteRenderer.sprite = spriteArray[1];
+         spriteRenderer.sprite = spriteArray[1];
          lastPole = pole;
          magnetOrientation = direction;
       }
