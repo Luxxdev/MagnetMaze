@@ -71,9 +71,9 @@ public class MagnetBox : MonoBehaviour
             polesAreaObject.SetActive(true);
          }
          transform.parent = null;
-            collisionBlocker.enabled = true;
+         collisionBlocker.enabled = true;
 
-            gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+         gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
       }
    }
 
