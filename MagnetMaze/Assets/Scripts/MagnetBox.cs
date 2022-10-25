@@ -10,6 +10,7 @@ public class MagnetBox : MonoBehaviour
    public SpriteRenderer spriteRenderer;
    public bool canInteract = false;
    public bool holded = false;
+   public PlayerScript player = null;
    public bool conducting = false;
    public bool isHorizontal = false;
    public Vector2 magnetOrientation;
@@ -37,20 +38,29 @@ public class MagnetBox : MonoBehaviour
         }
 
 
-      if (!polesArea[0].enabled && !polesArea[1].enabled)
-      {
-         polesArea[0].enabled = true;
-         polesArea[1].enabled = true;
-      }
+      //if (!polesArea[0].enabled && !polesArea[1].enabled)
+      //{
+      //   polesArea[0].enabled = true;
+      //   polesArea[1].enabled = true;
+      //}
 
       if (holded)
       {
+         
          transform.parent = playerBoxHolder;
          transform.position = playerBoxHolder.position;
-         gameObject.GetComponent<BoxCollider2D>().enabled = false;
          gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
          gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
          polesAreaObject.SetActive(false);
+            if (!isHorizontal)
+            {
+                float direction;
+                if (player.transform.position.x > transform.position.x)
+                    direction = -1;
+                else
+                    direction = 1;
+                ChangePole(lastPole, new Vector2(direction,0));
+            }
       }
       else
       {
@@ -59,7 +69,6 @@ public class MagnetBox : MonoBehaviour
             polesAreaObject.SetActive(true);
          }
          transform.parent = null;
-         gameObject.GetComponent<BoxCollider2D>().enabled = true;
          gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
       }
    }
@@ -121,6 +130,8 @@ public class MagnetBox : MonoBehaviour
       {
          transform.localScale = new Vector3(1, 1, 1);
          transform.eulerAngles = new Vector3(0, 0, 0);
+         float opposite = 1;
+         
 
          if (direction.y == 0)
          {
@@ -130,21 +141,22 @@ public class MagnetBox : MonoBehaviour
          else
          {
             isHorizontal = false;
+            opposite = -player.vertical;
          }
          if (pole == "Positive")
          {
             polesAreaObject.SetActive(true);
-            if (direction.x == -1 || direction.y > 0)
+            if (direction.x == -1 || direction.y > 0 || (direction.x == 0 && !player.isFacingRight && direction.y == 0))
             {
-               transform.localScale = new Vector3(1, -1, 1);
+               transform.localScale = new Vector3(1, -1*opposite, 1);
             }
          }
          else if (pole == "Negative")
          {
             polesAreaObject.SetActive(true);
-            if (direction.x == 1 || direction.y < 0)
+            if (direction.x == 1 || direction.y < 0 || (direction.x == 0 && player.isFacingRight && direction.y == 0))
             {
-               transform.localScale = new Vector3(1, -1, 1);
+                transform.localScale = new Vector3(1, -1*opposite, 1);
             }
          }
          spriteRenderer.sprite = spriteArray[1];

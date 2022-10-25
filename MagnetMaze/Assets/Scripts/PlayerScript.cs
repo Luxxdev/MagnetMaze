@@ -6,17 +6,19 @@ public class PlayerScript : MonoBehaviour
 {
     public MagnetBox currentBoxMagnetized = null;
     public Transform boxHolder;
+    public bool isHolding = false;
     public Collider2D positiveToolArea;
     public Collider2D negativeToolArea;
     public AudioManager AUM;
     public int energy = 10;
     private float horizontal;
+    public float vertical;
     private float speed = 2.5f;
     private float jumpingPower = 3.0f;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     public bool isHorizontal = true;
     private bool isToolActive = false;
-    private bool currentPole = false;
+    public bool currentPole = false;
     private bool canInteract = false;
     private Collider2D positiveCollision;
     private Collider2D negativeCollision;
@@ -46,6 +48,7 @@ public class PlayerScript : MonoBehaviour
         {
             // -1 esquerda, 1 direita
             horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
 
             if (Input.GetButtonDown("ToggleTool"))
             {
@@ -91,19 +94,22 @@ public class PlayerScript : MonoBehaviour
             //    tool.transform.eulerAngles = new Vector3()
             //}
 
-            if (Input.GetAxisRaw("Vertical") > 0)
+            if (vertical > 0 && !isHolding)
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 180);
                 isHorizontal = false;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0)
+            else if (vertical < 0 && !isHolding)
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 0);
+
+
                 isHorizontal = false;
             }
             else
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 90 * transform.localScale.x);
+
                 isHorizontal = true;
             }
 
@@ -132,6 +138,7 @@ public class PlayerScript : MonoBehaviour
             if (!isToolActive)
             {
                 currentBoxMagnetized.holded = false;
+                isHolding = false;
             }
         }
 
@@ -185,6 +192,7 @@ public class PlayerScript : MonoBehaviour
         if(currentBoxMagnetized != null)
         {
             currentBoxMagnetized.holded = false;
+            isHolding = false;
         }
     }
     private void Jump()
@@ -211,10 +219,12 @@ public class PlayerScript : MonoBehaviour
             }
             if (!currentPole)
             {
+                objects[0].GetComponent<MagnetBox>().player = this;
                 objects[0].GetComponent<MagnetBox>().ChangePole("Negative", MagneticForceDirection(objects[0].GetComponent<Collider2D>()));
             }
             else if (currentPole)
             {
+                objects[0].GetComponent<MagnetBox>().player = this;
                 objects[0].GetComponent<MagnetBox>().ChangePole("Positive", MagneticForceDirection(objects[0].GetComponent<Collider2D>()));
             }
             currentBoxMagnetized = objects[0].GetComponent<MagnetBox>();
@@ -401,6 +411,8 @@ public class PlayerScript : MonoBehaviour
                 if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
                 {
                     currentBoxMagnetized.holded = true;
+                    isHolding = true;
+                    //StartCoroutine(WaitForPoleChange());
                 }
                 else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
                 {
@@ -414,12 +426,25 @@ public class PlayerScript : MonoBehaviour
             if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {
                 currentBoxMagnetized.holded = false;
+                isHolding = false;
                 obj.attachedRigidbody.AddForce((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
                 rigidBody.AddForce((-magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
             }
         }
     }
+    //IEnumerator WaitForPoleChange()
+    //{
+    //    yield return new WaitForSeconds(0.1f);
+    //    if (currentPole && currentBoxMagnetized.magnetOrientation != MagneticForceDirection(currentBoxMagnetized.GetComponent<Collider2D>()))
+    //    {
+    //        currentBoxMagnetized.ChangePole("Positive", MagneticForceDirection(currentBoxMagnetized.GetComponent<Collider2D>()));
+    //    }
+    //    else if (!currentPole && currentBoxMagnetized.magnetOrientation != MagneticForceDirection(currentBoxMagnetized.GetComponent<Collider2D>()))
+    //    {
+    //        currentBoxMagnetized.ChangePole("Negative", MagneticForceDirection(currentBoxMagnetized.GetComponent<Collider2D>()));
+    //    }
 
+    //}
 
     private void ChangeText()
     {
