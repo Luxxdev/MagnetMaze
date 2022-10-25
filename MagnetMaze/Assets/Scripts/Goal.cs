@@ -17,6 +17,6 @@ public class Goal : MonoBehaviour
 
     public void LoadNextScene(int scene)
     {
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene($"LEVEL_{scene}");
     }
 }
