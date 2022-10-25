@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     public bool isFacingRight = true;
     public bool isHorizontal = true;
     private bool isToolActive = false;
-    public bool currentPole = false;
+    public bool currentPole = true;
     private bool canInteract = false;
     private Collider2D positiveCollision;
     private Collider2D negativeCollision;

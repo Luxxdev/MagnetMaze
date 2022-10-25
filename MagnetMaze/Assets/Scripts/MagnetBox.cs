@@ -131,7 +131,7 @@ public class MagnetBox : MonoBehaviour
          transform.localScale = new Vector3(1, 1, 1);
          transform.eulerAngles = new Vector3(0, 0, 0);
          float opposite = 1;
-         
+            print(pole);
 
          if (direction.y == 0)
          {
@@ -141,25 +141,44 @@ public class MagnetBox : MonoBehaviour
          else
          {
             isHorizontal = false;
-            opposite = -player.vertical;
+            opposite = player.vertical;
          }
-         if (pole == "Positive")
+         if (pole == "Negative")
          {
-            polesAreaObject.SetActive(true);
-            if (direction.x == -1 || direction.y > 0 || (direction.x == 0 && !player.isFacingRight && direction.y == 0))
+                print("oposite " + opposite);
+                print("dir x " + direction.x);
+                print("dir y " + direction.y);
+                print("facing right " + player.isFacingRight);
+
+                polesAreaObject.SetActive(true);
+            if (direction.x == -1 || (!player.isFacingRight && direction.y == 0))
             {
-               transform.localScale = new Vector3(1, -1*opposite, 1);
+               transform.localScale = new Vector3(1, -1, 1);
+            }
+            else if (direction.y != 0)
+            {
+                transform.localScale = new Vector3(1, -1 * opposite, 1);
+            }
+
+            }
+         else if (pole == "Positive")
+         {
+                print("oposite " + opposite);
+                print("dir x " + direction.x);
+                print("dir y " + direction.y);
+                print("facing right " + player.isFacingRight);
+                polesAreaObject.SetActive(true);
+            if (direction.x == 1 || (player.isFacingRight && direction.y == 0))
+            {
+                transform.localScale = new Vector3(1, -1, 1);
+            }
+            else if (direction.y != 0)
+            {
+                transform.localScale = new Vector3(1, 1 * opposite, 1);
             }
          }
-         else if (pole == "Negative")
-         {
-            polesAreaObject.SetActive(true);
-            if (direction.x == 1 || direction.y < 0 || (direction.x == 0 && player.isFacingRight && direction.y == 0))
-            {
-                transform.localScale = new Vector3(1, -1*opposite, 1);
-            }
-         }
-         spriteRenderer.sprite = spriteArray[1];
+       
+            spriteRenderer.sprite = spriteArray[1];
          lastPole = pole;
          magnetOrientation = direction;
       }
