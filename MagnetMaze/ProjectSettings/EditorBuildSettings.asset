@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 391de352932ed3396a0d4060b9946020
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Levels/LEVEL_0.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Levels/LEVEL_1.unity
+    guid: 8eb21db77bbf2b88e85772a13b278a0f
+  - enabled: 1
+    path: Assets/Scenes/Levels/LEVEL_2.unity
+    guid: db4ff4492bd93a886950cbcec135a779
   - enabled: 0
     path: Assets/WebGLLoLDemo/Scenes/MainMenu.unity
     guid: d9a2194137d5d4fa28804b74786060b2
