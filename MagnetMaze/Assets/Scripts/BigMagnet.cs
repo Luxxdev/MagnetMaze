@@ -12,13 +12,14 @@ public class BigMagnet : SwitchesInteractableObject
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private bool isHorizontal = false;
     [SerializeField] private float magneticForce = 200000;
+    [SerializeField] private float magneticForceIncrease;
     private Collider2D positiveCollision;
     private Collider2D negativeCollision;
     private PlayerScript player;
     private Collider2D playerPositive;
     private Collider2D playerNegative;
     private MagnetBox currentBoxMagnetized;
-    private enum Mode{ onOff, invert }
+    private enum Mode{ onOff, invert, powerUp}
 
     private void Start()
     {
@@ -42,6 +43,9 @@ public class BigMagnet : SwitchesInteractableObject
                 {
                     coll.gameObject.layer = 8;
                 }
+                break;
+            case 2:
+                magneticForce += magneticForceIncrease;
                 break;
         }
         UpdateSprite();

@@ -9,12 +9,15 @@ public class Coil : Switches
 
     public override void OnSwitchActivate()
     {
+        print(hasBattery);
         base.OnSwitchActivate();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (layers.Contains(collision.gameObject.layer) || (collision.gameObject.CompareTag("Box") && layers.Contains(collision.gameObject.layer)))
+        //if (collision.gameObject.CompareTag("Player") && collision.GetComponent<PlayerScript>().i || (collision.gameObject.CompareTag("Box") && layers.Contains(collision.gameObject.layer)))
+
+        if (layers.Contains(collision.gameObject.layer))
         {
             if (collision.attachedRigidbody.velocity.x > 0.1f || collision.attachedRigidbody.velocity.x < -0.1f)
             {
