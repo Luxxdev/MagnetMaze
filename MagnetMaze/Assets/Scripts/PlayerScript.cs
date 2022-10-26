@@ -364,11 +364,11 @@ public class PlayerScript : MonoBehaviour
         Vector2 direction = new Vector2(0, 0);
         if (isHorizontal)
         { 
-            if (obj.attachedRigidbody.transform.position.x - transform.position.x > 0.25f)
+            if (obj.attachedRigidbody.transform.position.x - transform.position.x > 0.2f)
             {
                 direction.x = 1;
             }
-            else if (obj.attachedRigidbody.transform.position.x - transform.position.x < -0.25f)
+            else if (obj.attachedRigidbody.transform.position.x - transform.position.x < -0.2f)
             {
                 direction.x = -1;
             }

@@ -45,36 +45,35 @@ public class MagnetBox : MonoBehaviour
       //   polesArea[1].enabled = true;
       //}
 
-      if (holded)
-      {
+        if (holded)
+        {
          
-         transform.parent = playerBoxHolder;
-         transform.position = playerBoxHolder.position;
-         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-         collisionBlocker.enabled = false;
-         gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-         polesAreaObject.SetActive(false);
-            //if (!isHorizontal)
-            //{
-            //    float direction;
-            //    if (player.transform.position.x > transform.position.x)
-            //        direction = -1;
-            //    else
-            //        direction = 1;
-            //    ChangePole(lastPole, new Vector2(direction,0));
-            //}
-      }
-      else
-      {
-         if (lastPole != "Neutral")
-         {
-            polesAreaObject.SetActive(true);
-         }
-         transform.parent = null;
-         collisionBlocker.enabled = true;
-
+            transform.parent = playerBoxHolder;
+            transform.position = playerBoxHolder.position;
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+            collisionBlocker.enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            polesAreaObject.SetActive(false);
+            if (!isHorizontal)
+            {
+                float direction;
+                if (player.transform.position.x > transform.position.x)
+                    direction = -1;
+                else
+                    direction = 1;
+                ChangePole(lastPole, new Vector2(direction, 0));
+            }
+        }
+        else
+        {
+            if (lastPole != "Neutral")
+            {
+                polesAreaObject.SetActive(true);
+            }
+            transform.parent = null;
+            collisionBlocker.enabled = true;
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
-      }
+        }
    }
 
    private void OnCollisionEnter2D(Collision2D collision)
