@@ -99,13 +99,13 @@ public class PlayerScript : MonoBehaviour
             if (vertical > 0 && !isHolding)
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 180);
-                magnetIndicator.transform.eulerAngles = new Vector3(0, 0, 90);
+                magnetIndicator.transform.eulerAngles = new Vector3(0, 0, 90 * transform.localScale.x);
                 isHorizontal = false;
             }
             else if (vertical < 0 && !isHolding)
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 0);
-                magnetIndicator.transform.eulerAngles = new Vector3(0, 0, -90);
+                magnetIndicator.transform.eulerAngles = new Vector3(0, 0, -90 * transform.localScale.x);
 
                 isHorizontal = false;
             }

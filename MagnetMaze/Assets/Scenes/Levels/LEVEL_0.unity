@@ -306,6 +306,11 @@ CapsuleCollider2D:
   m_CorrespondingSourceObject: {fileID: 1649734305575213251, guid: 66719b5968f4f1caf83389a041939300, type: 3}
   m_PrefabInstance: {fileID: 456473072889495338}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &567052555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1659741041224420729, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+  m_PrefabInstance: {fileID: 456473072889495338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &581713315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4818,6 +4823,10 @@ PrefabInstance:
       propertyPath: raycastOrigin
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: magnetIndicator
+      value: 
+      objectReference: {fileID: 567052555}
     - target: {fileID: 5481672144336528937, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: selfCollider
       value: 
