@@ -27,9 +27,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3561394495932934313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.11, y: 7.65, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8326804176034854733}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,9 +98,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01619792, y: 1.3416674}
+  m_Offset: {x: -0.01619792, y: 0.85265595}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.19999999, y: 0, z: 0.21, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.64, y: 0.24}
     newSize: {x: 0.64, y: 0.24}
@@ -108,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64162874, y: 2.7838564}
+  m_Size: {x: 0.64162874, y: 1.8058335}
   m_EdgeRadius: 0
 --- !u!114 &4865596265936663841
 MonoBehaviour:
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d61d0422885a834c885de79cbecc83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: {fileID: 6533658246817362253}
   pole: 1
   isActive: 1
   interactionMode: 0
@@ -135,3 +137,82 @@ MonoBehaviour:
   isHorizontal: 0
   magneticForce: 100
   magneticForceIncrease: 100
+--- !u!1001 &2544552889532978737
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3561394495932934317}
+    m_Modifications:
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6470606
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5239859
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.427
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789943247810537340, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_Name
+      value: OneSideMagnet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789943247810537340, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+--- !u!1 &6533658246817362253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8789943247810537340, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+  m_PrefabInstance: {fileID: 2544552889532978737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8326804176034854733 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5827324873000968572, guid: 6c058e82e53054392aebfd8a948a0a2d, type: 3}
+  m_PrefabInstance: {fileID: 2544552889532978737}
+  m_PrefabAsset: {fileID: 0}

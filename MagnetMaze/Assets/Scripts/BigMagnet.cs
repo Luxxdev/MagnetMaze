@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BigMagnet : SwitchesInteractableObject
 {
+    public GameObject particles;
     [SerializeField] private bool pole;
     [SerializeField] private bool isActive;
     [SerializeField] private Mode interactionMode;
@@ -214,27 +215,35 @@ public class BigMagnet : SwitchesInteractableObject
     }
     private void UpdateSprite()
     {
+        Animator partAnim = particles.GetComponent<Animator>();
+
         if (pole)
         {
             if (isActive)
             {
                 spriteRenderer.sprite = sprites[0];
+                particles.SetActive(true);
+                partAnim.SetBool("pole",true);
+                return;
             }
-            else
-            {
+            
                 spriteRenderer.sprite = sprites[1];
-            }
+                particles.SetActive(false);
         }
         else
         {
             if (isActive)
             {
                 spriteRenderer.sprite = sprites[2];
+
+                particles.SetActive(true);
+                partAnim.SetBool("pole",false);
+                return;
             }
-            else
-            {
+
                 spriteRenderer.sprite = sprites[3];
-            }
+                particles.SetActive(false);
+            
         }
     }
     private string CheckIfSameOrOppositeBoxPole(Collider2D obj)
