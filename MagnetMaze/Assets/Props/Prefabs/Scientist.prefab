@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBoxMagnetized: {fileID: 0}
+  magnetIndicator: {fileID: 1659741041224420729}
   boxHolder: {fileID: 9081774356053093786}
   isHolding: 0
   positiveToolArea: {fileID: 1649734305575213251}
