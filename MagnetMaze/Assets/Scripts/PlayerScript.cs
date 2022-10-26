@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public MagnetBox currentBoxMagnetized = null;
+    public GameObject magnetIndicator;
     public Transform boxHolder;
     public bool isHolding = false;
     public Collider2D positiveToolArea;
@@ -98,18 +99,20 @@ public class PlayerScript : MonoBehaviour
             if (vertical > 0 && !isHolding)
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 180);
+                magnetIndicator.transform.eulerAngles = new Vector3(0, 0, 90);
                 isHorizontal = false;
             }
             else if (vertical < 0 && !isHolding)
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 0);
-
+                magnetIndicator.transform.eulerAngles = new Vector3(0, 0, -90);
 
                 isHorizontal = false;
             }
             else
             {
                 tool.transform.eulerAngles = new Vector3(0, 0, 90 * transform.localScale.x);
+                magnetIndicator.transform.eulerAngles = new Vector3(0, 0, 0);
 
                 isHorizontal = true;
             }
@@ -195,6 +198,7 @@ public class PlayerScript : MonoBehaviour
         energy -= 1;
         //print(tool.transform.localScale);
         tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
+        magnetIndicator.transform.localScale = new Vector3(magnetIndicator.transform.localScale.x*-1, magnetIndicator.transform.localScale.y, magnetIndicator.transform.localScale.z);
         //print(tool.transform.localScale);
         ChangeText();
         if(currentBoxMagnetized != null)
@@ -278,7 +282,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
-            print("entrou");
             objects.Insert(0, collision.transform.parent.gameObject);
             objects[0].GetComponent<MagnetBox>().canInteract = true;
             canInteract = true;
@@ -334,8 +337,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
-            print("saiu");
-
             collision.transform.parent.GetComponent<MagnetBox>().canInteract = false;
             //objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
@@ -363,11 +364,11 @@ public class PlayerScript : MonoBehaviour
         Vector2 direction = new Vector2(0, 0);
         if (isHorizontal)
         { 
-            if (obj.attachedRigidbody.transform.position.x - transform.position.x > 0.25)
+            if (obj.attachedRigidbody.transform.position.x - transform.position.x > 0.25f)
             {
                 direction.x = 1;
             }
-            else if (obj.attachedRigidbody.transform.position.x - transform.position.x < -0.25)
+            else if (obj.attachedRigidbody.transform.position.x - transform.position.x < -0.25f)
             {
                 direction.x = -1;
             }

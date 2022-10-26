@@ -130,11 +130,27 @@ public class MagnetBox : MonoBehaviour
 
    public void ChangePole(string pole, Vector2 direction)
    {
-      if ((direction != magnetOrientation || pole != lastPole) && pole != "Neutral")
+      print(direction);
+      float opposite = 1;
+        if (direction.y != 0)
+        {
+            opposite = player.vertical;
+        }
+        else if (direction.y == 0 && direction.x == 0)
+        {
+            if (player.isFacingRight)
+            {
+                direction.x = 1;
+            }
+            else
+            {
+                direction.x = -1;
+            }
+        }
+        if ((direction*opposite != magnetOrientation || pole != lastPole) && pole != "Neutral")
       {
          transform.localScale = new Vector3(1, 1, 1);
          transform.eulerAngles = new Vector3(0, 0, 0);
-         float opposite = 1;
          if (direction.y == 0)
          {
             isHorizontal = true;
@@ -157,7 +173,7 @@ public class MagnetBox : MonoBehaviour
                 transform.localScale = new Vector3(1, -1 * opposite, 1);
             }
 
-            }
+         }
          else if (pole == "Positive")
          {
             polesAreaObject.SetActive(true);
@@ -172,7 +188,7 @@ public class MagnetBox : MonoBehaviour
          }
          spriteRenderer.sprite = spriteArray[1];
          lastPole = pole;
-         magnetOrientation = direction;
+         magnetOrientation = new Vector2(direction.x, direction.y*opposite);
       }
       else
       {
