@@ -16,9 +16,10 @@ public class Balloon : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player"))
         {
-            Vector2 euodeioumagameengine;
-            euodeioumagameengine = transform.position - collision.transform.position;
-            if (euodeioumagameengine.x < 0.2f && euodeioumagameengine.x > -0.2f && euodeioumagameengine.y < 0.2f && euodeioumagameengine.y > -0.2f)
+            Vector2 deathOffset;
+            deathOffset = transform.position - collision.transform.position;
+            //if (Physics2D.OverlapCircle(transform.position,0.6f, 3))
+            if (deathOffset.x < 0.2f && deathOffset.x > -0.2f && deathOffset.y < 0.2f && deathOffset.y > -0.2f)
             Destroy(this.gameObject);
         }
     }
