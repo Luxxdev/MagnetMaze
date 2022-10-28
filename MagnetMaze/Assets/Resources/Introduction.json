@@ -1,0 +1,22 @@
+{
+    "Text": [
+        {
+            "dialogueID": "First part",
+            "image": "",
+            "dialogue": "Hello! I'm the scientist!",
+            "explanationImg": "Sprites/balloon"
+        },
+        {
+            "dialogueID": "Second part",
+            "image": "Sprites/energyPick",
+            "dialogue": "Yes, the one from Coldplay's song.",
+            "explanationImg": "Sprites/Alavanca"
+        },
+        {
+            "dialogueID": "Last part",
+            "image": "Sprites/Alavanca",
+            "dialogue": "You know the one.",
+            "explanationImg": "Sprites/energyPick"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "Text": [
+        {
+            "dialogueID": "First part",
+            "image": "Sprites/balloon",
+            "dialogue": "Yet another dialog",
+            "explanationImg": "Sprites/balloon"
+        },
+        {
+            "dialogueID": "Second part",
+            "image": "Sprites/energyPick",
+            "dialogue": "Yes, another one.",
+            "explanationImg": "Sprites/Alavanca"
+        },
+        {
+            "dialogueID": "Last part",
+            "image": "Sprites/Alavanca",
+            "dialogue": "Deal with it.",
+            "explanationImg": "Sprites/energyPick"
+        }
+    ]
+}

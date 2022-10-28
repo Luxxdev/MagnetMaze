@@ -7,11 +7,11 @@ using DG.Tweening;
 
 public class BottomTextManagement : MonoBehaviour
 {
-    public TextAsset textJSON;
+    public TextAsset[] textJSONList;
     public Image charExpression;
     public Image explanationImage;
+    private int dialogCounter = 0;
     protected int phraseIndex = 0;
-    public Sprite sprite;
     protected float transTime = 0.5f;
     [SerializeField] protected RectTransform panelTransform;
     public TMPro.TextMeshProUGUI textDisplay;
@@ -38,16 +38,11 @@ public class BottomTextManagement : MonoBehaviour
 
     public TextList myTextList = new TextList();
 
-    public void Start()
-    {
-        myTextList = JsonUtility.FromJson<TextList>(textJSON.text);
-        textDisplay.text = myTextList.Text[0].dialogue;
-    }
     public void CallDialog()
     {
-        print(sprite);
+        myTextList = JsonUtility.FromJson<TextList>(textJSONList[dialogCounter].text);
         charExpression.sprite = Resources.Load<Sprite>(myTextList.Text[0].image);
-        //charExpression.sprite = Resources.Load<Sprite>(File.ReadAllText(Application.dataPath + myTextList.Text[0].image));
+        textDisplay.text = myTextList.Text[0].dialogue;
         panelTransform.DOAnchorPosY(positions["onScreen"].y, transTime);
         explanationImage.DOFade(1, 0.8f);
         charExpression.DOFade(1, 0.8f);
@@ -72,13 +67,12 @@ public class BottomTextManagement : MonoBehaviour
             return;
         }
         charExpression.sprite = Resources.Load<Sprite>(myTextList.Text[phraseIndex].image);
-        textDisplay.text = myTextList.Text[0].dialogue;
+        textDisplay.text = myTextList.Text[phraseIndex].dialogue;
     }
     public void ResetPhrases()
     {
         phraseIndex = 0;
-        charExpression.sprite = Resources.Load<Sprite>(myTextList.Text[phraseIndex].image);
-        textDisplay.text = myTextList.Text[phraseIndex].dialogue;
+        dialogCounter += 1;
     }
 
     public bool GetIsPaused() { return isPaused; }

@@ -10,13 +10,13 @@ public class DialogTrigger : MonoBehaviour
     #region Movement
     void Start()
     {
-        
+
     }
     // Update is called once per frame
     #endregion
     void Update()
     {
-        
+
     }
     // <summary>
     // Sent when another object enters a trigger collider attached to this
