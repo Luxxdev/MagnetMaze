@@ -4186,7 +4186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4442883456694540821, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4442883456694540822, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_Camera
@@ -4205,6 +4205,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 271424243}
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e4c8baa505e9e20b99e00d314a39938d, type: 3}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: JSONtext
+      value: 
+      objectReference: {fileID: 4900000, guid: 945a58eed22061c18bceb5d164b65827, type: 3}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: textJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: 945a58eed22061c18bceb5d164b65827, type: 3}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: frases.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -4215,6 +4227,38 @@ PrefabInstance:
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: frases.Array.data[1]
       value: deu certo!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: myTextList.player.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: myTextList.testing123.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: myTextList.proMuriloFicarFeliz.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: myTextList.testing123.Array.data[0].dialogue
+      value: primeiro dialogo lalalala
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: myTextList.testing123.Array.data[1].dialogue
+      value: segundo dialogo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: myTextList.testing123.Array.data[2].dialogue
+      value: "3\xBA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: myTextList.testing123.Array.data[3].dialogue
+      value: "4\xBA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: myTextList.testing123.Array.data[4].dialogue
+      value: quinto \o/
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
@@ -4346,7 +4390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171797859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.59570944, y: 2.11, z: 0}
+  m_LocalPosition: {x: 0.59570944, y: -1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5009,7 +5053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032500, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.59
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032500, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalPosition.y

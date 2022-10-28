@@ -7,11 +7,13 @@ public class DialogTrigger : MonoBehaviour
     [SerializeField] private GameObject hudObject;
     private bool textShown = false;
     // Start is called before the first frame update
+    #region Movement
     void Start()
     {
         
     }
     // Update is called once per frame
+    #endregion
     void Update()
     {
         
