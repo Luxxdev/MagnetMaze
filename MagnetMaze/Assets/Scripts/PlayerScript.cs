@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     public int energy = 10;
     private float horizontal;
     public float vertical;
-    private float speed = 2.5f;
+    public float speed = 2.5f;
     private float jumpingPower = 3.0f;
     public bool isFacingRight = true;
     public bool isHorizontal = true;
@@ -499,7 +499,7 @@ public class PlayerScript : MonoBehaviour
     {
         MovementState state;
 
-        if (horizontal != 0)
+        if (horizontal != 0 && IsGrounded())
         {
             state = MovementState.running;
         }
@@ -512,6 +512,10 @@ public class PlayerScript : MonoBehaviour
             state = MovementState.jumping;
         }
         else if (rigidBody.velocity.y < -0.1f)
+        {
+            state = MovementState.falling;
+        }
+        else if (!IsGrounded())
         {
             state = MovementState.falling;
         }
