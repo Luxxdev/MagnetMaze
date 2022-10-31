@@ -20,7 +20,7 @@ public class BigMagnet : SwitchesInteractableObject
     private Collider2D playerPositive;
     private Collider2D playerNegative;
     private MagnetBox currentBoxMagnetized;
-    private enum Mode{ onOff, invert, powerUp}
+    private enum Mode { onOff, invert, powerUp }
 
     private void Start()
     {
@@ -71,7 +71,7 @@ public class BigMagnet : SwitchesInteractableObject
             // boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
             if (collision.gameObject.layer == 7 && positiveCollision != collision)
             {
-                currentBoxMagnetized =  collision.transform.parent.transform.parent.GetComponent<MagnetBox>();
+                currentBoxMagnetized = collision.transform.parent.transform.parent.GetComponent<MagnetBox>();
                 positiveCollision = collision;
                 //currentBoxMagnetized.polesArea[1].enabled = false;
             }
@@ -151,7 +151,7 @@ public class BigMagnet : SwitchesInteractableObject
     }
     public void MagnetMovement(Collider2D obj)
     {
-        if (obj.CompareTag("BoxMagnetArea") && !currentBoxMagnetized.holded)
+        if (obj.CompareTag("BoxMagnetArea") && !currentBoxMagnetized.held)
         {
             float distance;
             if (isHorizontal)
@@ -163,22 +163,22 @@ public class BigMagnet : SwitchesInteractableObject
                 distance = Vector2.Distance(new Vector2(0, currentBoxMagnetized.transform.position.y), new Vector2(0, transform.position.y));
             }
 
-            if (CheckIfSameOrOppositeBoxPole(obj) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.holded)
+            if (CheckIfSameOrOppositeBoxPole(obj) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.held)
             {
                 //if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
                 //{
-                //    if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+                //    if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
                 //    {
                 obj.attachedRigidbody.AddForce((-magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
                 //    }
                 //}
             }
-            else if (CheckIfSameOrOppositeBoxPole(obj) == "Same" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.holded)
+            else if (CheckIfSameOrOppositeBoxPole(obj) == "Same" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.held)
             {
 
                 //if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
                 //{
-                //    //currentBoxMagnetized.holded = false;
+                //    //currentBoxMagnetized.held = false;
                 obj.attachedRigidbody.AddForce((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
                 //}
             }
@@ -198,7 +198,7 @@ public class BigMagnet : SwitchesInteractableObject
             if (CheckIfSameOrOppositeBoxPole(obj) == "Opposite" && isHorizontal == player.isHorizontal)
             {
                 obj.attachedRigidbody.AddForce((-magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
-                  
+
             }
             else if (CheckIfSameOrOppositeBoxPole(obj) == "Same" && isHorizontal == player.isHorizontal)
             {
@@ -223,12 +223,12 @@ public class BigMagnet : SwitchesInteractableObject
             {
                 spriteRenderer.sprite = sprites[0];
                 particles.SetActive(true);
-                partAnim.SetBool("pole",true);
+                partAnim.SetBool("pole", true);
                 return;
             }
-            
-                spriteRenderer.sprite = sprites[1];
-                particles.SetActive(false);
+
+            spriteRenderer.sprite = sprites[1];
+            particles.SetActive(false);
         }
         else
         {
@@ -237,13 +237,13 @@ public class BigMagnet : SwitchesInteractableObject
                 spriteRenderer.sprite = sprites[2];
 
                 particles.SetActive(true);
-                partAnim.SetBool("pole",false);
+                partAnim.SetBool("pole", false);
                 return;
             }
 
-                spriteRenderer.sprite = sprites[3];
-                particles.SetActive(false);
-            
+            spriteRenderer.sprite = sprites[3];
+            particles.SetActive(false);
+
         }
     }
     private string CheckIfSameOrOppositeBoxPole(Collider2D obj)
@@ -313,7 +313,7 @@ public class BigMagnet : SwitchesInteractableObject
                 {
                     direction.x = 1;
                 }
-                else if (currentBoxMagnetized.transform.position.x- transform.position.x < 0)
+                else if (currentBoxMagnetized.transform.position.x - transform.position.x < 0)
                 {
                     direction.x = -1;
                 }

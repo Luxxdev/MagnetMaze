@@ -36,17 +36,17 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Collider2D coll;
     public GameObject staticArea;
     public bool onCarpet = false;
-    private enum MovementState {idle, running, jumping, falling}
+    private enum MovementState { idle, running, jumping, falling }
 
-   void Start()
-   {
-      //  private GameObject tool = this.gameObject.transform.GetChild(1).GetChild(0).gameObject;
-   }
+    void Start()
+    {
+        //  private GameObject tool = this.gameObject.transform.GetChild(1).GetChild(0).gameObject;
+    }
 
 
-   // Update is called once per frame
-   void Update()
-   {
+    // Update is called once per frame
+    void Update()
+    {
         if (!hud.GetComponent<BottomTextManagement>().GetIsPaused())
         {
             // -1 esquerda, 1 direita
@@ -141,21 +141,21 @@ public class PlayerScript : MonoBehaviour
             }
             if (!isToolActive)
             {
-                currentBoxMagnetized.holded = false;
+                currentBoxMagnetized.held = false;
                 isHolding = false;
             }
         }
-    if (!onCarpet && staticArea.transform.localScale.x > 0.1f)
-    {
-        staticArea.transform.localScale -= new Vector3(0.001f,0.001f,0.001f);
+        if (!onCarpet && staticArea.transform.localScale.x > 0.1f)
+        {
+            staticArea.transform.localScale -= new Vector3(0.001f, 0.001f, 0.001f);
+        }
+        else if (staticArea.transform.localScale.x <= 0.1)
+        {
+            staticArea.SetActive(false);
+        }
+        UpdateAnimation();
+        Flip();
     }
-    else if (staticArea.transform.localScale.x <= 0.1)
-    {
-        staticArea.SetActive(false);
-    }
-      UpdateAnimation();
-      Flip();
-   }
     private void ActivateTool()
     {
         if (energy > 0 && !isToolActive)
@@ -198,12 +198,12 @@ public class PlayerScript : MonoBehaviour
         energy -= 1;
         //print(tool.transform.localScale);
         tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
-        magnetIndicator.transform.localScale = new Vector3(magnetIndicator.transform.localScale.x*-1, magnetIndicator.transform.localScale.y, magnetIndicator.transform.localScale.z);
+        magnetIndicator.transform.localScale = new Vector3(magnetIndicator.transform.localScale.x * -1, magnetIndicator.transform.localScale.y, magnetIndicator.transform.localScale.z);
         //print(tool.transform.localScale);
         ChangeText();
-        if(currentBoxMagnetized != null)
+        if (currentBoxMagnetized != null)
         {
-            currentBoxMagnetized.holded = false;
+            currentBoxMagnetized.held = false;
             isHolding = false;
         }
     }
@@ -225,7 +225,7 @@ public class PlayerScript : MonoBehaviour
         energy -= 1;
         if (objects[0].CompareTag("Box"))
         {
-            if(lastBoxInteracted != null && lastBoxInteracted != objects[0])
+            if (lastBoxInteracted != null && lastBoxInteracted != objects[0])
             {
                 lastBoxInteracted.GetComponent<MagnetBox>().ChangePole("Neutral", Vector2.zero);
             }
@@ -241,7 +241,7 @@ public class PlayerScript : MonoBehaviour
             }
             currentBoxMagnetized = objects[0].GetComponent<MagnetBox>();
             lastBoxInteracted = objects[0];
-            if(currentBoxMagnetized.lastPole == "Neutral")
+            if (currentBoxMagnetized.lastPole == "Neutral")
             {
                 currentBoxMagnetized = null;
                 lastBoxInteracted = null;
@@ -263,20 +263,20 @@ public class PlayerScript : MonoBehaviour
     }
 
     private bool IsGrounded()
-   {
+    {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.03f, groundLayer);
-   }
+    }
 
-   private void Flip()
-   {
-      if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-      {
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
-   }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -288,7 +288,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
-            
+
             objects.Insert(0, collision.gameObject);
             canInteract = true;
 
@@ -340,7 +340,7 @@ public class PlayerScript : MonoBehaviour
             collision.transform.parent.GetComponent<MagnetBox>().canInteract = false;
             //objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
-            
+
         }
         else if (collision.gameObject.CompareTag("Interactable"))
         {
@@ -363,7 +363,7 @@ public class PlayerScript : MonoBehaviour
     {
         Vector2 direction = new Vector2(0, 0);
         if (isHorizontal)
-        { 
+        {
             if (obj.attachedRigidbody.transform.position.x - transform.position.x > 0.2f)
             {
                 direction.x = 1;
@@ -421,15 +421,15 @@ public class PlayerScript : MonoBehaviour
         float check = transform.position.y - obj.attachedRigidbody.transform.position.y;
         if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal)
         {
-            if ((!isHorizontal && (check > 0.4f ||check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
+            if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {
-                if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+                if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
                 {
-                    currentBoxMagnetized.holded = true;
+                    currentBoxMagnetized.held = true;
                     isHolding = true;
                     //StartCoroutine(WaitForPoleChange());
                 }
-                else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+                else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
                 {
                     obj.attachedRigidbody.AddForce((-magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
                     rigidBody.AddForce((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
@@ -440,7 +440,7 @@ public class PlayerScript : MonoBehaviour
         {
             if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {
-                currentBoxMagnetized.holded = false;
+                currentBoxMagnetized.held = false;
                 isHolding = false;
                 obj.attachedRigidbody.AddForce((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
                 rigidBody.AddForce((-magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
@@ -475,7 +475,7 @@ public class PlayerScript : MonoBehaviour
     {
         MovementState state;
 
-        if(horizontal != 0)
+        if (horizontal != 0)
         {
             state = MovementState.running;
         }
