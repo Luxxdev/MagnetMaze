@@ -155,7 +155,7 @@ public class BigMagnet : SwitchesInteractableObject
     }
     public void MagnetMovement(Collider2D obj)
     {
-        if (obj.CompareTag("BoxMagnetArea") && !currentBoxMagnetized.holded)
+        if (obj.CompareTag("BoxMagnetArea") && !currentBoxMagnetized.held)
         {
             // float distance;
             // if (isHorizontal)
@@ -167,17 +167,17 @@ public class BigMagnet : SwitchesInteractableObject
             //     distance = Vector2.Distance(new Vector2(0, currentBoxMagnetized.transform.position.y), new Vector2(0, transform.position.y));
             // }
 
-            if (CheckIfSameOrOppositeBoxPole(obj) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.holded)
+            if (CheckIfSameOrOppositeBoxPole(obj) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.held)
             {
                 //if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
                 //{
-                //    if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+                //    if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
                 //    {
                 obj.attachedRigidbody.AddForce(-MagneticForceCalc(obj));
                 //    }
                 //}
             }
-            else if (CheckIfSameOrOppositeBoxPole(obj) == "Same" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.holded)
+            else if (CheckIfSameOrOppositeBoxPole(obj) == "Same" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.held)
             {
 
                 //if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))

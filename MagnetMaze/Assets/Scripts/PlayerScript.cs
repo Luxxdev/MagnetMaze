@@ -141,7 +141,7 @@ public class PlayerScript : MonoBehaviour
             }
             if (!isToolActive)
             {
-                currentBoxMagnetized.holded = false;
+                currentBoxMagnetized.held = false;
                 isHolding = false;
             }
         }
@@ -203,7 +203,7 @@ public class PlayerScript : MonoBehaviour
         ChangeText();
         if (currentBoxMagnetized != null)
         {
-            currentBoxMagnetized.holded = false;
+            currentBoxMagnetized.held = false;
             isHolding = false;
         }
     }
@@ -423,13 +423,13 @@ public class PlayerScript : MonoBehaviour
         {
             if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {
-                if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+                if (currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
                 {
-                    currentBoxMagnetized.holded = true;
+                    currentBoxMagnetized.held = true;
                     isHolding = true;
                     //StartCoroutine(WaitForPoleChange());
                 }
-                else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.holded)
+                else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
                 {
                     obj.attachedRigidbody.AddForce(-MagneticForceCalc(obj));
                     rigidBody.AddForce(MagneticForceCalc(obj));
@@ -440,7 +440,7 @@ public class PlayerScript : MonoBehaviour
         {
             if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {
-                currentBoxMagnetized.holded = false;
+                currentBoxMagnetized.held = false;
                 isHolding = false;
                 obj.attachedRigidbody.AddForce(MagneticForceCalc(obj));
                 rigidBody.AddForce(-MagneticForceCalc(obj));
