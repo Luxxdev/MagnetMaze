@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3561394495932934316}
   - component: {fileID: 3561394495932934315}
   - component: {fileID: 4865596265936663841}
-  - component: {fileID: 630123749970948764}
   m_Layer: 7
   m_Name: Magnet
   m_TagString: Untagged
@@ -32,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8326804176034854733}
+  - {fileID: 3573296193694514013}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -138,13 +138,44 @@ MonoBehaviour:
   isHorizontal: 0
   magneticForce: 20
   magneticForceIncrease: 20
---- !u!61 &630123749970948764
+--- !u!1 &4397977534515232046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3573296193694514013}
+  - component: {fileID: 1271294601208259935}
+  m_Layer: 6
+  m_Name: Collision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3573296193694514013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4397977534515232046}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3561394495932934317}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1271294601208259935
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561394495932934313}
+  m_GameObject: {fileID: 4397977534515232046}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}

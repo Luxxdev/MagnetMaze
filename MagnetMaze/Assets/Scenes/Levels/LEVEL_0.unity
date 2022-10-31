@@ -282,11 +282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Size.y
-      value: 3.3645158
+      value: 2.1182034
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Offset.y
-      value: 1.6319971
+      value: 1.0088409
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934317, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_RootOrder
@@ -10833,6 +10833,14 @@ PrefabInstance:
       propertyPath: m_UseColliderMask
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0211439
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.41009164
+      objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934317, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -10879,7 +10887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: isActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: currentType
@@ -10887,7 +10895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: interactionMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: sprite.Array.size
@@ -10940,11 +10948,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032500, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.78
+      value: -2.72
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032500, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.72
+      value: -1.46
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032500, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11047,11 +11055,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812508102915740947, guid: 726eee4fc9c3ce2fb8b8f585291b2469, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.76
+      value: 14.72
       objectReference: {fileID: 0}
     - target: {fileID: 2812508102915740947, guid: 726eee4fc9c3ce2fb8b8f585291b2469, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.54
+      value: -0.99
       objectReference: {fileID: 0}
     - target: {fileID: 2812508102915740947, guid: 726eee4fc9c3ce2fb8b8f585291b2469, type: 3}
       propertyPath: m_LocalPosition.z
