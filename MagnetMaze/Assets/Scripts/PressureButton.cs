@@ -7,7 +7,7 @@ public class PressureButton : Switches
     private List<Collider2D> objectsInArea = new List<Collider2D>();
     [SerializeField] private bool isPressure = false;
     private bool pressed = false;
-    
+
     void Start()
     {
         if (hasBattery)
@@ -34,43 +34,46 @@ public class PressureButton : Switches
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Box") && !collision.isTrigger))
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Box")) && !collision.isTrigger)
         {
             objectsInArea.Remove(collision);
-            if(objectsInArea.Count == 0)
+            if (objectsInArea.Count == 0)
             {
                 spriteRenderer.sprite = sprite[0];
                 pressed = false;
             }
-        }
-        if (isPressure && !pressed && !hasBattery)
-        {
-            OnSwitchActivate();
-        }
-    }
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (canActivate)
-        {
             if (isPressure && !pressed && !hasBattery)
             {
-                spriteRenderer.sprite = sprite[1];
                 OnSwitchActivate();
             }
-            else if (hasBattery && isPressure)
+        }
+    }
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Box")) && !collision.isTrigger)
+        {
+            if (canActivate)
             {
-                energy += Time.deltaTime;
-
-                if (energy >= steps && hasBattery)
+                if (isPressure && !pressed && !hasBattery)
                 {
+                    spriteRenderer.sprite = sprite[1];
                     OnSwitchActivate();
-                } 
-                if (energy >= energyRequired)
+                }
+                else if (hasBattery && isPressure)
                 {
-                    canActivate = false;
-                    if (!hasBattery)
+                    energy += Time.deltaTime;
+
+                    if (energy >= steps && hasBattery)
                     {
                         OnSwitchActivate();
+                    }
+                    if (energy >= energyRequired)
+                    {
+                        canActivate = false;
+                        if (!hasBattery)
+                        {
+                            OnSwitchActivate();
+                        }
                     }
                 }
             }

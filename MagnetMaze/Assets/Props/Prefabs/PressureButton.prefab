@@ -96,7 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a4e56606d895a44b72c4115fdf4e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableObject: {fileID: 0}
+  interactableObject:
+  - {fileID: 0}
+  spriteRenderer: {fileID: 5376859064819473374}
+  sprite:
+  - {fileID: -4609077189375628650, guid: 71a7ab4afbeb1a19990383f04d38e55d, type: 3}
+  - {fileID: -1385738765883638377, guid: 71a7ab4afbeb1a19990383f04d38e55d, type: 3}
+  steps: 1
+  isPressure: 0
 --- !u!61 &5376859064819473368
 BoxCollider2D:
   m_ObjectHideFlags: 0

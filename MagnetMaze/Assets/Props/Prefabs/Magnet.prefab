@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3561394495932934316}
   - component: {fileID: 3561394495932934315}
   - component: {fileID: 4865596265936663841}
+  - component: {fileID: 630123749970948764}
   m_Layer: 7
   m_Name: Magnet
   m_TagString: Untagged
@@ -98,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01619792, y: 0.85265595}
+  m_Offset: {x: -0.01619792, y: 0.8275462}
   m_SpriteTilingProperty:
     border: {x: 0.19999999, y: 0, z: 0.21, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64162874, y: 1.8058335}
+  m_Size: {x: 0.64162874, y: 1.856053}
   m_EdgeRadius: 0
 --- !u!114 &4865596265936663841
 MonoBehaviour:
@@ -135,8 +136,34 @@ MonoBehaviour:
   - {fileID: 4139558371029530758, guid: 4a9f7e5fd3e9e9e17936348ba3d6b409, type: 3}
   - {fileID: -4544939661281746768, guid: 4a9f7e5fd3e9e9e17936348ba3d6b409, type: 3}
   isHorizontal: 0
-  magneticForce: 100
-  magneticForceIncrease: 100
+  magneticForce: 20
+  magneticForceIncrease: 20
+--- !u!61 &630123749970948764
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561394495932934313}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0059785843, y: -0.031088173}
+  m_SpriteTilingProperty:
+    border: {x: 0.19999999, y: 0, z: 0.21, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.24}
+    newSize: {x: 0.64, y: 0.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5754328, y: 0.17782366}
+  m_EdgeRadius: 0
 --- !u!1001 &2544552889532978737
 PrefabInstance:
   m_ObjectHideFlags: 0
