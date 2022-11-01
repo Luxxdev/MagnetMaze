@@ -99,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3408284011303929671
 Transform:
   m_ObjectHideFlags: 0
@@ -108,8 +108,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4409534455192989937}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.021, y: 0.008, z: 0}
-  m_LocalScale: {x: 1, y: 1.7124954, z: 1}
+  m_LocalPosition: {x: 0.021, y: -0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3567037915780232797}
   - {fileID: 3046055333378710580}
@@ -373,6 +373,7 @@ MonoBehaviour:
   AUM: {fileID: 0}
   energy: 10
   vertical: 0
+  speed: 1.5
   isFacingRight: 1
   isHorizontal: 1
   currentPole: 1
@@ -553,8 +554,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018855687, y: 0.003568456}
-  m_Size: {x: 0.85254407, y: 0.98033893}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5268569, y: 0.9803389}
   m_Direction: 0
 --- !u!114 &5481672144336528937
 MonoBehaviour:
@@ -619,8 +620,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018855687, y: 0.003568456}
-  m_Size: {x: 0.85254407, y: 0.98033893}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5268569, y: 0.98033893}
   m_Direction: 0
 --- !u!114 &2585071552387085814
 MonoBehaviour:
