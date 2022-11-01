@@ -2,21 +2,21 @@
     "Text": [
         {
             "dialogueID": "First part",
-            "image": "Sprites/balloon",
+            "image": "CHAR/question",
             "dialogue": "Yet another dialog",
-            "explanationImg": "Sprites/balloon"
+            "explanationImg": "EXP/maglev"
         },
         {
             "dialogueID": "Second part",
-            "image": "Sprites/energyPick",
+            "image": "CHAR/normal",
             "dialogue": "Yes, another one.",
-            "explanationImg": "Sprites/Alavanca"
+            "explanationImg": "EXP/maglev"
         },
         {
             "dialogueID": "Last part",
-            "image": "Sprites/Alavanca",
+            "image": "CHAR/normal",
             "dialogue": "Deal with it.",
-            "explanationImg": "Sprites/energyPick"
+            "explanationImg": "EXP/maglev"
         }
     ]
 }

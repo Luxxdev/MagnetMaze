@@ -2,21 +2,21 @@
     "Text": [
         {
             "dialogueID": "First part",
-            "image": "",
+            "image": "CHAR/smile",
             "dialogue": "Hello! I'm the scientist!",
-            "explanationImg": "Sprites/balloon"
+            "explanationImg": "EXP/magnetic"
         },
         {
             "dialogueID": "Second part",
-            "image": "Sprites/energyPick",
+            "image": "CHAR/normal",
             "dialogue": "Yes, the one from Coldplay's song.",
-            "explanationImg": "Sprites/Alavanca"
+            "explanationImg": "EXP/maglev"
         },
         {
             "dialogueID": "Last part",
-            "image": "Sprites/Alavanca",
+            "image": "CHAR/question",
             "dialogue": "You know the one.",
-            "explanationImg": "Sprites/energyPick"
+            "explanationImg": "EXP/surface"
         }
     ]
 }
