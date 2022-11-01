@@ -239,6 +239,7 @@ public class PlayerScript : MonoBehaviour
                 objects[0].GetComponent<MagnetBox>().player = this;
                 objects[0].GetComponent<MagnetBox>().ChangePole("Positive", MagneticForceDirection(objects[0].GetComponent<Collider2D>()));
             }
+
             currentBoxMagnetized = objects[0].GetComponent<MagnetBox>();
             lastBoxInteracted = objects[0];
             if (currentBoxMagnetized.lastPole == "Neutral")
@@ -247,7 +248,6 @@ public class PlayerScript : MonoBehaviour
                 lastBoxInteracted = null;
                 isHolding = false;
             }
-
         }
 
         else if (objects[0].CompareTag("Interactable"))
@@ -468,8 +468,6 @@ public class PlayerScript : MonoBehaviour
         {
             distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
         }
-        print(ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 1.2f), 50, 20f));
-
         return ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 1.2f), 50, 20f);
     }
     //IEnumerator WaitForPoleChange()

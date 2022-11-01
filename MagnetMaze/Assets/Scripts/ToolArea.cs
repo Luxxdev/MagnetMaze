@@ -26,7 +26,10 @@ public class ToolArea : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
-            // boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
+            if (boxBodyCollider == null)
+            {
+                boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
+            }
 
             if (collision.gameObject.layer == 7 && positiveCollision != collision)
             {
@@ -47,35 +50,38 @@ public class ToolArea : MonoBehaviour
             else if (negativeCollision == null)
             {
                 //print("entrou2");
-
                 playerScript.MagnetMovement(positiveCollision, CheckWhichArea(boxBodyCollider));
             }
             else if (positiveCollision.Distance(playerColl).distance > negativeCollision.Distance(playerColl).distance)
             {
                 //print("entrou3");
-
                 playerScript.MagnetMovement(negativeCollision, CheckWhichArea(boxBodyCollider));
             }
             else
             {
                 //print(selfCollider);
-
                 playerScript.MagnetMovement(positiveCollision, CheckWhichArea(boxBodyCollider));
             }
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("BoxMagnetArea"))
-    //    {
-    //        boxBodyCollider = null;
-    //        //print(boxBodyCollider);
-    //    }
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (positiveCollision != null && collision == positiveCollision)
+        {
+            positiveCollision = null;
+        }
+        else if (negativeCollision != null && collision == negativeCollision)
+        {
+            negativeCollision = null;
+        }
+    }
 
     private Collider2D CheckWhichArea(Collider2D a)
     {
+        print("self dist = " + selfCollider + " " + selfCollider.Distance(a).distance);
+        print("opp dist = " + oppositeCollider + " " + oppositeCollider.Distance(a).distance);
+
         if (selfCollider.Distance(a).distance < oppositeCollider.Distance(a).distance)
         {
             return selfCollider;

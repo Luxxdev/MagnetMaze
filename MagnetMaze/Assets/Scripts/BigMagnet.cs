@@ -68,27 +68,22 @@ public class BigMagnet : SwitchesInteractableObject
     {
         if (collision.gameObject.CompareTag("BoxMagnetArea") && isActive)
         {
-            // boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
             if (collision.gameObject.layer == 7 && positiveCollision != collision)
             {
                 currentBoxMagnetized = collision.transform.parent.transform.parent.GetComponent<MagnetBox>();
                 positiveCollision = collision;
-                //currentBoxMagnetized.polesArea[1].enabled = false;
             }
             else if (collision.gameObject.layer == 8 && negativeCollision != collision)
             {
                 currentBoxMagnetized = collision.transform.parent.transform.parent.GetComponent<MagnetBox>();
                 negativeCollision = collision;
-                //currentBoxMagnetized.polesArea[0].enabled = false;
             }
             if (positiveCollision == null)
             {
-                //print("entrou1");
                 MagnetMovement(negativeCollision);
             }
             else if (negativeCollision == null)
             {
-                //print("entrou2");
                 MagnetMovement(positiveCollision);
             }
             else if (Vector3.Distance(positiveCollision.transform.position, transform.position) > Vector3.Distance(negativeCollision.transform.position, transform.position))
@@ -98,11 +93,6 @@ public class BigMagnet : SwitchesInteractableObject
             }
             else
             {
-                //print(positiveCollision.transform.position);
-                //print(negativeCollision.transform.position);
-
-                //print("distancia do positivo" + Vector3.Distance(positiveCollision.transform.position, transform.position));
-                //print("distancia do negativo" + Vector3.Distance(negativeCollision.transform.position, transform.position));
                 MagnetMovement(positiveCollision);
             }
         }
@@ -111,20 +101,16 @@ public class BigMagnet : SwitchesInteractableObject
 
         if (collision.gameObject.CompareTag("PlayerToolArea") && isActive)
         {
-            // boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
             if (collision.gameObject.layer == 10 && playerPositive != collision)
             {
                 playerPositive = collision;
-                //currentBoxMagnetized.polesArea[1].enabled = false;
             }
             else if (collision.gameObject.layer == 11 && playerNegative != collision)
             {
                 playerNegative = collision;
-                //currentBoxMagnetized.polesArea[0].enabled = false;
             }
             if (playerPositive == null)
             {
-                //print("entrou1");
                 MagnetMovement(playerNegative);
             }
             else if (playerNegative == null)
@@ -153,63 +139,24 @@ public class BigMagnet : SwitchesInteractableObject
     {
         if (obj.CompareTag("BoxMagnetArea") && !currentBoxMagnetized.held)
         {
-            // float distance;
-            // if (isHorizontal)
-            // {
-            //     distance = Vector2.Distance(new Vector2(currentBoxMagnetized.transform.position.x, 0), new Vector2(transform.position.x, 0));
-            // }
-            // else
-            // {
-            //     distance = Vector2.Distance(new Vector2(0, currentBoxMagnetized.transform.position.y), new Vector2(0, transform.position.y));
-            // }
-
             if (CheckIfSameOrOppositeBoxPole(obj) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.held)
             {
-                //if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
-                //{
-                //    if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
-                //    {
                 obj.attachedRigidbody.AddForce(-MagneticForceCalc(obj));
-                //    }
-                //}
             }
             else if (CheckIfSameOrOppositeBoxPole(obj) == "Same" && isHorizontal == currentBoxMagnetized.isHorizontal && !currentBoxMagnetized.held)
             {
-
-                //if ((!isHorizontal && (transform.position.y > 0.2f || transform.position.y < -0.2f)) || (isHorizontal && (transform.position.y < 0.2f || transform.position.y > -0.2f)))
-                //{
-                //    //currentBoxMagnetized.holded = false;
                 obj.attachedRigidbody.AddForce(MagneticForceCalc(obj));
-                //}
             }
         }
         if (obj.CompareTag("PlayerToolArea"))
         {
-            // float distance;
-            // if (isHorizontal)
-            // {
-            //     distance = Vector2.Distance(new Vector2(player.transform.position.x, 0), new Vector2(transform.position.x, 0));
-            // }
-            // else
-            // {
-            //     distance = Vector2.Distance(new Vector2(0, player.transform.position.y), new Vector2(0, transform.position.y));
-            // }
-
             if (CheckIfSameOrOppositeBoxPole(obj) == "Opposite" && isHorizontal == player.isHorizontal)
             {
                 obj.attachedRigidbody.AddForce(-MagneticForceCalc(obj));
-
             }
             else if (CheckIfSameOrOppositeBoxPole(obj) == "Same" && isHorizontal == player.isHorizontal)
             {
-                //print("magforce" + magneticForce);
-                //print("direction" + MagneticForceDirection(obj));
-                //print("div" + Mathf.Pow(distance, 2));
-
-                //print((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2));
-
                 obj.attachedRigidbody.AddForce(MagneticForceCalc(obj));
-
             }
         }
     }
@@ -348,7 +295,7 @@ public class BigMagnet : SwitchesInteractableObject
         {
             distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
         }
-        print(ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2), 50f, 20f));
+        //print(ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2), 50f, 20f));
         return ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 2), 50f, 20f);
     }
 }

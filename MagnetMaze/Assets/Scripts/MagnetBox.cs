@@ -165,10 +165,8 @@ public class MagnetBox : MonoBehaviour
         {
             multi = direction.y;
         }
-        print(direction);
-        if (magnetOrientation != direction)
+        if (magnetOrientation != direction && pole != "Neutral")
         {
-            //print("mudei polo, multi � " + multi);
             polesAreaObject.SetActive(true);
             transform.localScale = new Vector3(1, multi, 1);
             spriteRenderer.sprite = spriteArray[1];
@@ -177,7 +175,6 @@ public class MagnetBox : MonoBehaviour
         }
         else
         {
-            //print("neutro");
             spriteRenderer.sprite = spriteArray[0];
             polesAreaObject.SetActive(false);
             held = false;
@@ -185,80 +182,5 @@ public class MagnetBox : MonoBehaviour
             magnetOrientation = new Vector2(0, 0);
         }
 
-        //print(direction);
-        //float opposite = 1;
-        //  if (direction.y != 0)
-        //  {
-        //      opposite = player.vertical;
-        //  }
-        //  else if (direction.y == 0 && direction.x == 0)
-        //  {
-        //      if (player.isFacingRight)
-        //      {
-        //          direction.x = 1;
-        //      }
-        //      else
-        //      {
-        //          direction.x = -1;
-        //      }
-        //  }
-        //  if ((direction != magnetOrientation || pole != lastPole) && pole != "Neutral")
-        //{
-        //      transform.localScale = new Vector3(1, 1, 1);
-        //      transform.eulerAngles = new Vector3(0, 0, 0);
-
-        //      if (pole == "Negative")
-        //      {
-        //          direction *= -1;
-        //      }
-
-
-        //if (direction.y == 0)
-        //{
-        //   isHorizontal = true;
-        //   transform.eulerAngles = new Vector3(0, 0, 90);
-        //}
-        //else
-        //{
-        //   isHorizontal = false;
-        //   opposite = player.vertical;
-        //}
-        //if (pole == "Negative")
-        //{
-        //   polesAreaObject.SetActive(true);
-        //   if (direction.x == -1 || (!player.isFacingRight && direction.y == 0))
-        //   {
-        //      transform.localScale = new Vector3(1, -1, 1);
-        //   }
-        //   else if (direction.y != 0)
-        //   {
-        //       transform.localScale = new Vector3(1, -1 * opposite, 1);
-        //   }
-
-        //}
-        //else if (pole == "Positive")
-        //{
-        //   polesAreaObject.SetActive(true);
-        //   if (direction.x == 1 || (player.isFacingRight && direction.y == 0))
-        //   {
-        //       transform.localScale = new Vector3(1, -1, 1);
-        //   }
-        //   else if (direction.y != 0)
-        //   {
-        //       transform.localScale = new Vector3(1, 1 * opposite, 1);
-        //   }
-        //}
-        //      spriteRenderer.sprite = spriteArray[1];
-        //      lastPole = pole;
-        //      magnetOrientation = new Vector2(direction.x, direction.y*opposite);
-        //   }
-        //   else
-        //   {
-        //      spriteRenderer.sprite = spriteArray[0];
-        //      polesAreaObject.SetActive(false);
-        //      held = false;
-        //      lastPole = "Neutral";
-        //      magnetOrientation = new Vector2(0, 0);
-        //   }
     }
 }
