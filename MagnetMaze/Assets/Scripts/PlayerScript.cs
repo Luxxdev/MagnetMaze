@@ -246,6 +246,7 @@ public class PlayerScript : MonoBehaviour
             {
                 currentBoxMagnetized = null;
                 lastBoxInteracted = null;
+                isHolding = false;
             }
         }
 
