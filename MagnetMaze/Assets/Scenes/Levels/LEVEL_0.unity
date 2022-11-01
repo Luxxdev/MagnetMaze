@@ -522,16 +522,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &550694504 stripped
-CapsuleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1649734305575213251, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-  m_PrefabInstance: {fileID: 456473072889495338}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &567052555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1659741041224420729, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-  m_PrefabInstance: {fileID: 456473072889495338}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &581713315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10544,11 +10534,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1721653483 stripped
-CapsuleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 5678423450447932571, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-  m_PrefabInstance: {fileID: 456473072889495338}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1721733993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3561394495932934313, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
@@ -11032,18 +11017,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2585071552387085814, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: selfCollider
-      value: 
-      objectReference: {fileID: 1721653483}
-    - target: {fileID: 2585071552387085814, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: oppositeCollider
-      value: 
-      objectReference: {fileID: 550694504}
-    - target: {fileID: 3408284011303929671, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4409534455192989937, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -11104,18 +11077,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4644896693509032501, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644896693509032501, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: m_UseAutoMass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644896693509032501, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: AUM
       value: 
@@ -11124,10 +11085,6 @@ PrefabInstance:
       propertyPath: hud
       value: 
       objectReference: {fileID: 1031174490}
-    - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: speed
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: UIText
       value: 
@@ -11141,25 +11098,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: magneticForce
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: raycastOrigin
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: magnetIndicator
-      value: 
-      objectReference: {fileID: 567052555}
-    - target: {fileID: 5481672144336528937, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: selfCollider
-      value: 
-      objectReference: {fileID: 550694504}
-    - target: {fileID: 5481672144336528937, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: oppositeCollider
-      value: 
-      objectReference: {fileID: 1721653483}
     m_RemovedComponents:
     - {fileID: 4644896693509032502, guid: 66719b5968f4f1caf83389a041939300, type: 3}
     - {fileID: 7666303748269358818, guid: 66719b5968f4f1caf83389a041939300, type: 3}
