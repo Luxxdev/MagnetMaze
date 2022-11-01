@@ -154,7 +154,7 @@ MonoBehaviour:
   - {fileID: 6725727613379955586, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
   spriteRenderer: {fileID: 8213227179994490894}
   canInteract: 0
-  holded: 0
+  held: 0
   player: {fileID: 0}
   conducting: 0
   isHorizontal: 0
@@ -179,7 +179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &171962433145530994
 Transform:
   m_ObjectHideFlags: 0

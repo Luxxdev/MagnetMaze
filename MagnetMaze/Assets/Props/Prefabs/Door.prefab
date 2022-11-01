@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5693530924544845854}
   - component: {fileID: 5693530924544845853}
   - component: {fileID: 6064755098319587481}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 6064755098319587481}
   coll: {fileID: 5693530924544845855}
+  startsOpen: 0
 --- !u!95 &6064755098319587481
 Animator:
   serializedVersion: 3

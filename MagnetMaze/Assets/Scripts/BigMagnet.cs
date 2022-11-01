@@ -60,6 +60,7 @@ public class BigMagnet : SwitchesInteractableObject
         }
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
+            print("entrou");
             collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.NeverSleep;
         }
     }
@@ -80,19 +81,23 @@ public class BigMagnet : SwitchesInteractableObject
             }
             if (positiveCollision == null)
             {
+                print("negative1");
                 MagnetMovement(negativeCollision);
             }
             else if (negativeCollision == null)
             {
+                print("positive1");
                 MagnetMovement(positiveCollision);
             }
             else if (Vector3.Distance(positiveCollision.transform.position, transform.position) > Vector3.Distance(negativeCollision.transform.position, transform.position))
             {
 
+                print("negative2");
                 MagnetMovement(negativeCollision);
             }
             else
             {
+                print("positive2");
                 MagnetMovement(positiveCollision);
             }
         }
@@ -132,7 +137,16 @@ public class BigMagnet : SwitchesInteractableObject
     {
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
+            print("saiu");
             collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.StartAwake;
+        }
+        if (positiveCollision != null && collision == positiveCollision)
+        {
+            positiveCollision = null;
+        }
+        else if (negativeCollision != null && collision == negativeCollision)
+        {
+            negativeCollision = null;
         }
     }
     public void MagnetMovement(Collider2D obj)
