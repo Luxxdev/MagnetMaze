@@ -24,10 +24,6 @@ public class BigMagnet : SwitchesInteractableObject
 
     private void Start()
     {
-        if (!pole)
-        {
-
-        }
         UpdateSprite();
     }
     public override void Activate()
