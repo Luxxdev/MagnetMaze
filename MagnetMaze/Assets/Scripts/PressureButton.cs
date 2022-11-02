@@ -10,6 +10,7 @@ public class PressureButton : Switches
 
     void Start()
     {
+        enabled = false;
         if (hasBattery)
         {
             isPressure = true;
@@ -29,6 +30,24 @@ public class PressureButton : Switches
                 {
                     OnSwitchActivate();
                 }
+                else
+                {
+                    foreach (var item in interactableObject)
+                    {
+                        if (item.CompareTag("Battery"))
+                        {
+                            item.GetComponent<Battery>().pressedButtons += 1;
+                            item.GetComponent<Battery>().charging = true;
+
+                        }
+                    }
+
+                }
+            }
+            if (collision.gameObject.CompareTag("Box"))
+            {
+                collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.NeverSleep;
+
             }
         }
     }
@@ -42,9 +61,36 @@ public class PressureButton : Switches
                 spriteRenderer.sprite = sprite[0];
                 pressed = false;
             }
-            if (isPressure && !pressed && !hasBattery)
+            if (isPressure && !pressed)
             {
-                OnSwitchActivate();
+                if (hasBattery)
+                {
+                    print("saiu");
+                    foreach (var item in interactableObject)
+                    {
+                        if (item.CompareTag("Battery"))
+                        {
+                            if (!item.GetComponent<Battery>().isFull)
+                            {
+                                canActivate = true;
+                                enabled = true;
+                                print("entrou");
+                            }
+                            item.GetComponent<Battery>().pressedButtons -= 1;
+                            item.GetComponent<Battery>().charging = false;
+
+
+                        }
+                    }
+                }
+                else
+                {
+                    OnSwitchActivate();
+                }
+            }
+            if (collision.gameObject.CompareTag("Box"))
+            {
+                collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.StartAwake;
             }
         }
     }
@@ -62,20 +108,34 @@ public class PressureButton : Switches
                 else if (hasBattery && isPressure)
                 {
                     energy += Time.deltaTime;
+                    OnSwitchActivate();
 
-                    if (energy >= steps && hasBattery)
-                    {
-                        OnSwitchActivate();
-                    }
                     if (energy >= energyRequired)
                     {
                         canActivate = false;
-                        if (!hasBattery)
+                        enabled = false;
+                        foreach (var item in interactableObject)
                         {
-                            OnSwitchActivate();
+                            if (item.CompareTag("Battery"))
+                            {
+                                item.GetComponent<Battery>().charging = false;
+                            }
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (canActivate && !pressed)
+        {
+            energy -= Time.deltaTime;
+            if (energy <= 0)
+            {
+                energy = 0;
+                enabled = false;
             }
         }
     }

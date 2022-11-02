@@ -5,23 +5,49 @@ using UnityEngine;
 public class Battery : SwitchesInteractableObject
 {
     [SerializeField] private GameObject interactableObject;
-    [SerializeField] private GameObject energyBar;
-    public int requiredEnergy = 10;
+    [SerializeField] private SpriteRenderer energyBar;
+    public float requiredEnergy = 10;
     private float energy;
+    public bool isFull = false;
+    public float conectedSwitches = 1;
+    public bool charging = false;
+    public float pressedButtons = 0;
+
     public override void Activate()
     {
-        energy += 1;
-        if(energy == 1)
+        charging = true;
+        print(requiredEnergy * pressedButtons / conectedSwitches);
+        if (!isFull)
         {
-            energyBar.GetComponent<SpriteRenderer>().enabled = true;
+            enabled = true;
+            energy += Time.deltaTime;
+            energyBar.size += new Vector2(0, 0.04294457f * Time.deltaTime);
+            energy = (energy >= requiredEnergy - 0.1f ? energy = requiredEnergy : energy = energy);
+            if (energy >= requiredEnergy)
+            {
+                interactableObject.GetComponent<SwitchesInteractableObject>().Activate();
+                isFull = true;
+                enabled = false;
+            }
         }
-        else
+    }
+    private void Update()
+    {
+        if (pressedButtons == 0)
         {
-            Instantiate(energyBar, new Vector3(energyBar.transform.position.x, energyBar.transform.position.y + ((energy-1) * 0.042f)), Quaternion.identity, transform);
+            charging = false;
         }
-        if (energy >= requiredEnergy)
+        if (!charging && !isFull && energy >= (requiredEnergy * pressedButtons / conectedSwitches) + 0.1f)
         {
-            interactableObject.GetComponent<SwitchesInteractableObject>().Activate();
+            energy -= Time.deltaTime;
+            energyBar.size -= new Vector2(0, 0.04294457f * Time.deltaTime);
+
+            if (energy <= 0)
+            {
+                energy = 0;
+                enabled = false;
+            }
         }
+
     }
 }

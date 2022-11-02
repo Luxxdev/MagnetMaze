@@ -81,23 +81,19 @@ public class BigMagnet : SwitchesInteractableObject
             }
             if (positiveCollision == null)
             {
-                print("negative1");
                 MagnetMovement(negativeCollision);
             }
             else if (negativeCollision == null)
             {
-                print("positive1");
                 MagnetMovement(positiveCollision);
             }
             else if (Vector3.Distance(positiveCollision.transform.position, transform.position) > Vector3.Distance(negativeCollision.transform.position, transform.position))
             {
 
-                print("negative2");
                 MagnetMovement(negativeCollision);
             }
             else
             {
-                print("positive2");
                 MagnetMovement(positiveCollision);
             }
         }
