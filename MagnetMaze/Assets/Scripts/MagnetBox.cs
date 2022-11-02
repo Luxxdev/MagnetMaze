@@ -10,6 +10,7 @@ public class MagnetBox : MonoBehaviour
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
     public bool canInteract = false;
+    public bool startsMagnetized = false;
     public bool held = false;
     public PlayerScript player = null;
     public bool conducting = false;

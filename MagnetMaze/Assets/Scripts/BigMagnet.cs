@@ -7,7 +7,7 @@ public class BigMagnet : SwitchesInteractableObject
     public GameObject particles;
     [SerializeField] private bool pole;
     [SerializeField] private bool isActive;
-    [SerializeField] private Mode interactionMode;
+    public Mode interactionMode;
     [SerializeField] private Collider2D coll;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] sprites;
@@ -20,7 +20,7 @@ public class BigMagnet : SwitchesInteractableObject
     private Collider2D playerPositive;
     private Collider2D playerNegative;
     private MagnetBox currentBoxMagnetized;
-    private enum Mode { onOff, invert, powerUp }
+    public enum Mode { onOff, invert, powerUp }
 
     private void Start()
     {
@@ -88,11 +88,12 @@ public class BigMagnet : SwitchesInteractableObject
             }
             else if (Vector3.Distance(positiveCollision.transform.position, transform.position) > Vector3.Distance(negativeCollision.transform.position, transform.position))
             {
-
+                print("negativeCollision");
                 MagnetMovement(negativeCollision);
             }
             else
             {
+                print("positiveCollision");
                 MagnetMovement(positiveCollision);
             }
         }
@@ -274,6 +275,15 @@ public class BigMagnet : SwitchesInteractableObject
             }
         }
         return direction;
+
+    }
+
+    public void ChangeMode(int newMode)
+    {
+        if ((int)interactionMode != newMode)
+        {
+            interactionMode = (Mode)newMode;
+        }
     }
 
     public static Vector2 ClampMagnitude(Vector2 v, float max, float min)
