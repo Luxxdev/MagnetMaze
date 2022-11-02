@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public MagnetBox currentBoxMagnetized = null;
+    private MagnetBox previousBoxMagnetized = null;
     public GameObject magnetIndicator;
     public Transform boxHolder;
     public bool isHolding = false;
@@ -300,6 +301,11 @@ public class PlayerScript : MonoBehaviour
             Destroy(collision.gameObject);
             ChangeText();
         }
+        if (collision.transform.CompareTag("Box") && collision.GetComponent<MagnetBox>().startsMagnetized)
+        {
+            previousBoxMagnetized = currentBoxMagnetized;
+            currentBoxMagnetized = collision.GetComponent<MagnetBox>();
+        }
     }
     //private void OnTriggerStay2D(Collider2D collision)
     //{
@@ -350,6 +356,10 @@ public class PlayerScript : MonoBehaviour
         if (objects.Count == 0)
         {
             canInteract = false;
+        }
+        if (collision.transform.CompareTag("Box") && collision.GetComponent<MagnetBox>().startsMagnetized)
+        {
+            currentBoxMagnetized = previousBoxMagnetized;
         }
         //if (collision.gameObject.layer == 7)
         //{
