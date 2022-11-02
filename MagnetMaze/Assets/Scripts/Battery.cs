@@ -33,10 +33,13 @@ public class Battery : SwitchesInteractableObject
     }
     private void Update()
     {
-        print(charging);
-        if (pressedButtons == 0)
+        if (pressedButtons < conectedSwitches)
         {
             charging = false;
+        }
+        else
+        {
+            charging = true;
         }
         if (!charging && !isFull && energy >= (requiredEnergy * pressedButtons / conectedSwitches) + 0.1f)
         {

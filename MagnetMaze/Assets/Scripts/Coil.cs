@@ -35,22 +35,21 @@ public class Coil : Switches
         if (layers.Contains(collision.gameObject.layer))
         {
             collInArea.Add(collision);
-            enabled = false;
+            enabled = true;//enabled = false;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print(batteryScript.charging);
         //if (collision.gameObject.CompareTag("Player") && collision.GetComponent<PlayerScript>().i || (collision.gameObject.CompareTag("Box") && layers.Contains(collision.gameObject.layer)))
         if (collInArea.Contains(collision))//(layers.Contains(collision.gameObject.layer))
         {
             if (collision.attachedRigidbody.velocity.x > 0.01f || collision.attachedRigidbody.velocity.x < -0.01f)
             {
-                if (movingCollision == null)
-                {
-                    movingCollision = collision;
-                    batteryScript.charging = true;
-                }
+                //                if (movingCollision == null)
+                //              {
+                movingCollision = collision;
+                //batteryScript.charging = true;
+                //            }
             }
             else
             {
@@ -61,63 +60,9 @@ public class Coil : Switches
                 if (movingCollision = collision)
                 {
                     movingCollision = null;
-                    batteryScript.charging = false;
+                    //batteryScript.charging = false;
                 }
                 moving = false;
-            }
-            if (movingCollision == collision)
-            {
-                if (energy < energyRequired)
-                {
-                    energy += Time.deltaTime;
-                }
-                if (!moving)
-                {
-                    batteryScript.pressedButtons += 1;
-                }
-                moving = true;
-                if (hasBattery)
-                {
-                    if (moving)
-                    {
-                        if (energy < energyRequired)
-                        {
-                            OnSwitchActivate();
-                            //batteryScript.charging = true;
-                        }
-                    }
-                    else
-                    {
-                        if (energy > 0)
-                        {
-                            energy -= Time.deltaTime;
-                            //batteryScript.charging = false;
-                        }
-                    }
-                }
-                if (energy >= energyRequired)
-                {
-                    if (!hasBattery)
-                    {
-                        coll.enabled = false;
-                        OnSwitchActivate();
-                    }
-                    else
-                    {
-                        if (!batteryScript.isFull)
-                        {
-                            if (!moving && energy > 0)
-                            {
-                                energy -= Time.deltaTime;
-                                //batteryScript.charging = false;
-                            }
-                        }
-                        else
-                        {
-                            coll.enabled = false;
-                        }
-                    }
-                }
             }
         }
     }
@@ -127,7 +72,7 @@ public class Coil : Switches
         if (movingCollision == collision)
         {
             movingCollision = null;
-            batteryScript.charging = false;
+            // batteryScript.charging = false;
             if (moving)
             {
                 moving = false;
@@ -149,11 +94,69 @@ public class Coil : Switches
 
     private void Update()
     {
-        energy -= Time.deltaTime;
-        if (energy <= 0)
+        if (movingCollision != null)
         {
-            energy = 0;
-            enabled = false;
+            if (energy < energyRequired)
+            {
+                energy += Time.deltaTime;
+            }
+            if (!moving)
+            {
+                batteryScript.pressedButtons += 1;
+            }
+            moving = true;
+            if (hasBattery)
+            {
+                if (moving)
+                {
+                    if (energy < energyRequired)
+                    {
+                        OnSwitchActivate();
+                        //batteryScript.charging = true;
+                    }
+                }
+                else
+                {
+                    if (energy > 0)
+                    {
+                        energy -= Time.deltaTime;
+                        //batteryScript.charging = false;
+                    }
+                }
+            }
+            if (energy >= energyRequired)
+            {
+                if (!hasBattery)
+                {
+                    coll.enabled = false;
+                    OnSwitchActivate();
+                }
+                else
+                {
+                    if (!batteryScript.isFull)
+                    {
+                        if (!moving && energy > 0)
+                        {
+                            energy -= Time.deltaTime;
+                            //batteryScript.charging = false;
+                        }
+                    }
+                    else
+                    {
+                        coll.enabled = false;
+                        enabled = false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            energy -= Time.deltaTime;
+            if (energy <= 0)
+            {
+                energy = 0;
+                enabled = false;
+            }
         }
 
     }
