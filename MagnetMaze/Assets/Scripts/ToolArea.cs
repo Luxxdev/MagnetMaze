@@ -79,9 +79,6 @@ public class ToolArea : MonoBehaviour
 
     private Collider2D CheckWhichArea(Collider2D a)
     {
-        print("self dist = " + selfCollider + " " + selfCollider.Distance(a).distance);
-        print("opp dist = " + oppositeCollider + " " + oppositeCollider.Distance(a).distance);
-
         if (selfCollider.Distance(a).distance < oppositeCollider.Distance(a).distance)
         {
             return selfCollider;

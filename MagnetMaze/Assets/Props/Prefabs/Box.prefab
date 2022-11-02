@@ -154,7 +154,6 @@ MonoBehaviour:
   - {fileID: 6725727613379955586, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
   spriteRenderer: {fileID: 8213227179994490894}
   canInteract: 0
-  startsMagnetized: 0
   held: 0
   player: {fileID: 0}
   conducting: 0
