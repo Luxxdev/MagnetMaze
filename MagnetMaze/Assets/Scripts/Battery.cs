@@ -33,6 +33,7 @@ public class Battery : SwitchesInteractableObject
     }
     private void Update()
     {
+        print(charging);
         if (pressedButtons == 0)
         {
             charging = false;
