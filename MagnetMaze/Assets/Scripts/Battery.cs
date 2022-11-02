@@ -13,10 +13,10 @@ public class Battery : SwitchesInteractableObject
     public bool charging = false;
     public float pressedButtons = 0;
 
+
     public override void Activate()
     {
         charging = true;
-        print(requiredEnergy * pressedButtons / conectedSwitches);
         if (!isFull)
         {
             enabled = true;

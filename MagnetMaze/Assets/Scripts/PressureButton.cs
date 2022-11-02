@@ -78,8 +78,6 @@ public class PressureButton : Switches
                             }
                             item.GetComponent<Battery>().pressedButtons -= 1;
                             item.GetComponent<Battery>().charging = false;
-
-
                         }
                     }
                 }
