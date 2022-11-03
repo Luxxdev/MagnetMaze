@@ -7,6 +7,7 @@ public class Coil : Switches
     [SerializeField] private Collider2D coll;
     private List<int> layers = new List<int> { 7, 8, 10, 11 };
     public Battery batteryScript;
+    public bool isVertical = false;
     public bool moving = false;
     public List<Collider2D> collInArea;
     public Collider2D movingCollision;
@@ -43,13 +44,16 @@ public class Coil : Switches
         //if (collision.gameObject.CompareTag("Player") && collision.GetComponent<PlayerScript>().i || (collision.gameObject.CompareTag("Box") && layers.Contains(collision.gameObject.layer)))
         if (collInArea.Contains(collision))//(layers.Contains(collision.gameObject.layer))
         {
-            if (collision.attachedRigidbody.velocity.x > 0.01f || collision.attachedRigidbody.velocity.x < -0.01f)
+            float check = isVertical ? check = collision.attachedRigidbody.velocity.y : check = collision.attachedRigidbody.velocity.x;
+            if (check > 0.01f || check < -0.01f)
             {
+                print("moving");
                 //                if (movingCollision == null)
                 //              {
                 movingCollision = collision;
                 //batteryScript.charging = true;
                 //            }
+                print(energy);
             }
             else
             {
