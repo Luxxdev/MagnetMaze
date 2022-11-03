@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     private float horizontal;
     public float vertical;
     public float speed = 2.5f;
-    private float jumpingPower = 3.0f;
+    private float jumpingPower = 3.3f;
     public bool isFacingRight = true;
     public bool isHorizontal = true;
     private bool isToolActive = false;

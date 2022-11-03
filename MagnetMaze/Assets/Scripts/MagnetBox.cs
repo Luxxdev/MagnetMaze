@@ -14,6 +14,7 @@ public class MagnetBox : MonoBehaviour
     public bool held = false;
     public PlayerScript player = null;
     public bool conducting = false;
+    public bool touchingPlug = false;
     public bool isHorizontal = false;
     public Vector2 magnetOrientation;
     public string lastPole = "Neutral";
@@ -83,6 +84,7 @@ public class MagnetBox : MonoBehaviour
         {
             conducting = true;
             touchingConductingBoxes.Add(collision.gameObject);
+            print("entrou" + name + conducting);
         }
     }
 
@@ -98,6 +100,8 @@ public class MagnetBox : MonoBehaviour
                     if (touchingConductingBoxes.Count == 0)
                     {
                         conducting = false;
+                        print("stay" + name + conducting);
+
                     }
                 }
             }
@@ -107,6 +111,8 @@ public class MagnetBox : MonoBehaviour
                 {
                     touchingConductingBoxes.Add(collision.gameObject);
                     conducting = true;
+                    print("stay" + name + conducting);
+
                 }
             }
         }
@@ -114,16 +120,18 @@ public class MagnetBox : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
+        if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting && !touchingPlug)
         {
             if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
             {
                 touchingConductingBoxes.Remove(collision.gameObject);
+                print(touchingConductingBoxes.Count);
             }
 
             if (touchingConductingBoxes.Count == 0)
             {
                 conducting = false;
+                print("saiu" + name + conducting);
             }
         }
     }

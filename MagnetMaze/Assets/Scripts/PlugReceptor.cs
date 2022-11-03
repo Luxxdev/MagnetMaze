@@ -10,7 +10,7 @@ public class PlugReceptor : Switches
     {
         if (collision.gameObject.CompareTag("Box") && !collision.isTrigger && collision.gameObject.GetComponent<MagnetBox>().conducting)
         {
-            if(touchingObjects.Count == 0 && !hasBattery)
+            if (touchingObjects.Count == 0 && !hasBattery)
             {
                 OnSwitchActivate();
             }
@@ -22,10 +22,9 @@ public class PlugReceptor : Switches
     {
         if (collision.gameObject.CompareTag("Box") && !collision.isTrigger)
         {
-            print("entrou");
             if (collision.gameObject.GetComponent<MagnetBox>().conducting && !touchingObjects.Contains(collision.gameObject))
             {
-                if(touchingObjects.Count == 0 && !hasBattery)
+                if (touchingObjects.Count == 0 && !hasBattery)
                 {
                     OnSwitchActivate();
                 }
@@ -34,7 +33,7 @@ public class PlugReceptor : Switches
             if (!collision.gameObject.GetComponent<MagnetBox>().conducting && touchingObjects.Contains(collision.gameObject))
             {
                 touchingObjects.Remove(collision.gameObject);
-                if(touchingObjects.Count == 0 && !hasBattery)
+                if (touchingObjects.Count == 0 && !hasBattery)
                 {
                     OnSwitchActivate();
                 }

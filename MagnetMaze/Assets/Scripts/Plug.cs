@@ -9,6 +9,8 @@ public class Plug : MonoBehaviour
         if (collision.gameObject.CompareTag("Box") && !collision.isTrigger)
         {
             collision.gameObject.GetComponent<MagnetBox>().conducting = true;
+            collision.gameObject.GetComponent<MagnetBox>().touchingPlug = true;
+
         }
     }
 
@@ -25,6 +27,7 @@ public class Plug : MonoBehaviour
         if (collision.gameObject.CompareTag("Box") && !collision.isTrigger)
         {
             collision.gameObject.GetComponent<MagnetBox>().conducting = false;
+            collision.gameObject.GetComponent<MagnetBox>().touchingPlug = false;
         }
     }
 }
