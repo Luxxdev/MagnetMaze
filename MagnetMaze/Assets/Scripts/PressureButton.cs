@@ -65,7 +65,6 @@ public class PressureButton : Switches
             {
                 if (hasBattery)
                 {
-                    print("saiu");
                     foreach (var item in interactableObject)
                     {
                         if (item.CompareTag("Battery"))
@@ -74,7 +73,6 @@ public class PressureButton : Switches
                             {
                                 canActivate = true;
                                 enabled = true;
-                                print("entrou");
                             }
                             item.GetComponent<Battery>().pressedButtons -= 1;
                             item.GetComponent<Battery>().charging = false;

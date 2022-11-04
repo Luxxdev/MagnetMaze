@@ -60,7 +60,6 @@ public class BigMagnet : SwitchesInteractableObject
         }
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
-            print("entrou");
             collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.NeverSleep;
         }
     }
@@ -133,7 +132,6 @@ public class BigMagnet : SwitchesInteractableObject
     {
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
-            print("saiu");
             collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.StartAwake;
         }
         if (positiveCollision != null && collision == positiveCollision)

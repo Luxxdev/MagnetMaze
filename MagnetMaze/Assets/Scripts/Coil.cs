@@ -53,7 +53,6 @@ public class Coil : Switches
                 movingCollision = collision;
                 //batteryScript.charging = true;
                 //            }
-                print(energy);
             }
             else
             {

@@ -100,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00053213537, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19106427, y: 0.19}
+  m_Size: {x: 0.22, y: 0.22}
   m_EdgeRadius: 0
 --- !u!50 &218974754592445755
 Rigidbody2D:
@@ -154,9 +154,11 @@ MonoBehaviour:
   - {fileID: 6725727613379955586, guid: d2b90309ab528bea6a952460325a9e24, type: 3}
   spriteRenderer: {fileID: 8213227179994490894}
   canInteract: 0
+  startsMagnetized: 0
   held: 0
   player: {fileID: 0}
   conducting: 0
+  touchingPlug: 0
   isHorizontal: 0
   magnetOrientation: {x: 0, y: 0}
   lastPole: Neutral

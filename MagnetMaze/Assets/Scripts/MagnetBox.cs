@@ -120,7 +120,7 @@ public class MagnetBox : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting && !touchingPlug)
+        if (collision.gameObject.CompareTag("Box") && !touchingPlug)
         {
             if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
             {
