@@ -22,6 +22,11 @@ public class MagnetBox : MonoBehaviour
     public GameObject polesAreaObject;
     private List<GameObject> touchingConductingBoxes = new List<GameObject>();
     //[SerializeField] private Collider2D coll;
+
+    private void Start()
+    {
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collisionBlocker);
+    }
     private void Update()
     {
         if (conducting)
