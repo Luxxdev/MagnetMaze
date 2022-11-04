@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public MagnetBox currentBoxMagnetized = null;
-    private MagnetBox previousBoxMagnetized = null;
+    //public MagnetBox previousBoxMagnetized = null;
     public GameObject magnetIndicator;
     public Transform boxHolder;
     public bool isHolding = false;
@@ -301,51 +301,13 @@ public class PlayerScript : MonoBehaviour
             Destroy(collision.gameObject);
             ChangeText();
         }
-        if (collision.transform.CompareTag("Box") && collision.GetComponent<MagnetBox>().startsMagnetized)
-        {
-            previousBoxMagnetized = currentBoxMagnetized;
-            currentBoxMagnetized = collision.GetComponent<MagnetBox>();
-        }
     }
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (isToolActive && collision.gameObject.CompareTag("BoxMagnetArea"))
-    //    {
-    //        if (collision.gameObject.layer == 7 && positiveCollision != collision)
-    //        {
-    //            positiveCollision = collision;
-    //            //currentBoxMagnetized.polesArea[1].enabled = false;
-    //        }
-    //        else if (collision.gameObject.layer == 8 && negativeCollision != collision)
-    //        {
-    //            negativeCollision = collision;
 
-    //            //currentBoxMagnetized.polesArea[0].enabled = false;
-    //        }
-    //        if (positiveCollision == null)
-    //        {
-    //            MagnetMovement(negativeCollision);
-    //        }
-    //        else if (negativeCollision == null)
-    //        {
-    //            MagnetMovement(positiveCollision);
-    //        }
-    //        else if (positiveCollision.Distance(coll).distance > negativeCollision.Distance(coll).distance)
-    //        {
-    //            MagnetMovement(negativeCollision);
-    //        }
-    //        else
-    //        {
-    //            MagnetMovement(positiveCollision);
-    //        }
-    //    }
-    //}
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
         {
             collision.transform.parent.GetComponent<MagnetBox>().canInteract = false;
-            //objects[0].GetComponent<MagnetBox>().canInteract = false;
             objects.Remove(collision.transform.parent.gameObject);
 
         }
@@ -357,18 +319,6 @@ public class PlayerScript : MonoBehaviour
         {
             canInteract = false;
         }
-        if (collision.transform.CompareTag("Box") && collision.GetComponent<MagnetBox>().startsMagnetized)
-        {
-            currentBoxMagnetized = previousBoxMagnetized;
-        }
-        //if (collision.gameObject.layer == 7)
-        //{
-        //    currentBoxMagnetized.polesArea[1].enabled = true;
-        //}
-        //else if (collision.gameObject.layer == 8)
-        //{
-        //    currentBoxMagnetized.polesArea[0].enabled = true;
-        //}
     }
     private Vector2 MagneticForceDirection(Collider2D obj)
     {
@@ -420,6 +370,8 @@ public class PlayerScript : MonoBehaviour
 
     public void MagnetMovement(Collider2D obj, Collider2D area)
     {
+        print(obj);
+        print(area);
         // float distance;
         // if (isHorizontal)
         // {
@@ -430,7 +382,7 @@ public class PlayerScript : MonoBehaviour
         //     distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
         // }
         float check = transform.position.y - obj.attachedRigidbody.transform.position.y;
-        if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && isHorizontal == currentBoxMagnetized.isHorizontal)
+        if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && currentBoxMagnetized != null && isHorizontal == currentBoxMagnetized.isHorizontal)
         {
             if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {
@@ -447,7 +399,7 @@ public class PlayerScript : MonoBehaviour
                 }
             }
         }
-        else if (CheckIfSameOrOppositeBoxPole(obj, area) == "Same" && isHorizontal == currentBoxMagnetized.isHorizontal)
+        else if (CheckIfSameOrOppositeBoxPole(obj, area) == "Same" && currentBoxMagnetized != null && isHorizontal == currentBoxMagnetized.isHorizontal)
         {
             if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
             {

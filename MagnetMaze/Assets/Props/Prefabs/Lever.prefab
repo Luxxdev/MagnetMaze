@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3521952323436193823}
   - component: {fileID: 3521952323436193822}
   - component: {fileID: 3521952323436193821}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Lever
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -122,6 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e693709305e0e34d9213d256ef6e5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableObject: {fileID: 0}
+  interactableObject:
+  - {fileID: 0}
   spriteRenderer: {fileID: 3521952323436193822}
   sprite: []
+  steps: 1
+  changeMode: 0
+  newMode: 0

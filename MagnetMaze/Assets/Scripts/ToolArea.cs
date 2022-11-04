@@ -12,6 +12,7 @@ public class ToolArea : MonoBehaviour
     public Collider2D selfCollider;
     public Collider2D oppositeCollider;
     private Collider2D boxBodyCollider;
+    private MagnetBox boxScript;
     public float magneticForce = 20;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,6 +20,7 @@ public class ToolArea : MonoBehaviour
         if (collision.gameObject.CompareTag("BoxMagnetArea"))
         {
             boxBodyCollider = collision.transform.parent.transform.parent.GetComponent<Collider2D>();
+            boxScript = boxBodyCollider.transform.GetComponent<MagnetBox>();
         }
     }
 
@@ -62,6 +64,10 @@ public class ToolArea : MonoBehaviour
                 //print(selfCollider);
                 playerScript.MagnetMovement(positiveCollision, CheckWhichArea(boxBodyCollider));
             }
+            if (boxScript.startsMagnetized && playerScript.currentBoxMagnetized == null)
+            {
+                playerScript.currentBoxMagnetized = boxScript;
+            }
         }
     }
 
@@ -74,6 +80,13 @@ public class ToolArea : MonoBehaviour
         else if (negativeCollision != null && collision == negativeCollision)
         {
             negativeCollision = null;
+        }
+        if (collision.gameObject.CompareTag("BoxMagnetArea"))
+        {
+            if (boxBodyCollider.transform.GetComponent<MagnetBox>().startsMagnetized && playerScript.currentBoxMagnetized != null)
+            {
+                playerScript.currentBoxMagnetized = null;
+            }
         }
     }
 
