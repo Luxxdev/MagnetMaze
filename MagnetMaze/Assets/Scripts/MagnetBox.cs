@@ -85,23 +85,23 @@ public class MagnetBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") && collision.gameObject.GetComponent<MagnetBox>().conducting)
+        if (collision.gameObject.layer == 12 && collision.transform.parent.gameObject.GetComponent<MagnetBox>().conducting)
         {
             conducting = true;
-            touchingConductingBoxes.Add(collision.gameObject);
+            touchingConductingBoxes.Add(collision.transform.parent.gameObject);
             print("entrou" + name + conducting);
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (collision.gameObject.layer == 12)
         {
-            if (!collision.gameObject.GetComponent<MagnetBox>().conducting)
+            if (!collision.transform.parent.gameObject.GetComponent<MagnetBox>().conducting)
             {
-                if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
+                if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.transform.parent.gameObject))
                 {
-                    touchingConductingBoxes.Remove(collision.gameObject);
+                    touchingConductingBoxes.Remove(collision.transform.parent.gameObject);
                     if (touchingConductingBoxes.Count == 0)
                     {
                         conducting = false;
@@ -110,9 +110,9 @@ public class MagnetBox : MonoBehaviour
                     }
                 }
             }
-            else if (collision.gameObject.GetComponent<MagnetBox>().conducting)
+            else if (collision.transform.parent.gameObject.GetComponent<MagnetBox>().conducting)
             {
-                if (touchingConductingBoxes.Count == 0 || !touchingConductingBoxes.Contains(collision.gameObject))
+                if (touchingConductingBoxes.Count == 0 || !touchingConductingBoxes.Contains(collision.transform.parent.gameObject))
                 {
                     touchingConductingBoxes.Add(collision.gameObject);
                     conducting = true;
@@ -125,11 +125,11 @@ public class MagnetBox : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") && !touchingPlug)
+        if (collision.gameObject.layer == 12 && !touchingPlug)
         {
-            if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.gameObject))
+            if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.transform.parent.gameObject))
             {
-                touchingConductingBoxes.Remove(collision.gameObject);
+                touchingConductingBoxes.Remove(collision.transform.parent.gameObject);
                 print(touchingConductingBoxes.Count);
             }
 
