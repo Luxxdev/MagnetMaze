@@ -36,23 +36,18 @@ public class Coil : Switches
         if (layers.Contains(collision.gameObject.layer))
         {
             collInArea.Add(collision);
-            enabled = true;//enabled = false;
+            enabled = true;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //if (collision.gameObject.CompareTag("Player") && collision.GetComponent<PlayerScript>().i || (collision.gameObject.CompareTag("Box") && layers.Contains(collision.gameObject.layer)))
-        if (collInArea.Contains(collision))//(layers.Contains(collision.gameObject.layer))
+        if (collInArea.Contains(collision))
         {
             float check = isVertical ? check = collision.attachedRigidbody.velocity.y : check = collision.attachedRigidbody.velocity.x;
             if (check > 0.01f || check < -0.01f)
             {
                 print("moving");
-                //                if (movingCollision == null)
-                //              {
                 movingCollision = collision;
-                //batteryScript.charging = true;
-                //            }
             }
             else
             {
@@ -63,7 +58,6 @@ public class Coil : Switches
                 if (movingCollision = collision)
                 {
                     movingCollision = null;
-                    //batteryScript.charging = false;
                 }
                 moving = false;
             }
@@ -75,7 +69,6 @@ public class Coil : Switches
         if (movingCollision == collision)
         {
             movingCollision = null;
-            // batteryScript.charging = false;
             if (moving)
             {
                 moving = false;
@@ -97,12 +90,12 @@ public class Coil : Switches
 
     private void Update()
     {
+        if (!moving)
+        {
+            print("stopped moving");
+        }
         if (movingCollision != null)
         {
-            if (energy < energyRequired)
-            {
-                energy += Time.deltaTime;
-            }
             if (!moving)
             {
                 batteryScript.pressedButtons += 1;
@@ -112,22 +105,13 @@ public class Coil : Switches
             {
                 if (moving)
                 {
-                    if (energy < energyRequired)
+                    if (batteryScript.energy < batteryScript.requiredEnergy)
                     {
                         OnSwitchActivate();
-                        //batteryScript.charging = true;
-                    }
-                }
-                else
-                {
-                    if (energy > 0)
-                    {
-                        energy -= Time.deltaTime;
-                        //batteryScript.charging = false;
                     }
                 }
             }
-            if (energy >= energyRequired)
+            if (batteryScript.energy >= batteryScript.requiredEnergy)
             {
                 if (!hasBattery)
                 {
@@ -136,29 +120,12 @@ public class Coil : Switches
                 }
                 else
                 {
-                    if (!batteryScript.isFull)
-                    {
-                        if (!moving && energy > 0)
-                        {
-                            energy -= Time.deltaTime;
-                            //batteryScript.charging = false;
-                        }
-                    }
-                    else
+                    if (batteryScript.isFull)
                     {
                         coll.enabled = false;
                         enabled = false;
                     }
                 }
-            }
-        }
-        else
-        {
-            energy -= Time.deltaTime;
-            if (energy <= 0)
-            {
-                energy = 0;
-                enabled = false;
             }
         }
 

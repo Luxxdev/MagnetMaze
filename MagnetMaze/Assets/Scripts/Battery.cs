@@ -7,7 +7,7 @@ public class Battery : SwitchesInteractableObject
     [SerializeField] private GameObject interactableObject;
     [SerializeField] private SpriteRenderer energyBar;
     public float requiredEnergy = 10;
-    private float energy;
+    public float energy;
     public bool isFull = false;
     public float conectedSwitches = 1;
     public bool charging = false;
