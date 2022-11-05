@@ -10,7 +10,10 @@ public class Lever : Switches
     {
         if (changeMode)
         {
-            interactableObject[0].GetComponent<BigMagnet>().ChangeMode(newMode);
+            foreach (var gameObject in interactableObject)
+            {
+                gameObject.GetComponent<BigMagnet>().ChangeMode(newMode);
+            }
         }
         base.OnSwitchActivate();
         spriteRenderer.flipX = !spriteRenderer.flipX;
