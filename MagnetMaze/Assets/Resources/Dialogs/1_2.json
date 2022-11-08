@@ -1,22 +1,10 @@
 {
     "Text": [
         {
-            "dialogueID": "First part",
-            "image": "CHAR/question",
-            "dialogue": "Yet another dialog",
-            "explanationImg": "EXP/maglev"
-        },
-        {
-            "dialogueID": "Second part",
-            "image": "CHAR/normal",
-            "dialogue": "Yes, another one.",
-            "explanationImg": "EXP/maglev"
-        },
-        {
-            "dialogueID": "Last part",
-            "image": "CHAR/normal",
-            "dialogue": "Deal with it.",
-            "explanationImg": "EXP/maglev"
+            "dialogueID": "1",
+            "image": "CHAR/smile",
+            "dialogue": "<color=#ff8933><b>A quick tip: </b></color>If you <b>switch</b> my tool's polarity while holding a magnetized box,it will be thrown away by the magnetic force",
+            "explanationImg": ""
         }
     ]
 }

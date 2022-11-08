@@ -1,0 +1,16 @@
+{
+    "Text": [
+        {
+            "dialogueID": "1",
+            "image": "CHAR/question",
+            "dialogue": "You'll need to activate the lever to open the door and get the box",
+            "explanationImg": ""
+        },
+        {
+            "dialogueID": "2",
+            "image": "CHAR/smile",
+            "dialogue": "Press <b><color=#ff8933>C</color></b> to interact with other objects!",
+            "explanationImg": ""
+        }
+    ]
+}

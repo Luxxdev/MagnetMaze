@@ -1,0 +1,40 @@
+{
+    "Text": [
+        {
+            "dialogueID": "First part",
+            "image": "CHAR/question",
+            "dialogue": "Firstly,how does a Magnet work?",
+            "explanationImg": ""
+        },
+        {
+            "dialogueID": "Second part",
+            "image": "CHAR/question",
+            "dialogue": "Magnets are objects that are surrounded by a magnetic field,being able to atract other magnetizable objects,such as iron and steel",
+            "explanationImg": "EXP/magnetic"
+        },
+        {
+            "dialogueID": "Last part",
+            "image": "CHAR/normal",
+            "dialogue": "All the magnetized object have a <color=#4fa4b8><b>SOUTH</b></color> and a <color=#ad2f45><b>NORTH</b></color> pole, when you approach 2 magnets by the <color=#ff8933><b>same pole,they repel</b></color>. They <color=#ff8933><b>attract each other when the poles are opposite!</b></color>",
+            "explanationImg": "EXP/magnetic"
+        },
+        {
+            "dialogueID": "Last part",
+            "image": "CHAR/smile",
+            "dialogue": "I have a electromagnet tool with me! You can press <color=#ff8933><b>Z</b></color> to turn it on and off and <color=#ff8933><b>X</b></color> to change poles",
+            "explanationImg": "EXP/magnetic"
+        },
+        {
+            "dialogueID": "Last part",
+            "image": "CHAR/smile",
+            "dialogue": "You can also hold down the up and down arrow keys to rotate the pole by 90º degrees! The <sprite index=0> will mark the direction",
+            "explanationImg": ""
+        },
+        {
+            "dialogueID": "Last part",
+            "image": "CHAR/smile",
+            "dialogue": "Be aware:Everytime the tool is activated or has its polarity changed, you use 1 energy. Manage it safely and let's get past this maze",
+            "explanationImg": ""
+        }
+    ]
+}

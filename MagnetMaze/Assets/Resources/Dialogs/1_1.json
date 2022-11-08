@@ -1,22 +1,22 @@
 {
     "Text": [
         {
-            "dialogueID": "First part",
+            "dialogueID": "1",
             "image": "CHAR/smile",
-            "dialogue": "Hello! I'm the scientist!",
-            "explanationImg": "EXP/magnetic"
+            "dialogue": "I got a new challenge for you! This level is a bit more complicated",
+            "explanationImg": ""
         },
         {
-            "dialogueID": "Second part",
+            "dialogueID": "2",
             "image": "CHAR/normal",
-            "dialogue": "Yes, the one from Coldplay's song.",
-            "explanationImg": "EXP/maglev"
+            "dialogue": "<b>The bigger magnets are stronger than the smaller ones</b>, so you may use them to reach far places. The <color=#ff8933>magnetic force </color> gets weaker as it gets far, so maybe you'll need a little hop",
+            "explanationImg": ""
         },
         {
-            "dialogueID": "Last part",
-            "image": "CHAR/question",
-            "dialogue": "You know the one.",
-            "explanationImg": "EXP/surface"
+            "dialogueID": "2",
+            "image": "CHAR/normal",
+            "dialogue": "Reminder: When magnetizing an object,the polarity will be the <b><color=#e64539>opposite</color></b> of the affected magnetic field",
+            "explanationImg": ""
         }
     ]
 }

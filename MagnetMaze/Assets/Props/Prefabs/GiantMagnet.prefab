@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934313, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Name
-      value: GiantMagnet Variant
+      value: GiantMagnet
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Size.y
@@ -86,6 +86,10 @@ PrefabInstance:
     - target: {fileID: 3561394495932934317, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
+      propertyPath: magneticForce
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: sprites.Array.data[0]

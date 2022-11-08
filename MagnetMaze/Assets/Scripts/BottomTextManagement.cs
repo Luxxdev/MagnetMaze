@@ -8,9 +8,11 @@ using DG.Tweening;
 public class BottomTextManagement : MonoBehaviour
 {
    public TextAsset[] textJSONList;
+   public string failMessage;
    public Image charExpression;
    public Image explanationImage;
    public Image darkenPanel;
+   public AudioManager AUM;
    private int dialogCounter = 0;
    protected int phraseIndex = 0;
    protected float transTime = 0.5f;
@@ -41,15 +43,19 @@ public class BottomTextManagement : MonoBehaviour
 
    public void CallDialog()
    {
+      AUM.Play("dialogUP");
       darkenPanel.DOFade(0.5f, transTime);
       myTextList = JsonUtility.FromJson<TextList>(textJSONList[dialogCounter].text);
       charExpression.sprite = Resources.Load<Sprite>(myTextList.Text[0].image);
       charExpression.DOFade(1, 0.8f);
       textDisplay.text = myTextList.Text[0].dialogue;
       panelTransform.DOAnchorPosY(positions["onScreen"].y, transTime);
-      explanationImage.sprite = Resources.Load<Sprite>(myTextList.Text[0].explanationImg);
-      explanationImage.SetNativeSize();
-      explanationImage.DOFade(1, 0.8f);
+      if (myTextList.Text[0].explanationImg != "")
+      {
+         explanationImage.sprite = Resources.Load<Sprite>(myTextList.Text[0].explanationImg);
+         explanationImage.SetNativeSize();
+         explanationImage.DOFade(1, 0.8f);
+      }
       ResetPhrases();
       isPaused = true;
    }
@@ -71,6 +77,7 @@ public class BottomTextManagement : MonoBehaviour
          CloseDialog();
          return;
       }
+      AUM.Play("nextClick");
       charExpression.sprite = Resources.Load<Sprite>(myTextList.Text[phraseIndex].image);
       explanationImage.sprite = Resources.Load<Sprite>(myTextList.Text[phraseIndex].explanationImg);
       explanationImage.color = new Color(1, 1, 1, 0);

@@ -1,0 +1,28 @@
+{
+   "Text": [
+      {
+         "dialogueID": "1",
+         "image": "CHAR/question",
+         "dialogue": "<b>Heey!</b> Have you ever tought of how much traffic makes us stressed, polutes the environment and how to solve this? ",
+         "explanationImg": ""
+      },
+      {
+         "dialogueID": "2",
+         "image": "CHAR/normal",
+         "dialogue": "The humans are in a constant seek for renewable and clean energy to power up our lives and mantain a sustainable world for upcoming generations",
+         "explanationImg": ""
+      },
+      {
+         "dialogueID": "3",
+         "image": "CHAR/normal",
+         "dialogue": "<color=#ff5277><b>Maglev</b></color> is like a train, but it only requires <color=#ffcd1f><b>magnetic and electric force</b></color> to run,reducing the usage of oil,coal and natural gas, making the air quality better",
+         "explanationImg": "EXP/maglev"
+      },
+      {
+         "dialogueID": "4",
+         "image": "CHAR/smile",
+         "dialogue": "Let me show how all those magnets and electricity works, so we can build more <color=#c8d45d>environmental-friendly</color> transportation around the world",
+         "explanationImg": "EXP/maglev"
+      }
+   ]
+}
