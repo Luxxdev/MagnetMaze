@@ -46,7 +46,7 @@ public class Coil : Switches
             float check = isVertical ? check = collision.attachedRigidbody.velocity.y : check = collision.attachedRigidbody.velocity.x;
             if (check > 0.01f || check < -0.01f)
             {
-                print("moving");
+                //print("moving");
                 movingCollision = collision;
             }
             else
@@ -92,7 +92,7 @@ public class Coil : Switches
     {
         if (!moving)
         {
-            print("stopped moving");
+            //print("stopped moving");
         }
         if (movingCollision != null)
         {

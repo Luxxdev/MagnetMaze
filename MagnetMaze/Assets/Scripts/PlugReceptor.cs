@@ -60,7 +60,7 @@ public class PlugReceptor : Switches
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Box") && !collision.isTrigger && collision.gameObject.GetComponent<MagnetBox>().conducting)
+        if (collision.gameObject.CompareTag("Box") && !collision.isTrigger && touchingObjects.Contains(collision.gameObject))
         {
             if (touchingObjects.Count > 0)
             {

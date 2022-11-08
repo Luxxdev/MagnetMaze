@@ -68,6 +68,10 @@ public class BigMagnet : SwitchesInteractableObject
     {
         if (collision.gameObject.CompareTag("BoxMagnetArea") && isActive)
         {
+            if (collision.attachedRigidbody.sleepMode != RigidbodySleepMode2D.NeverSleep)
+            {
+                collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.NeverSleep;
+            }
             if (collision.gameObject.layer == 7 && positiveCollision != collision)
             {
                 currentBoxMagnetized = collision.transform.parent.transform.parent.GetComponent<MagnetBox>();
@@ -80,19 +84,22 @@ public class BigMagnet : SwitchesInteractableObject
             }
             if (positiveCollision == null)
             {
+                //print("negative1");
                 MagnetMovement(negativeCollision);
             }
             else if (negativeCollision == null)
             {
+                //print("positive1");
                 MagnetMovement(positiveCollision);
             }
             else if (Vector3.Distance(positiveCollision.transform.position, transform.position) > Vector3.Distance(negativeCollision.transform.position, transform.position))
             {
-
+                // print("negative2");
                 MagnetMovement(negativeCollision);
             }
             else
             {
+                //print("positive2");
                 MagnetMovement(positiveCollision);
             }
         }
