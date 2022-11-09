@@ -45472,7 +45472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Size.y
-      value: 2.450383
+      value: 2.3413534
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Offset.x
@@ -45480,7 +45480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Offset.y
-      value: 1.1633707
+      value: 1.2178855
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_SpriteTilingProperty.border.x
@@ -46212,6 +46212,14 @@ PrefabInstance:
     - target: {fileID: 3561394495932934313, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Name
       value: Magnet (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7250557
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.8930448
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934317, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_RootOrder
@@ -48218,6 +48226,14 @@ PrefabInstance:
       propertyPath: isActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7246213318965926384, guid: ff2b5be4b8e25db19b82b2ff36715493, type: 3}
+      propertyPath: m_Size.y
+      value: 0.94950604
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246213318965926384, guid: ff2b5be4b8e25db19b82b2ff36715493, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.46902287
+      objectReference: {fileID: 0}
     - target: {fileID: 7246213318965926386, guid: ff2b5be4b8e25db19b82b2ff36715493, type: 3}
       propertyPath: m_Name
       value: SmallMagnet (1)
@@ -48792,7 +48808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Size.y
-      value: 2.450383
+      value: 2.3534682
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Offset.x
@@ -48800,7 +48816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_Offset.y
-      value: 1.1633707
+      value: 1.2118281
       objectReference: {fileID: 0}
     - target: {fileID: 3561394495932934315, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: m_SpriteTilingProperty.border.x
@@ -49070,11 +49086,13 @@ MonoBehaviour:
     volume: 0.6
     pitch: 1.2
     source: {fileID: 0}
+    loop: 0
   - name: click
     clip: {fileID: 8300000, guid: 6799cba234c49570e839f0a62c99973f, type: 3}
     volume: 0.6
     pitch: 2
     source: {fileID: 0}
+    loop: 0
 --- !u!4 &1979438345
 Transform:
   m_ObjectHideFlags: 0

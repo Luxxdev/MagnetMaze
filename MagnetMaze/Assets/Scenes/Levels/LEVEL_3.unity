@@ -26601,11 +26601,13 @@ MonoBehaviour:
     volume: 0.6
     pitch: 1.2
     source: {fileID: 0}
+    loop: 0
   - name: click
     clip: {fileID: 8300000, guid: 6799cba234c49570e839f0a62c99973f, type: 3}
     volume: 0.6
     pitch: 2
     source: {fileID: 0}
+    loop: 0
 --- !u!4 &1979438345
 Transform:
   m_ObjectHideFlags: 0
@@ -26953,6 +26955,10 @@ PrefabInstance:
     - target: {fileID: 2812508102915740948, guid: 726eee4fc9c3ce2fb8b8f585291b2469, type: 3}
       propertyPath: m_Name
       value: Goal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812508102915740949, guid: 726eee4fc9c3ce2fb8b8f585291b2469, type: 3}
+      propertyPath: nextScene
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726eee4fc9c3ce2fb8b8f585291b2469, type: 3}
