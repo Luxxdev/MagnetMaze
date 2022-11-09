@@ -114,7 +114,7 @@ public class MagnetBox : MonoBehaviour
             {
                 if (touchingConductingBoxes.Count == 0 || !touchingConductingBoxes.Contains(collision.transform.parent.gameObject))
                 {
-                    touchingConductingBoxes.Add(collision.gameObject);
+                    touchingConductingBoxes.Add(collision.transform.parent.gameObject);
                     conducting = true;
                     print("stay" + name + conducting);
 
