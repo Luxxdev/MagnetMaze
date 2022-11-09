@@ -1107,7 +1107,7 @@ MonoBehaviour:
   target: {fileID: 1208807971}
   offset: {x: 0, y: 0, z: 0}
   smoothFactor: 3
-  minValues: {x: 0, y: -2, z: -10}
+  minValues: {x: -1.2, y: -2, z: -10}
   maxValue: {x: 25, y: 30, z: -10}
 --- !u!20 &519420031
 Camera:
@@ -48980,6 +48980,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1613757569223427194, guid: ff2b5be4b8e25db19b82b2ff36715493, type: 3}
+      propertyPath: pole
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1613757569223427194, guid: ff2b5be4b8e25db19b82b2ff36715493, type: 3}
       propertyPath: isActive
       value: 1
