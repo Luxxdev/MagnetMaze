@@ -12,6 +12,8 @@ public class BottomTextManagement : MonoBehaviour
    public Image charExpression;
    public Image explanationImage;
    public Image darkenPanel;
+   public Button retryBTN;
+   public Button nextBTN;
    public AudioManager AUM;
    private int dialogCounter = 0;
    protected int phraseIndex = 0;
@@ -95,8 +97,16 @@ public class BottomTextManagement : MonoBehaviour
    }
 
    public bool GetIsPaused() { return isPaused; }
-   void Update()
-   {
 
+   public void CallRetry()
+   {
+      retryBTN.gameObject.SetActive(true);
+      nextBTN.gameObject.SetActive(false);
+      AUM.Play("dialogUP");
+      panelTransform.DOAnchorPosY(positions["onScreen"].y, transTime);
+      darkenPanel.DOFade(0.5f, transTime);
+      textDisplay.text = failMessage;
+      charExpression.sprite = Resources.Load<Sprite>("CHAR/normal");
+      charExpression.DOFade(1, 0.8f);
    }
 }

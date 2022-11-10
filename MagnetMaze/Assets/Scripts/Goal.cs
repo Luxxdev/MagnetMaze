@@ -5,18 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
-    [SerializeField] private int nextScene;
+   [SerializeField] private int nextScene;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-       if (other.gameObject.CompareTag("Player"))
-       {
-            LoadNextScene(nextScene);
-       }    
-    }
+   void OnTriggerEnter2D(Collider2D other)
+   {
+      if (other.gameObject.CompareTag("Player"))
+      {
+         LoadNextScene(nextScene);
+      }
+   }
 
-    public void LoadNextScene(int scene)
-    {
-        SceneManager.LoadScene($"LEVEL_{scene}"); //LoadScene("LEVEL_" + scene.ToString());
-    }
+   public void LoadNextScene(int scene)
+   {
+      SceneManager.LoadScene($"LEVEL_{scene}"); //LoadScene("LEVEL_" + scene.ToString());
+   }
+   public void ReloadScene()
+   {
+      Scene actualScene = SceneManager.GetActiveScene();
+      SceneManager.LoadScene(actualScene.name);
+   }
 }
