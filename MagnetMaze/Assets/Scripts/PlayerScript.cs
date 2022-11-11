@@ -269,7 +269,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.03f, groundLayer);
+        return Physics2D.BoxCast(coll.bounds.min, new Vector2(coll.bounds.size.x, 0.03f), 0f, Vector2.down, 0.03f, groundLayer);
     }
 
     private void Flip()
@@ -373,8 +373,6 @@ public class PlayerScript : MonoBehaviour
 
     public void MagnetMovement(Collider2D obj, Collider2D area)
     {
-        print(obj);
-        print(area);
         // float distance;
         // if (isHorizontal)
         // {
