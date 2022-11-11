@@ -18,10 +18,12 @@ public class Goal : MonoBehaviour
    public void LoadNextScene(int scene)
    {
       SceneManager.LoadScene($"LEVEL_{scene}"); //LoadScene("LEVEL_" + scene.ToString());
+      return;
    }
    public void ReloadScene()
    {
       Scene actualScene = SceneManager.GetActiveScene();
       SceneManager.LoadScene(actualScene.name);
+      return;
    }
 }
