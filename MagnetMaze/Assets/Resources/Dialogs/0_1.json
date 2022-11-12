@@ -3,25 +3,25 @@
         {
             "dialogueID": "1",
             "image": "CHAR/question",
-            "dialogue": "<b>Heey!</b> Have you ever tought of how magnets can help the <color=#c8d45d>environment</color>,generating <color=#ffc2a1>less polution</color> and helping with traffic? ",
+            "dialogue": "<b>Heey!</b> Have you ever thought of how magnets can help the <color=#c8d45d>environment</color>,generating <color=#ffc2a1>less polution</color> and helping with traffic?",
             "explanationImg": ""
         },
         {
             "dialogueID": "2",
             "image": "CHAR/normal",
-            "dialogue": "The humans are in a constant seek for <color=#c8d45d><b>renewable and clean energy</b></color> to power up our lives and mantain a sustainable world for upcoming generations",
+            "dialogue": "Humans are in a constant seek for <color=#c8d45d><b>renewable and clean energy</b></color> to power up our lives and mantain a sustainable world for upcoming generations",
             "explanationImg": ""
         },
         {
             "dialogueID": "3",
             "image": "CHAR/normal",
-            "dialogue": "This is a <color=#ff5277><b>Maglev</b></color>. It's like a train, but it only requires <color=#ffcd1f><b>magnetic and electric force</b></color> to run, reducing the amount of cars on the streets,making the air quality better",
+            "dialogue": "This is a <color=#ff5277><b>Maglev</b></color>. It's like a train, but it only requires <color=#ffcd1f><b>magnetic and electric force</b></color> to run, reducing the amount of cars on the streets and improving air quality.",
             "explanationImg": "EXP/maglev"
         },
         {
             "dialogueID": "4",
             "image": "CHAR/smile",
-            "dialogue": "Let me show how all those magnets and electricity works, so we can build more <color=#c8d45d><b>environmental-friendly</b></color> transportation around the world",
+            "dialogue": "Let me show how all those magnets and electricity works, so we can build more <color=#c8d45d><b>environment-friendly</b></color> transportation around the world.",
             "explanationImg": "EXP/maglev"
         }
     ]
