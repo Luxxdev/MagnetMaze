@@ -54,7 +54,6 @@ public class MagnetBox : MonoBehaviour
 
         if (held)
         {
-
             transform.parent = playerBoxHolder;
             transform.position = playerBoxHolder.position;
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -106,7 +105,6 @@ public class MagnetBox : MonoBehaviour
                     {
                         conducting = false;
                         print("stay" + name + conducting);
-
                     }
                 }
             }
@@ -181,11 +179,14 @@ public class MagnetBox : MonoBehaviour
         }
         if (magnetOrientation != direction && pole != "Neutral")
         {
-            polesAreaObject.SetActive(true);
-            transform.localScale = new Vector3(1, multi, 1);
-            spriteRenderer.sprite = spriteArray[1];
-            lastPole = pole;
-            magnetOrientation = direction;
+            if (!held)
+            {
+                polesAreaObject.SetActive(true);
+                transform.localScale = new Vector3(1, multi, 1);
+                spriteRenderer.sprite = spriteArray[1];
+                lastPole = pole;
+                magnetOrientation = direction;
+            }
         }
         else
         {
