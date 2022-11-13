@@ -1,9 +1,8 @@
 {
     "Text": [
         {
-            "dialogueID": "1",
+            "dialogueID": "18",
             "image": "CHAR/smile",
-            "dialogue": "<color=#ff8933><b>A quick tip: </b></color>If you <b>switch</b> my tool's polarity while holding a magnetized box,it will be thrown away by the magnetic force",
             "explanationImg": ""
         }
     ]

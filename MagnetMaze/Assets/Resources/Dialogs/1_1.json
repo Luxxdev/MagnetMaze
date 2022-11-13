@@ -1,21 +1,18 @@
 {
     "Text": [
         {
-            "dialogueID": "1",
+            "dialogueID": "15",
             "image": "CHAR/smile",
-            "dialogue": "I got a new challenge for you! This level is a bit more complicated",
             "explanationImg": ""
         },
         {
-            "dialogueID": "2",
+            "dialogueID": "16",
             "image": "CHAR/normal",
-            "dialogue": "<b>The bigger magnets are stronger than the smaller ones</b>, so you may use them to reach far places. The <color=#ff8933>magnetic force </color> gets weaker as it gets far, so maybe you'll need a little hop",
             "explanationImg": ""
         },
         {
-            "dialogueID": "3",
+            "dialogueID": "17",
             "image": "CHAR/normal",
-            "dialogue": "Reminder: When magnetizing an object,the polarity will be the <b><color=#e64539>opposite</color></b> of the affected magnetic field",
             "explanationImg": ""
         }
     ]

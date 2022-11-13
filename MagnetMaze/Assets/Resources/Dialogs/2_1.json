@@ -1,15 +1,13 @@
 {
    "Text": [
       {
-         "dialogueID": "1",
+         "dialogueID": "20",
          "image": "CHAR/normal",
-         "dialogue": "Now let's introduce a bit of <color=#ff8933><b>electric force!</b></color> Have you ever heard of static electricity?",
          "explanationImg": ""
       },
       {
-         "dialogueID": "2",
+         "dialogueID": "21",
          "image": "CHAR/normal",
-         "dialogue": "Electric force, like magnetic force, is a non contact energy. It cames from the free move of electrons on a material",
          "explanationImg": "EXP/proton"
       }
    ]

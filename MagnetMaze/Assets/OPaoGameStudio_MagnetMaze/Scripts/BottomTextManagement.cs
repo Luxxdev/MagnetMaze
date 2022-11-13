@@ -1,15 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 using DG.Tweening;
+using LoLSDK;
 
 namespace OPaoGameStudio_MagnetMaze
 {
     public class BottomTextManagement : MonoBehaviour
     {
         public TextAsset[] textJSONList;
+        private string dialogueID;
         public string failMessage;
         public Image charExpression;
         public Image explanationImage;
@@ -33,7 +33,6 @@ namespace OPaoGameStudio_MagnetMaze
         {
             public string dialogueID;
             public string image;
-            public string dialogue;
             public string explanationImg;
         }
 
@@ -52,7 +51,9 @@ namespace OPaoGameStudio_MagnetMaze
             myTextList = JsonUtility.FromJson<TextList>(textJSONList[dialogCounter].text);
             charExpression.sprite = Resources.Load<Sprite>(myTextList.Text[0].image);
             charExpression.DOFade(1, 0.8f);
-            textDisplay.text = myTextList.Text[0].dialogue;
+            dialogueID = myTextList.Text[0].dialogueID;
+            textDisplay.text = SharedState.LanguageDefs[dialogueID];//textDisplay.text = myTextList.Text[0].dialogue;
+            LOLSDK.Instance.SpeakText(dialogueID);
             panelTransform.DOAnchorPosY(positions["onScreen"].y, transTime);
             if (myTextList.Text[0].explanationImg != "")
             {
@@ -76,6 +77,7 @@ namespace OPaoGameStudio_MagnetMaze
         public void NextPhrase()
         {
             phraseIndex++;
+            dialogueID = (int.Parse(dialogueID) + 1).ToString();
             if (phraseIndex >= myTextList.Text.Length)
             {
                 CloseDialog();
@@ -90,7 +92,8 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 explanationImage.color = new Color(1, 1, 1, 1);
             }
-            textDisplay.text = myTextList.Text[phraseIndex].dialogue;
+            textDisplay.text = SharedState.LanguageDefs[dialogueID];//myTextList.Text[phraseIndex].dialogue;
+            LOLSDK.Instance.SpeakText(dialogueID);
         }
         public void ResetPhrases()
         {

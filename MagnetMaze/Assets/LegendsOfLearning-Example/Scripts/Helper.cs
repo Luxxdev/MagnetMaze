@@ -1,8 +1,9 @@
 ﻿using UnityEngine.UI;
+using UnityEngine;
 
 namespace LoLSDK
 {
-    public class Helper
+    public class Helper //: MonoBehaviour
     {
         /// <summary>
         /// Helper to handle your required NEW GAME and CONTINUE buttons.
@@ -33,6 +34,7 @@ namespace LoLSDK
             {
                 if (state != null)
                 {
+                    Debug.Log("State nao nulo");
                     // Hook up and show continue only if valid data exists.
                     continueButton.onClick.AddListener(() =>
                     {
@@ -42,10 +44,10 @@ namespace LoLSDK
                         // Broadcast saved progress back to the teacher app.
                         LOLSDK.Instance.SubmitProgress(state.score, state.currentProgress, state.maximumProgress);
                     });
-
+                    Debug.Log("enabling continue");
                     continueButton.gameObject.SetActive(true);
                 }
-
+                Debug.Log("new game button");
                 newGameButton.gameObject.SetActive(true);
             });
         }
