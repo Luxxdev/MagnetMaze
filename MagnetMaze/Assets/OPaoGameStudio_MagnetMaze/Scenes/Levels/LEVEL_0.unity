@@ -15385,8 +15385,7 @@ PrefabInstance:
       objectReference: {fileID: 1979438344}
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: failMessage
-      value: Don't forget to change your tool's polarity to interact with the magnet
-        field
+      value: F0
       objectReference: {fileID: 0}
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: frases.Array.size
