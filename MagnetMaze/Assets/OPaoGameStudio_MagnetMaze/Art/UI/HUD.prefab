@@ -776,7 +776,7 @@ RectTransform:
   - {fileID: 4462907454630155018}
   - {fileID: 7086018034196463272}
   m_Father: {fileID: 4442883456694540817}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -990,7 +990,7 @@ RectTransform:
   - {fileID: 7940864929237348964}
   - {fileID: 7323871114970348494}
   m_Father: {fileID: 4442883456694540817}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1068,8 +1068,8 @@ RectTransform:
   m_Children:
   - {fileID: 3923923150887375612}
   - {fileID: 3329363817891558604}
-  - {fileID: 4442883456383413767}
   - {fileID: 3275057785878223039}
+  - {fileID: 4442883456383413767}
   - {fileID: 6098482985488018232}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1159,6 +1159,9 @@ MonoBehaviour:
   darkenPanel: {fileID: 2244102281055105182}
   retryBTN: {fileID: 5868850642184907431}
   nextBTN: {fileID: 4405288265989146963}
+  yesBTN: {fileID: 6622039631511471645}
+  noBTN: {fileID: 5575177581670755064}
+  energyAlert: {fileID: 4885079491572981644}
   AUM: {fileID: 0}
   panelTransform: {fileID: 4442883456383413767}
   textDisplay: {fileID: 4442883454983556728}
@@ -1498,13 +1501,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6891574256584644476}
-        m_TargetAssemblyTypeName: BottomTextManagement, Assembly-CSharp
+        m_TargetAssemblyTypeName: OPaoGameStudio_MagnetMaze.BottomTextManagement,
+          Assembly-CSharp
         m_MethodName: CallRetry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

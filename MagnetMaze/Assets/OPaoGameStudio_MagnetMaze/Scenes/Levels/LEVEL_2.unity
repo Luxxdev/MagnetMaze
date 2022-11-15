@@ -26308,6 +26308,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e4c8baa505e9e20b99e00d314a39938d, type: 3}
+    - target: {fileID: 2795175278555047823, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: m_text
+      value: N
+      objectReference: {fileID: 0}
     - target: {fileID: 3275057785878223039, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 3.7999268
@@ -26315,6 +26319,10 @@ PrefabInstance:
     - target: {fileID: 3485822891582482942, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512782872429502602, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: m_text
+      value: Y
       objectReference: {fileID: 0}
     - target: {fileID: 3557700652018757321, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_IsActive
@@ -26424,15 +26432,15 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4885079491572981644, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: m_text
+      value: Alert
+      objectReference: {fileID: 0}
     - target: {fileID: 5155202178752934054, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 271424243}
     - target: {fileID: 6021151794122463226, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 271424243}
-    - target: {fileID: 6622039631511471645, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 271424243}
@@ -28616,7 +28624,7 @@ PrefabInstance:
       objectReference: {fileID: 900729738}
     - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: energy
-      value: 500
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5677108388722840844, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_IsActive
