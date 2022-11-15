@@ -739,7 +739,7 @@ MonoBehaviour:
   target: {fileID: 1806390260}
   offset: {x: 0, y: 0, z: 0}
   smoothFactor: 3
-  minValues: {x: 0, y: -2, z: -10}
+  minValues: {x: 0, y: -2.3, z: -10}
   maxValue: {x: 8, y: -2, z: -10}
 --- !u!20 &519420031
 Camera:
@@ -19986,7 +19986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: pole
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4865596265936663841, guid: bcdfa348708e348f6a3d44b6b29d921d, type: 3}
       propertyPath: isActive
@@ -20635,7 +20635,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1553719526415663648, guid: 7b578d32b6952de468081106c7a9774d, type: 3}
       propertyPath: pole
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1553719526415663648, guid: 7b578d32b6952de468081106c7a9774d, type: 3}
       propertyPath: magneticForce

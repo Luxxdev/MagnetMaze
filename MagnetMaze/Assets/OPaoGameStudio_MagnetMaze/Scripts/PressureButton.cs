@@ -31,6 +31,7 @@ namespace OPaoGameStudio_MagnetMaze
                     if (!hasBattery)
                     {
                         OnSwitchActivate();
+                        print("ativou");
                     }
                     else
                     {
@@ -84,6 +85,8 @@ namespace OPaoGameStudio_MagnetMaze
                     else
                     {
                         OnSwitchActivate();
+                        print("desativou");
+
                     }
                 }
                 if (collision.gameObject.CompareTag("Box"))
