@@ -8,7 +8,17 @@
       {
          "dialogueID": "21",
          "image": "CHAR/normal",
-         "explanationImg": "EXP/proton"
+         "explanationImg": "EXP/surface"
+      },
+      {
+         "dialogueID": "22",
+         "image": "CHAR/question",
+         "explanationImg": "EXP/surface"
+      },
+      {
+         "dialogueID": "23",
+         "image": "CHAR/smile",
+         "explanationImg": "EXP/surface"
       }
    ]
 }
