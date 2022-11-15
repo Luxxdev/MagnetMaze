@@ -23,7 +23,7 @@ namespace OPaoGameStudio_MagnetMaze
         {
             AUM.Play("openDoor");
             anim.SetBool("isOpen", coll.enabled);
-            coll.enabled = !coll.enabled;
+            //coll.enabled = !coll.enabled;
         }
     }
 }
