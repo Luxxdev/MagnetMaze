@@ -179,16 +179,17 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 multi = direction.y;
             }
+            print(magnetOrientation);
+            print(direction);
+
             if (magnetOrientation != direction && pole != "Neutral")
             {
-                if (!held)
-                {
-                    polesAreaObject.SetActive(true);
-                    transform.localScale = new Vector3(1, multi, 1);
-                    spriteRenderer.sprite = spriteArray[1];
-                    lastPole = pole;
-                    magnetOrientation = direction;
-                }
+                polesAreaObject.SetActive(true);
+                transform.localScale = new Vector3(1, multi, 1);
+                spriteRenderer.sprite = spriteArray[1];
+                lastPole = pole;
+                magnetOrientation = direction;
+
             }
             else
             {
