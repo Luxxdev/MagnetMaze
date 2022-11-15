@@ -1,0 +1,14 @@
+{
+   "Text": [
+      {
+         "dialogueID": "24",
+         "image": "CHAR/question",
+         "explanationImg": "EXP/proton"
+      },
+      {
+         "dialogueID": "25",
+         "image": "CHAR/normal",
+         "explanationImg": "EXP/proton"
+      }
+   ]
+}
