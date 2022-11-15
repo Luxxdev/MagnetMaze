@@ -16,7 +16,6 @@ namespace OPaoGameStudio_MagnetMaze
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log("Starting game");
             Helper.StateButtonInitialize<Singleton.GameData>(newGameButton, continueButton, (Singleton.GameData saveData) =>
             {
                 if (saveData != null)
@@ -28,9 +27,9 @@ namespace OPaoGameStudio_MagnetMaze
                 {
                     LoadNextScene(0);
                 }
-                TextDisplayUpdate();
             }
             );
+            TextDisplayUpdate();
         }
 
         string GetText(string key)
@@ -41,8 +40,8 @@ namespace OPaoGameStudio_MagnetMaze
 
         void TextDisplayUpdate()
         {
-            newGameButton.transform.GetChild(0).GetComponent<TMP_Text>().text = GetText("newGame");
-            continueButton.transform.GetChild(0).GetComponent<TMP_Text>().text = GetText("continue");
+            newGameButton.transform.GetChild(0).GetComponent<TMP_Text>().text = SharedState.LanguageDefs["newGame"];
+            continueButton.transform.GetChild(0).GetComponent<TMP_Text>().text = SharedState.LanguageDefs["continue"];
         }
         public void LoadNextScene(int scene)
         {
