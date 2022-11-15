@@ -1,6 +1,10 @@
 {
   "_meta": {
     "maxChars": {
+      "next": 15,
+      "reload": 20,
+      "yes": 10,
+      "no:": 10,
       "newGame": 20,
       "continue": 20,
       "1": 342,
