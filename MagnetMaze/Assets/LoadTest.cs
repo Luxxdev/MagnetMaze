@@ -9,60 +9,28 @@ using LoLSDK;
 
 namespace OPaoGameStudio_MagnetMaze
 {
-    [System.Serializable]
-    public class GameData
-    {
-        public int completedLevels = 0;
-        public int playerProgress = 0;
-    }
     public class LoadTest : MonoBehaviour
     {
-        public GameData gameData;
-        public Goal goal;
         JSONNode _langNode;
         [SerializeField] private Button newGameButton, continueButton;
         // Start is called before the first frame update
         void Start()
         {
             Debug.Log("Starting game");
-            Helper.StateButtonInitialize<GameData>(newGameButton, continueButton, (GameData saveData) =>
+            Helper.StateButtonInitialize<Singleton.GameData>(newGameButton, continueButton, (Singleton.GameData saveData) =>
             {
                 if (saveData != null)
                 {
-                    Debug.Log("Sorry continue hasn't been implementeed yet! Starting a New game instead");
-                    // LoadNextScene(saveData.completedLevels);
+                    Singleton.Instance.gameData = saveData;
                     LoadNextScene(saveData.completedLevels);
                 }
                 else
                 {
-                    Debug.Log("New game!");
                     LoadNextScene(0);
                 }
+                TextDisplayUpdate();
             }
             );
-            Debug.Log("pos chamar helper");
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-        private void OnLoad(GameData loadedGameData)
-        {
-            Debug.Log("Loading");
-            if (loadedGameData != null)
-            {
-                gameData = loadedGameData;
-                //continueButton.onClick.AddListener(gameData.completedLevels => goal.LoadNextScene);
-            }
-            newGameButton.onClick.AddListener(() =>
-            {
-                Debug.Log("calling Initial Scene");
-                LoadNextScene(0);
-            });
-            // Initially set the text displays since the lang node should be populated.
-            TextDisplayUpdate();
         }
 
         string GetText(string key)
@@ -78,7 +46,7 @@ namespace OPaoGameStudio_MagnetMaze
         }
         public void LoadNextScene(int scene)
         {
-            SceneManager.LoadScene($"LEVEL_{scene}"); //LoadScene("LEVEL_" + scene.ToString());
+            SceneManager.LoadScene($"LEVEL_{scene}");
             return;
         }
     }

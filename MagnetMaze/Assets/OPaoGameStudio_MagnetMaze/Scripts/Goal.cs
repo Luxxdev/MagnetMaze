@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using LoLSDK;
@@ -9,17 +7,14 @@ namespace OPaoGameStudio_MagnetMaze
     public class Goal : MonoBehaviour
     {
         [SerializeField] private int nextScene;
-        [SerializeField] private int progressCount;
-        [SerializeField] GameData gameData;
+        // [SerializeField] private int progressCount;
 
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                gameData.completedLevels = nextScene;
-                gameData.completedLevels = progressCount;
-                LOLSDK.Instance.SaveState(gameData);
-                LOLSDK.Instance.SubmitProgress(0, progressCount, 15);
+                Singleton.Instance.gameData.completedLevels = nextScene;
+                LOLSDK.Instance.SaveState(Singleton.Instance.gameData);
                 LoadNextScene(nextScene);
             }
         }

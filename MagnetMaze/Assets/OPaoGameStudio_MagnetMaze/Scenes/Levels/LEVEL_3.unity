@@ -354,6 +354,10 @@ PrefabInstance:
       propertyPath: UIText
       value: 
       objectReference: {fileID: 900729738}
+    - target: {fileID: 5677108388722840844, guid: 66719b5968f4f1caf83389a041939300, type: 3}
+      propertyPath: m_TagString
+      value: StaticArea
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66719b5968f4f1caf83389a041939300, type: 3}
 --- !u!1001 &17966060
@@ -25948,7 +25952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4442883456383413767, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -178
+      value: -177.99998
       objectReference: {fileID: 0}
     - target: {fileID: 4442883456694540817, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_Pivot.x

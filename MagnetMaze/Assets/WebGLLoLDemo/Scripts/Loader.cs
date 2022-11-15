@@ -30,17 +30,17 @@ public class Loader : MonoBehaviour
         QUESTIONS = 1 << 1
     }
 
-    void Awake ()
+    void Awake()
     {
         // Create the WebGL (or mock) object
 #if UNITY_EDITOR
-		    ILOLSDK webGL = new LoLSDK.MockWebGL();
+        ILOLSDK webGL = new LoLSDK.MockWebGL();
 #elif UNITY_WEBGL
         ILOLSDK webGL = new LoLSDK.WebGL();
 #endif
 
         // Initialize the object, passing in the WebGL
-        LOLSDK.Init(webGL, "com.legends-of-learning.unity.sdk.v5.3.example-game");
+        LOLSDK.Init(webGL, "com.opaogamestudio.magnetmaze");
 
         // Register event handlers
         LOLSDK.Instance.StartGameReceived += new StartGameReceivedHandler(HandleStartGame);
@@ -50,7 +50,7 @@ public class Loader : MonoBehaviour
 
         // Mock the platform-to-game messages when in the Unity editor.
 #if UNITY_EDITOR
-			LoadMockData();
+        LoadMockData();
 #endif
 
         // Then, tell the platform the game is ready.
@@ -58,14 +58,14 @@ public class Loader : MonoBehaviour
         StartCoroutine(_WaitForData());
     }
 
-    IEnumerator _WaitForData ()
+    IEnumerator _WaitForData()
     {
         yield return new WaitUntil(() => (_receivedData & _expectedData) != 0);
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     // Start the game here
-    void HandleStartGame (string json)
+    void HandleStartGame(string json)
     {
         SharedState.StartGameData = JSON.Parse(json);
         _receivedData |= LoLDataType.START;
@@ -73,7 +73,7 @@ public class Loader : MonoBehaviour
 
 
     // Use language to populate UI
-    void HandleLanguageDefs (string json)
+    void HandleLanguageDefs(string json)
     {
         JSONNode langDefs = JSON.Parse(json);
 
@@ -86,7 +86,7 @@ public class Loader : MonoBehaviour
     }
 
     // Store the questions and show them in order based on your game flow.
-    void HandleQuestions (MultipleChoiceQuestionList questionList)
+    void HandleQuestions(MultipleChoiceQuestionList questionList)
     {
         Debug.Log("HandleQuestions");
         SharedState.QuestionList = questionList;
@@ -94,50 +94,53 @@ public class Loader : MonoBehaviour
     }
 
     // Handle pause / resume
-    void HandleGameStateChange (GameState gameState)
+    void HandleGameStateChange(GameState gameState)
     {
         // Either GameState.Paused or GameState.Resumed
         Debug.Log("HandleGameStateChange");
     }
 
-    private void LoadMockData ()
+    private void LoadMockData()
     {
 #if UNITY_EDITOR
-			// Load Dev Language File from StreamingAssets
+        // Load Dev Language File from StreamingAssets
 
-			string startDataFilePath = Path.Combine (Application.streamingAssetsPath, startGameJSONFilePath);
-			string langCode = "en";
+        string startDataFilePath = Path.Combine(Application.streamingAssetsPath, startGameJSONFilePath);
+        string langCode = "en";
 
-			Debug.Log(File.Exists (startDataFilePath));
+        Debug.Log(File.Exists(startDataFilePath));
 
-			if (File.Exists (startDataFilePath))  {
-				string startDataAsJSON = File.ReadAllText (startDataFilePath);
-				JSONNode startGamePayload = JSON.Parse(startDataAsJSON);
-				// Capture the language code from the start payload. Use this to switch fonts
-				langCode = startGamePayload["languageCode"];
-				HandleStartGame(startDataAsJSON);
-			}
+        if (File.Exists(startDataFilePath))
+        {
+            string startDataAsJSON = File.ReadAllText(startDataFilePath);
+            JSONNode startGamePayload = JSON.Parse(startDataAsJSON);
+            // Capture the language code from the start payload. Use this to switch fonts
+            langCode = startGamePayload["languageCode"];
+            HandleStartGame(startDataAsJSON);
+        }
 
-			// Load Dev Language File from StreamingAssets
-			string langFilePath = Path.Combine (Application.streamingAssetsPath, languageJSONFilePath);
-			if (File.Exists (langFilePath))  {
-				string langDataAsJson = File.ReadAllText (langFilePath);
-				// The dev payload in language.json includes all languages.
-				// Parse this file as JSON, encode, and stringify to mock
-				// the platform payload, which includes only a single language.
-				JSONNode langDefs = JSON.Parse(langDataAsJson);
-				// use the languageCode from startGame.json captured above
-				HandleLanguageDefs(langDefs[langCode].ToString());
-			}
+        // Load Dev Language File from StreamingAssets
+        string langFilePath = Path.Combine(Application.streamingAssetsPath, languageJSONFilePath);
+        if (File.Exists(langFilePath))
+        {
+            string langDataAsJson = File.ReadAllText(langFilePath);
+            // The dev payload in language.json includes all languages.
+            // Parse this file as JSON, encode, and stringify to mock
+            // the platform payload, which includes only a single language.
+            JSONNode langDefs = JSON.Parse(langDataAsJson);
+            // use the languageCode from startGame.json captured above
+            HandleLanguageDefs(langDefs[langCode].ToString());
+        }
 
-			// Load Dev Questions from StreamingAssets
-			string questionsFilePath = Path.Combine (Application.streamingAssetsPath, questionsJSONFilePath);
-			if (File.Exists (questionsFilePath))  {
-				string questionsDataAsJson = File.ReadAllText (questionsFilePath);
-				MultipleChoiceQuestionList qs =
-					MultipleChoiceQuestionList.CreateFromJSON(questionsDataAsJson);
-				HandleQuestions(qs);
-			}
+        // Load Dev Questions from StreamingAssets
+        string questionsFilePath = Path.Combine(Application.streamingAssetsPath, questionsJSONFilePath);
+        if (File.Exists(questionsFilePath))
+        {
+            string questionsDataAsJson = File.ReadAllText(questionsFilePath);
+            MultipleChoiceQuestionList qs =
+                MultipleChoiceQuestionList.CreateFromJSON(questionsDataAsJson);
+            HandleQuestions(qs);
+        }
 #endif
     }
 }

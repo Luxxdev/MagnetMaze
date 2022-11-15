@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using LoLSDK;
 
 namespace OPaoGameStudio_MagnetMaze
 {
@@ -8,29 +7,19 @@ namespace OPaoGameStudio_MagnetMaze
     {
         [SerializeField] private GameObject hudObject;
         [SerializeField] private DialogTrigger[] otherDialogs;
+        public bool isProgress = false;
+        public int currentProgress = 0;
         public bool textShown = false;
-        // Start is called before the first frame update
-        #region Movement
-        void Start()
-        {
-
-        }
-        // Update is called once per frame
-        #endregion
-        void Update()
-        {
-
-        }
-        // <summary>
-        // Sent when another object enters a trigger collider attached to this
-        // object (2D physics only).
-        // </summary>
-        // <param name="other">The other Collider2D involved in this collision.</param>
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player") && !textShown)
             {
                 hudObject.GetComponent<BottomTextManagement>().CallDialog();
+                if (isProgress)
+                {
+                    Singleton.Instance.SetPlayerProgress(currentProgress);
+                    LOLSDK.Instance.SubmitProgress(0, currentProgress, 15);
+                }
                 textShown = true;
                 Destroy(this.gameObject);
             }

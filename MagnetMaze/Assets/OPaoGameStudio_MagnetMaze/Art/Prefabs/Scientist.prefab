@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 3253965415906981778}
   m_Layer: 3
   m_Name: StaticArea
-  m_TagString: Untagged
+  m_TagString: StaticArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
