@@ -179,9 +179,6 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 multi = direction.y;
             }
-            print(magnetOrientation);
-            print(direction);
-
             if (magnetOrientation != direction && pole != "Neutral")
             {
                 polesAreaObject.SetActive(true);

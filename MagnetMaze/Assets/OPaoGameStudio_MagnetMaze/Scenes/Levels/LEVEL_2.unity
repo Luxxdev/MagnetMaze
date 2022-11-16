@@ -25480,7 +25480,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3510551394685285624, guid: 03496ac390fbba3a9a817d06890d2765, type: 3}
       propertyPath: speed
-      value: 1.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3510551394685285625, guid: 03496ac390fbba3a9a817d06890d2765, type: 3}
+      propertyPath: m_Size.y
+      value: 2.917819
+      objectReference: {fileID: 0}
+    - target: {fileID: 3510551394685285625, guid: 03496ac390fbba3a9a817d06890d2765, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.45384312
       objectReference: {fileID: 0}
     - target: {fileID: 3510551394685285627, guid: 03496ac390fbba3a9a817d06890d2765, type: 3}
       propertyPath: m_RootOrder
@@ -25492,7 +25500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3510551394685285627, guid: 03496ac390fbba3a9a817d06890d2765, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.71
+      value: -1.88
       objectReference: {fileID: 0}
     - target: {fileID: 3510551394685285627, guid: 03496ac390fbba3a9a817d06890d2765, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26478,12 +26486,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: textJSONList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: textJSONList.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: 9e72a5cde05d42a1f9139dd98af0950e, type: 3}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: textJSONList.Array.data[1]
+      value: 
+      objectReference: {fileID: 4900000, guid: 5cbe7a6916e47e790842c8006f866b9c, type: 3}
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: myTextList.player.Array.size
       value: 2
@@ -28624,7 +28636,7 @@ PrefabInstance:
       objectReference: {fileID: 900729738}
     - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: energy
-      value: 5
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5677108388722840844, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_IsActive

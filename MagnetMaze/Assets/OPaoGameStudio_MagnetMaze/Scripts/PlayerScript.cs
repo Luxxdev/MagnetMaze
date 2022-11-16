@@ -11,10 +11,12 @@ namespace OPaoGameStudio_MagnetMaze
         public GameObject magnetIndicator;
         public Transform boxHolder;
         public bool isHolding = false;
+        public bool isRestartable = true;
         public Collider2D positiveToolArea;
         public Collider2D negativeToolArea;
         public AudioManager AUM;
         public int energy = 10;
+        private float energyCounter = 0;
         private float horizontal;
         public float vertical;
         public float speed = 2.5f;
@@ -54,6 +56,23 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (!hud.GetComponent<BottomTextManagement>().GetIsPaused())
             {
+                if (isToolActive && energy > 0)
+                {
+                    energyCounter += Time.deltaTime;
+                }
+                if (energyCounter >= 1)
+                {
+                    energyCounter = 0;
+                    energy -= 1;
+                    ChangeText();
+                }
+                if (energy <= 0)
+                {
+                    energy = 0;
+                    ChangeText();
+                    isToolActive = false;
+                    tool.SetActive(false);
+                }
                 // -1 esquerda, 1 direita
                 horizontal = Input.GetAxisRaw("Horizontal");
                 vertical = Input.GetAxisRaw("Vertical");
@@ -121,17 +140,6 @@ namespace OPaoGameStudio_MagnetMaze
 
                     isHorizontal = true;
                 }
-
-                //if (Input.GetButtonDown("Vertical") && isToolActive && Input.GetAxisRaw("Vertical") != 0)
-                //{
-                //    tool.transform.eulerAngles = new Vector3(0,0,0);
-                //    tool.transform.localScale = new Vector3(tool.transform.localScale.x, Input.GetAxisRaw("Vertical") * -1f, tool.transform.localScale.z);
-                //}
-                //else if (Input.GetAxisRaw("Vertical") == 0)
-                //{
-                //    tool.transform.eulerAngles = new Vector3(0,0,90);
-                //    //tool.transform.localScale = new Vector3(tool.transform.localScale.x, 1f, tool.transform.localScale.z);
-                //}
             }
             else
             {
@@ -180,19 +188,9 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 ActivateRestartPanel();
             }
-            if (currentPole && isToolActive && energy > 0)
+            if (isToolActive && energy > 0)
             {
-                //tool.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
-                energy -= 1;
-            }
-            else if (!currentPole && isToolActive && energy > 0)
-            {
-                //tool.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.3f);
-                energy -= 1;
-            }
-            else if (!isToolActive)
-            {
-                //gameObject.layer = LayerMask.NameToLayer("Player");
+                energy -= 5;
             }
             ChangeText();
         }
@@ -202,10 +200,8 @@ namespace OPaoGameStudio_MagnetMaze
             AUM.Play("click");
             currentPole = !currentPole;
             energy -= 1;
-            //print(tool.transform.localScale);
             tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
             magnetIndicator.transform.localScale = new Vector3(magnetIndicator.transform.localScale.x * -1, magnetIndicator.transform.localScale.y, magnetIndicator.transform.localScale.z);
-            //print(tool.transform.localScale);
             ChangeText();
             if (currentBoxMagnetized != null)
             {
@@ -216,21 +212,14 @@ namespace OPaoGameStudio_MagnetMaze
         private void Jump()
         {
             AUM.Play("jump");
-            //if (objects.Count != 0)
-            //{
-            //    if (objects[0].CompareTag("Box"))
-            //    {
-            //        objects[0].GetComponent<Rigidbody2D>().velocity = new Vector2(-rigidBody.velocity.x, -jumpingPower);
-            //    }
-            //}
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
         }
 
         private void Interact()
         {
-            energy -= 1;
             if (objects[0].CompareTag("Box"))
             {
+                energy -= 5;
                 AUM.Play("magnetize");
                 if (lastBoxInteracted != null && lastBoxInteracted != objects[0])
                 {
@@ -259,7 +248,6 @@ namespace OPaoGameStudio_MagnetMaze
 
             else if (objects[0].CompareTag("Interactable"))
             {
-                energy += 1;
                 objects[0].GetComponent<Switches>().OnSwitchActivate();
             }
             ChangeText();
@@ -284,9 +272,10 @@ namespace OPaoGameStudio_MagnetMaze
                 Vector3 localScale = transform.localScale;
                 localScale.x *= -1f;
                 transform.localScale = localScale;
+                if (isHolding)
+                    currentBoxMagnetized.magnetOrientation.x *= -1;
             }
         }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.layer == 12 && collision.transform.parent.CompareTag("Box"))
@@ -381,7 +370,7 @@ namespace OPaoGameStudio_MagnetMaze
             //     distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
             // }
             float check = transform.position.y - obj.attachedRigidbody.transform.position.y;
-            if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && currentBoxMagnetized != null && isHorizontal == currentBoxMagnetized.isHorizontal)
+            if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && currentBoxMagnetized != null)
             {
                 if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
                 {
@@ -391,7 +380,7 @@ namespace OPaoGameStudio_MagnetMaze
                         isHolding = true;
                         //StartCoroutine(WaitForPoleChange());
                     }
-                    else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
+                    else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held && isHorizontal == currentBoxMagnetized.isHorizontal)
                     {
                         obj.attachedRigidbody.AddForce(-MagneticForceCalc(obj));
                         rigidBody.AddForce(MagneticForceCalc(obj));
@@ -429,7 +418,7 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
             }
-            return ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 1.2f), 50, 20f);
+            return ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 1.2f), 30, 15f);
         }
         //IEnumerator WaitForPoleChange()
         //{
@@ -452,7 +441,8 @@ namespace OPaoGameStudio_MagnetMaze
 
         private void ActivateRestartPanel()
         {
-            hud.transform.GetChild(2).gameObject.SetActive(true);
+            if (isRestartable)
+                hud.transform.GetChild(2).gameObject.SetActive(true);
         }
 
         private void UpdateAnimation()

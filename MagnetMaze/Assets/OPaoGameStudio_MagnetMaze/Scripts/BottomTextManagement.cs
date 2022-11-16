@@ -47,8 +47,8 @@ namespace OPaoGameStudio_MagnetMaze
         {
             TMPro.TextMeshProUGUI nextText = nextBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
             TMPro.TextMeshProUGUI retryText = retryBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            TMPro.TextMeshProUGUI yesText = yesBTN.GetComponent<TMPro.TextMeshProUGUI>();
-            TMPro.TextMeshProUGUI noText = noBTN.GetComponent<TMPro.TextMeshProUGUI>();
+            TMPro.TextMeshProUGUI yesText = yesBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            TMPro.TextMeshProUGUI noText = noBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
             nextText.text = SharedState.LanguageDefs["next"];
             retryText.text = SharedState.LanguageDefs["reload"];
             yesText.text = SharedState.LanguageDefs["yes"];
@@ -117,7 +117,7 @@ namespace OPaoGameStudio_MagnetMaze
 
         public void CallRetry()
         {
-            gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            gameObject.transform.GetChild(4).gameObject.SetActive(false);
             retryBTN.gameObject.SetActive(true);
             nextBTN.gameObject.SetActive(false);
             AUM.Play("dialogUP");
