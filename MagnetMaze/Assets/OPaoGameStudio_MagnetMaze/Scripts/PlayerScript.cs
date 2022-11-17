@@ -274,6 +274,8 @@ namespace OPaoGameStudio_MagnetMaze
                 transform.localScale = localScale;
                 if (isHolding)
                     currentBoxMagnetized.magnetOrientation.x *= -1;
+
+                print(currentBoxMagnetized.magnetOrientation);
             }
         }
         private void OnTriggerEnter2D(Collider2D collision)
@@ -370,7 +372,7 @@ namespace OPaoGameStudio_MagnetMaze
             //     distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
             // }
             float check = transform.position.y - obj.attachedRigidbody.transform.position.y;
-            if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && currentBoxMagnetized != null)
+            if (CheckIfSameOrOppositeBoxPole(obj, area) == "Opposite" && currentBoxMagnetized != null && isHorizontal == currentBoxMagnetized.isHorizontal)
             {
                 if ((!isHorizontal && (check > 0.4f || check < -0.4f)) || (isHorizontal && (check < 0.4f && check > -0.4f)))
                 {
@@ -380,7 +382,7 @@ namespace OPaoGameStudio_MagnetMaze
                         isHolding = true;
                         //StartCoroutine(WaitForPoleChange());
                     }
-                    else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held && isHorizontal == currentBoxMagnetized.isHorizontal)
+                    else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
                     {
                         obj.attachedRigidbody.AddForce(-MagneticForceCalc(obj));
                         rigidBody.AddForce(MagneticForceCalc(obj));

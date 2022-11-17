@@ -14,6 +14,7 @@ namespace OPaoGameStudio_MagnetMaze
         public bool canInteract = false;
         public bool startsMagnetized = false;
         public bool held = false;
+        public bool heldSettings = false;
         public PlayerScript player = null;
         public bool conducting = false;
         public bool touchingPlug = false;
@@ -56,23 +57,27 @@ namespace OPaoGameStudio_MagnetMaze
 
             if (held)
             {
-                transform.parent = playerBoxHolder;
-                transform.position = playerBoxHolder.position;
-                gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-                collisionBlocker.enabled = false;
-                gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-                polesAreaObject.SetActive(false);
-                if (!isHorizontal)
+                if (!heldSettings)
                 {
-                    float direction;
-                    if (player.transform.position.x > transform.position.x)
-                        direction = -1;
-                    else
-                        direction = 1;
-                    ChangePole(lastPole, new Vector2(direction, 0));
+                    transform.parent = playerBoxHolder;
+                    gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                    collisionBlocker.enabled = false;
+                    gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                    if (!isHorizontal)
+                    {
+                        float direction;
+                        if (player.transform.position.x > transform.position.x)
+                            direction = -1;
+                        else
+                            direction = 1;
+                        ChangePole(lastPole, new Vector2(direction, 0));
+                    }
+                    polesAreaObject.SetActive(false);
+                    heldSettings = true;
                 }
+                transform.position = playerBoxHolder.position;
             }
-            else
+            else if (heldSettings)
             {
                 if (lastPole != "Neutral")
                 {
@@ -81,6 +86,7 @@ namespace OPaoGameStudio_MagnetMaze
                 transform.parent = null;
                 collisionBlocker.enabled = true;
                 gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+                heldSettings = false;
             }
         }
 
@@ -186,7 +192,6 @@ namespace OPaoGameStudio_MagnetMaze
                 spriteRenderer.sprite = spriteArray[1];
                 lastPole = pole;
                 magnetOrientation = direction;
-
             }
             else
             {
@@ -196,6 +201,8 @@ namespace OPaoGameStudio_MagnetMaze
                 lastPole = "Neutral";
                 magnetOrientation = new Vector2(0, 0);
             }
+            print(lastPole);
+            print(magnetOrientation);
         }
     }
 }
