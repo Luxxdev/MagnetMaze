@@ -41,6 +41,11 @@ namespace OPaoGameStudio_MagnetMaze
                             {
                                 item.GetComponent<Battery>().pressedButtons += 1;
                                 item.GetComponent<Battery>().charging = true;
+                            }
+                            else if (item.CompareTag("Wire"))
+                            {
+                                item.GetComponent<Wires>().Activate();
+                                item.GetComponent<Wires>().chargingBattery = true;
 
                             }
                         }
@@ -79,6 +84,12 @@ namespace OPaoGameStudio_MagnetMaze
                                 }
                                 item.GetComponent<Battery>().pressedButtons -= 1;
                                 item.GetComponent<Battery>().charging = false;
+                            }
+                            else if (item.CompareTag("Wire"))
+                            {
+                                item.GetComponent<Wires>().chargingBattery = false;
+                                item.GetComponent<Wires>().Activate();
+
                             }
                         }
                     }
@@ -121,7 +132,13 @@ namespace OPaoGameStudio_MagnetMaze
                                 {
                                     item.GetComponent<Battery>().charging = false;
                                 }
+                                else if (item.CompareTag("Wire"))
+                                {
+                                    item.GetComponent<Wires>().chargingBattery = false;
+                                }
+
                             }
+
                         }
                     }
                 }

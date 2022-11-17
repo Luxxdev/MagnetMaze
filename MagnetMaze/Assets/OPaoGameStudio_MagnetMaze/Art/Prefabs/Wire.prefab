@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4229747280029443882}
   m_Layer: 0
   m_Name: Wire
-  m_TagString: Untagged
+  m_TagString: Wire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,12 +71,12 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Positions:
-  - {x: -0.6959131, y: 0.6215031, z: 0}
-  - {x: -0.7073575, y: -0.031454563, z: 1}
-  - {x: 0.93643785, y: -0.03036499, z: 2.9194613}
-  - {x: 0.93643785, y: 0.6268618, z: 2.9194613}
+  - {x: -0.7073575, y: 0.6215031, z: 0}
+  - {x: -0.7073575, y: -0.031454563, z: 0}
+  - {x: 0.93643785, y: -0.03145456, z: 0}
+  - {x: 0.93643785, y: 0.6268618, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -146,3 +146,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipo: 0
   active: 0
+  chargingBattery: 0
