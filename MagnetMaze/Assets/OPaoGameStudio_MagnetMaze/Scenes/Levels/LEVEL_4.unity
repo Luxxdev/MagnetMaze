@@ -1707,7 +1707,7 @@ MonoBehaviour:
   target: {fileID: 1208807971}
   offset: {x: 0, y: 0, z: 0}
   smoothFactor: 3
-  minValues: {x: -1.9, y: -2, z: -10}
+  minValues: {x: -1.9, y: -2.2, z: -10}
   maxValue: {x: 25, y: 30, z: -10}
 --- !u!20 &519420031
 Camera:
@@ -53756,11 +53756,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032500, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.14
+      value: -2.43
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032500, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.36
+      value: -3.65
       objectReference: {fileID: 0}
     - target: {fileID: 4644896693509032500, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: m_LocalPosition.z
