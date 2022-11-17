@@ -16,6 +16,7 @@ namespace OPaoGameStudio_MagnetMaze
     };
         [SerializeField] private Mode tipo;
         [SerializeField] private bool active;
+        public bool chargingBattery = false;
 
         private enum Mode { onOff, invert };
         void Start()
@@ -32,28 +33,19 @@ namespace OPaoGameStudio_MagnetMaze
         }
         public override void Activate()
         {
-            if (tipo == Mode.onOff)
+            if (!chargingBattery)
             {
-                if (!active)
+                if (tipo == Mode.onOff)
                 {
-                    ChangeColor("desligado");
+                    if (!active)
+                    {
+                        ChangeColor("desligado");
+                        return;
+                    }
+                    ChangeColor("ligado");
                     return;
                 }
-                ChangeColor("ligado");
-                return;
             }
-
-            //   else if (tipo == Mode.invert)
-            //   {
-            //       ChangeColor("ligado");
-            //       // if (!active)
-            //       // {
-            //       //     ChangeColor("negativo");
-            //       //     return;
-            //       // }
-            //       // ChangeColor("positivo");
-            //   }
-
         }
         public void ChangeColor(string cor)
         {

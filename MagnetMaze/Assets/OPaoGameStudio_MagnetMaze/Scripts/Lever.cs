@@ -14,8 +14,10 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 foreach (var gameObject in interactableObject)
                 {
-                    // Quebra os fios
-                    gameObject.GetComponent<BigMagnet>().ChangeMode(newMode);
+                    if (gameObject.TryGetComponent(out BigMagnet bigmag))
+                    {
+                        bigmag.ChangeMode(newMode);
+                    }
                 }
             }
             base.OnSwitchActivate();

@@ -11,6 +11,7 @@ TagManager:
   - BoxMagnetArea
   - PlayerToolArea
   - StaticArea
+  - Wire
   layers:
   - Default
   - TransparentFX
