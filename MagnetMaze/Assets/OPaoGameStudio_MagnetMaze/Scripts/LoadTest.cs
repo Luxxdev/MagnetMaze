@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -13,7 +11,7 @@ namespace OPaoGameStudio_MagnetMaze
     {
         JSONNode _langNode;
         [SerializeField] private Button newGameButton, continueButton;
-        // Start is called before the first frame update
+
         void Start()
         {
             Helper.StateButtonInitialize<Singleton.GameData>(newGameButton, continueButton, (Singleton.GameData saveData) =>
@@ -30,12 +28,6 @@ namespace OPaoGameStudio_MagnetMaze
             }
             );
             TextDisplayUpdate();
-        }
-
-        string GetText(string key)
-        {
-            string value = _langNode?[key];
-            return value ?? "--missing--";
         }
 
         void TextDisplayUpdate()
