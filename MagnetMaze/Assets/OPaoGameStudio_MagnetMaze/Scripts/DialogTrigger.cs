@@ -14,11 +14,11 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (other.gameObject.CompareTag("Player") && !textShown)
             {
+                hudObject.GetComponent<BottomTextManagement>().isRevisionDialog = false;
                 hudObject.GetComponent<BottomTextManagement>().CallDialog();
                 if (isProgress)
                 {
                     Singleton.Instance.gameData.playerProgress = currentProgress;
-                    print(Singleton.Instance.gameData.playerProgress);
                     Singleton.Instance.SetPlayerProgress(currentProgress);
                     LOLSDK.Instance.SubmitProgress(0, currentProgress, 12);
                 }

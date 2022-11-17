@@ -23,6 +23,7 @@ namespace OPaoGameStudio_MagnetMaze
                 }
                 else
                 {
+                    Singleton.Instance.gameData.storedDialogs = 0;
                     LoadNextScene(0);
                 }
             }

@@ -274,8 +274,6 @@ namespace OPaoGameStudio_MagnetMaze
                 transform.localScale = localScale;
                 if (isHolding)
                     currentBoxMagnetized.magnetOrientation.x *= -1;
-
-                print(currentBoxMagnetized.magnetOrientation);
             }
         }
         private void OnTriggerEnter2D(Collider2D collision)

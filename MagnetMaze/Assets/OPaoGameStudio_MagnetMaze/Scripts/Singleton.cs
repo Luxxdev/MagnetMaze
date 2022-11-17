@@ -9,6 +9,7 @@ namespace OPaoGameStudio_MagnetMaze
         [System.Serializable]
         public class GameData
         {
+            public int storedDialogs = 0;
             public int completedLevels = 0;
             public int playerProgress = 0;
         }

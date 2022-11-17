@@ -4,20 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using LoLSDK;
 
-public class CompleteGame : MonoBehaviour
+namespace OPaoGameStudio_MagnetMaze
 {
-
-    public Button yourButton;
-
-    void Start()
+    public class CompleteGame : MonoBehaviour
     {
-        Button btn = yourButton.GetComponent<Button>();
-        btn.onClick.AddListener(OnClick);
-    }
 
-    void OnClick()
-    {
-        LOLSDK.Instance.CompleteGame();
-    }
+        public Button yourButton;
 
+        void Start()
+        {
+            Button btn = yourButton.GetComponent<Button>();
+            btn.onClick.AddListener(OnClick);
+        }
+
+        void OnClick()
+        {
+            LOLSDK.Instance.CompleteGame();
+        }
+
+    }
 }

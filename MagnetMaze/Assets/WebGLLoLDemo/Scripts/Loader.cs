@@ -45,7 +45,6 @@ public class Loader : MonoBehaviour
         // Register event handlers
         LOLSDK.Instance.StartGameReceived += new StartGameReceivedHandler(HandleStartGame);
         LOLSDK.Instance.LanguageDefsReceived += new LanguageDefsReceivedHandler(HandleLanguageDefs);
-        LOLSDK.Instance.QuestionsReceived += new QuestionListReceivedHandler(HandleQuestions);
         LOLSDK.Instance.GameStateChanged += new GameStateChangedHandler(HandleGameStateChange);
 
         // Mock the platform-to-game messages when in the Unity editor.
@@ -85,14 +84,6 @@ public class Loader : MonoBehaviour
         _receivedData |= LoLDataType.LANGUAGE;
     }
 
-    // Store the questions and show them in order based on your game flow.
-    void HandleQuestions(MultipleChoiceQuestionList questionList)
-    {
-        Debug.Log("HandleQuestions");
-        SharedState.QuestionList = questionList;
-        _receivedData |= LoLDataType.QUESTIONS;
-    }
-
     // Handle pause / resume
     void HandleGameStateChange(GameState gameState)
     {
@@ -130,16 +121,6 @@ public class Loader : MonoBehaviour
             JSONNode langDefs = JSON.Parse(langDataAsJson);
             // use the languageCode from startGame.json captured above
             HandleLanguageDefs(langDefs[langCode].ToString());
-        }
-
-        // Load Dev Questions from StreamingAssets
-        string questionsFilePath = Path.Combine(Application.streamingAssetsPath, questionsJSONFilePath);
-        if (File.Exists(questionsFilePath))
-        {
-            string questionsDataAsJson = File.ReadAllText(questionsFilePath);
-            MultipleChoiceQuestionList qs =
-                MultipleChoiceQuestionList.CreateFromJSON(questionsDataAsJson);
-            HandleQuestions(qs);
         }
 #endif
     }

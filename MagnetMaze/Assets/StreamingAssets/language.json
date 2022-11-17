@@ -48,7 +48,15 @@
       "F1": 220,
       "F2": 150,
       "F3": 132,
-      "F4": 222
+      "F4": 222,
+      "RD0": 44,
+      "RD1": 48,
+      "RD2": 38,
+      "RD3": 44,
+      "RD4": 44,
+      "RD5": 36,
+      "RD6": 58,
+      "RD7": 42
     }
   },
   "en": {
@@ -100,7 +108,15 @@
     "F1": "The closer the objects are, the stronger the magnetic force becomes! Throw the boxes and reach higher with it!",
     "F2": "When charged, move quick to lose less static energy! Move the boxes wisely.",
     "F3": "Charge all that is needed to power the magnets and reach the goals",
-    "F4": "Remember all the stuff you've passed, the electricity, magnetism and revise all of that in this stage's puzzle."
+    "F4": "Remember all the stuff you've passed, the electricity, magnetism and revise all of that in this stage's puzzle.",
+    "RD0": "1 - Magnetism Basics",
+    "RD1": "2 - How do magnets work?",
+    "RD2": "3 - Magnetic Forces",
+    "RD3": "4 - Static Electricity",
+    "RD4": "5 - Electric Particles",
+    "RD5": "6 - Electromagnets",
+    "RD6": "7 - Magnetic fields in motion",
+    "RD7": "8 - Electric currents"
   },
   "es": {
     "next": "PROXIMO",
@@ -143,6 +159,20 @@
     "31": "",
     "32": "",
     "33": "",
-    "34": ""
+    "34": "",
+    "35": "",
+    "F0": "",
+    "F1": "",
+    "F2": "",
+    "F3": "",
+    "F4": ".",
+    "RD0": "1 - ",
+    "RD1": "2 - ",
+    "RD2": "3 - ",
+    "RD3": "4 - ",
+    "RD4": "5 - ",
+    "RD5": "6 - ",
+    "RD6": "7 - ",
+    "RD7": "8 - "
   }
 }
