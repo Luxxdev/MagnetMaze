@@ -17,8 +17,10 @@ namespace OPaoGameStudio_MagnetMaze
                 hudObject.GetComponent<BottomTextManagement>().CallDialog();
                 if (isProgress)
                 {
+                    Singleton.Instance.gameData.playerProgress = currentProgress;
+                    print(Singleton.Instance.gameData.playerProgress);
                     Singleton.Instance.SetPlayerProgress(currentProgress);
-                    LOLSDK.Instance.SubmitProgress(0, currentProgress, 15);
+                    LOLSDK.Instance.SubmitProgress(0, currentProgress, 12);
                 }
                 textShown = true;
                 Destroy(this.gameObject);

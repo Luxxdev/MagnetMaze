@@ -140,6 +140,14 @@ namespace OPaoGameStudio_MagnetMaze
 
                     isHorizontal = true;
                 }
+                if (!onCarpet && staticArea.transform.localScale.x > 0.1f)
+                {
+                    staticArea.transform.localScale -= new Vector3(0.001f, 0.001f, 0.001f);
+                }
+                else if (staticArea.transform.localScale.x <= 0.1)
+                {
+                    staticArea.SetActive(false);
+                }
             }
             else
             {
@@ -157,14 +165,6 @@ namespace OPaoGameStudio_MagnetMaze
                     currentBoxMagnetized.held = false;
                     isHolding = false;
                 }
-            }
-            if (!onCarpet && staticArea.transform.localScale.x > 0.1f)
-            {
-                staticArea.transform.localScale -= new Vector3(0.001f, 0.001f, 0.001f);
-            }
-            else if (staticArea.transform.localScale.x <= 0.1)
-            {
-                staticArea.SetActive(false);
             }
             UpdateAnimation();
             Flip();
@@ -270,7 +270,7 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
-                localScale.x *= -1f;
+                localScale.x *= -1;
                 transform.localScale = localScale;
                 if (isHolding)
                     currentBoxMagnetized.magnetOrientation.x *= -1;

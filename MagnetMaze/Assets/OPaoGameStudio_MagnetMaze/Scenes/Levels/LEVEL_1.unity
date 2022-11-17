@@ -21764,6 +21764,14 @@ PrefabInstance:
       propertyPath: hudObject
       value: 
       objectReference: {fileID: 1031174490}
+    - target: {fileID: 7331898539225215858, guid: c9f3226986306f813a46ac3af594a5b7, type: 3}
+      propertyPath: isProgress
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331898539225215858, guid: c9f3226986306f813a46ac3af594a5b7, type: 3}
+      propertyPath: currentProgress
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7331898539225215861, guid: c9f3226986306f813a46ac3af594a5b7, type: 3}
       propertyPath: m_Name
       value: DialogTrigger
