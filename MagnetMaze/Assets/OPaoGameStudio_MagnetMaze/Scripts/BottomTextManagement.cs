@@ -135,15 +135,11 @@ namespace OPaoGameStudio_MagnetMaze
         {
             for (int i = 0; i < textJSONList.Length; i++)
             {
-                print("textJSONList element: " + textJSONList[i].name);
-                print("revisionTextsJSONList element: " + revisionTextsJSONList[Singleton.Instance.gameData.storedDialogs].name);
-                print("dialog Counter is: " + dialogCounter);
-                print("i = " + i);
-                print("Stored dialogs: " + Singleton.Instance.gameData.storedDialogs);
                 if (textJSONList[i].name == revisionTextsJSONList[Singleton.Instance.gameData.storedDialogs].name)
                 {
-                    print("passou");
                     buttonsParent.GetChild(Singleton.Instance.gameData.storedDialogs).gameObject.SetActive(true);
+                    TMPro.TextMeshProUGUI buttonsText = buttonsParent.GetChild(Singleton.Instance.gameData.storedDialogs).gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                    buttonsText.text = SharedState.LanguageDefs["RD" + Singleton.Instance.gameData.storedDialogs.ToString()];
                     Singleton.Instance.gameData.storedDialogs += 1;
                     break;
                 }
