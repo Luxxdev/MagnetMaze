@@ -66,7 +66,7 @@ namespace OPaoGameStudio_MagnetMaze
                     if (!isHorizontal)
                     {
                         float direction;
-                        if (player.transform.position.x > transform.position.x)
+                        if (!player.isFacingRight)
                             direction = -1;
                         else
                             direction = 1;
