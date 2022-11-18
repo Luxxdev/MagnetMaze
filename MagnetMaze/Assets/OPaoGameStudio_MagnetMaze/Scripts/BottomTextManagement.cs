@@ -50,7 +50,7 @@ namespace OPaoGameStudio_MagnetMaze
         void Start()
         {
             buttonsParent = gameObject.transform.GetChild(6).transform.GetChild(0).transform.GetChild(0);
-            for (int i = 0; i < Singleton.Instance.gameData.storedDialogs; i++)
+            for (int i = 0; i <= Singleton.Instance.gameData.storedDialogs; i++)
             {
                 buttonsParent.GetChild(i).gameObject.SetActive(true);
                 TMPro.TextMeshProUGUI buttonsText = buttonsParent.GetChild(i).gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>();
@@ -140,7 +140,10 @@ namespace OPaoGameStudio_MagnetMaze
                     buttonsParent.GetChild(Singleton.Instance.gameData.storedDialogs).gameObject.SetActive(true);
                     TMPro.TextMeshProUGUI buttonsText = buttonsParent.GetChild(Singleton.Instance.gameData.storedDialogs).gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>();
                     buttonsText.text = SharedState.LanguageDefs["RD" + Singleton.Instance.gameData.storedDialogs.ToString()];
-                    Singleton.Instance.gameData.storedDialogs += 1;
+                    if (Singleton.Instance.gameData.storedDialogs < 7)
+                    {
+                        Singleton.Instance.gameData.storedDialogs += 1;
+                    }
                     break;
                 }
             }
