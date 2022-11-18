@@ -16,7 +16,7 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 if (!HUDScript.isDialogOpen)
                 {
-                    HUDScript.SetIsPaused(!HUDScript.GetIsPaused());
+                    HUDScript.SetIsPaused(!transform.parent.GetChild(6).gameObject.activeSelf);
                     transform.parent.GetChild(6).gameObject.SetActive(!transform.parent.GetChild(6).gameObject.activeSelf);
                 }
             });

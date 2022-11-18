@@ -146,16 +146,6 @@ namespace OPaoGameStudio_MagnetMaze
             }
         }
 
-        // public void UpdateVisibleChildren(int comparedItem)
-        // {
-
-        //     if (textJSONList[dialogCounter].name == revisionTextsJSONList[comparedItem].name)
-        //     {
-        //         Singleton.Instance.gameData.storedDialogs += 1;
-        //         buttonsParent.GetChild(comparedItem).gameObject.SetActive(true);
-        //     }
-        // }
-
         public void SetIsRevisionDialog(bool isRV) { isRevisionDialog = isRV; }
         public void SetIsPaused(bool pause) { isPaused = pause; }
         public bool GetIsPaused() { return isPaused; }
