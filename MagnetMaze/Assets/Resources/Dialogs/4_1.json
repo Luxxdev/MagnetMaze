@@ -1,14 +1,9 @@
 {
    "Text": [
       {
-         "dialogueID": "completed1",
+         "dialogueID": "35",
          "image": "CHAR/smile",
          "explanationImg": ""
-      },
-      {
-         "dialogueID": "completed2",
-         "image": "CHAR/smile",
-         "explanationImg": "EXP/maglev"
       }
    ]
 }

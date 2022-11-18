@@ -135,6 +135,7 @@ namespace OPaoGameStudio_MagnetMaze
         {
             for (int i = 0; i < textJSONList.Length; i++)
             {
+                print(Singleton.Instance.gameData.storedDialogs);
                 if (textJSONList[i].name == revisionTextsJSONList[Singleton.Instance.gameData.storedDialogs].name)
                 {
                     buttonsParent.GetChild(Singleton.Instance.gameData.storedDialogs).gameObject.SetActive(true);
@@ -146,6 +147,7 @@ namespace OPaoGameStudio_MagnetMaze
                     }
                     break;
                 }
+
             }
         }
 
