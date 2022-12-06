@@ -300,7 +300,6 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 collision.transform.parent.GetComponent<MagnetBox>().canInteract = false;
                 objects.Remove(collision.transform.parent.gameObject);
-
             }
             else if (collision.gameObject.CompareTag("Interactable"))
             {
@@ -421,7 +420,7 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
             }
-            return ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 1.2f), 30, 5f);
+            return ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 1.2f), 30, 15f);
         }
         //IEnumerator WaitForPoleChange()
         //{
