@@ -11,6 +11,7 @@ namespace OPaoGameStudio_MagnetMaze
         public TextAsset[] textJSONList;
         public TextAsset[] revisionTextsJSONList;
         public bool isDialogOpen = false;
+        private bool isFinished = false;
         private string dialogueID;
         public string failMessage;
         public Image charExpression;
@@ -49,8 +50,9 @@ namespace OPaoGameStudio_MagnetMaze
         public TextList myTextList = new TextList();
         void Start()
         {
+            dialogCounter = Singleton.Instance.gameData.seenDialogs;
             buttonsParent = gameObject.transform.GetChild(6).transform.GetChild(0).transform.GetChild(0);
-            for (int i = 0; i <= Singleton.Instance.gameData.storedDialogs; i++)
+            for (int i = 0; i < Singleton.Instance.gameData.storedDialogs; i++)
             {
                 buttonsParent.GetChild(i).gameObject.SetActive(true);
                 TMPro.TextMeshProUGUI buttonsText = buttonsParent.GetChild(i).gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>();
@@ -133,9 +135,9 @@ namespace OPaoGameStudio_MagnetMaze
 
         public void UpdateVisibleChildren()
         {
+            Singleton.Instance.gameData.seenDialogs += 1;
             for (int i = 0; i < textJSONList.Length; i++)
             {
-                print(Singleton.Instance.gameData.storedDialogs);
                 if (textJSONList[i].name == revisionTextsJSONList[Singleton.Instance.gameData.storedDialogs].name)
                 {
                     buttonsParent.GetChild(Singleton.Instance.gameData.storedDialogs).gameObject.SetActive(true);

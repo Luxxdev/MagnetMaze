@@ -7,9 +7,18 @@ namespace OPaoGameStudio_MagnetMaze
     {
         [SerializeField] private GameObject hudObject;
         [SerializeField] private DialogTrigger[] otherDialogs;
+        public int triggerID = 0;
         public bool isProgress = false;
         public int currentProgress = 0;
         public bool textShown = false;
+
+        void Start()
+        {
+            if (Singleton.Instance.gameData.seenDialogs >= triggerID)
+            {
+                gameObject.SetActive(false);
+            }
+        }
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player") && !textShown)

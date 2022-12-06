@@ -12,6 +12,7 @@ namespace OPaoGameStudio_MagnetMaze
             public int storedDialogs = 0;
             public int completedLevels = 0;
             public int playerProgress = 0;
+            public int seenDialogs = 0;
         }
         public GameData gameData = new GameData();
         public static Singleton Instance;

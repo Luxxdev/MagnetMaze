@@ -14,6 +14,7 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                Singleton.Instance.gameData.seenDialogs = 0;
                 if (isCompleted)
                 {
                     Singleton.Instance.gameData.playerProgress = 12;

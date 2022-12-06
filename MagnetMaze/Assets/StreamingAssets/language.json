@@ -77,7 +77,7 @@
     "5": "Firstly,how does a Magnet work?",
     "6": "Magnets are objects that are surrounded by a <color=#ff8933>magnetic field</color>,being able to <color=#92e8c0>magnetize certain materials</color>,such as iron and steel, which repel and attract other magnets",
     "7": "That attraction and repulsion between two magnets is called <color=#ff5277><b >Magnetic Force</b></color>, which doesn't require contact to be applied",
-    "8": "All the magnetized objects have a <color=#4fa4b8><b >SOUTH</b></color> and a <color=#ad2f45><b >NORTH</b></color> pole, when you approach 2 magnets by the <color=#ff8933><b >same pole,they repel</b></color>. They <color=#ff8933><b >attract each other when the poles are opposite!</b></color>",
+    "8": "All the magnetized objects have a <color=#4fa4b8><b >SOUTH</b></color> and a <color=#e64539><b >NORTH</b></color> pole, when you approach 2 magnets by the <color=#ff8933><b >same pole,they repel</b></color>. They <color=#ff8933><b >attract each other when the poles are opposite!</b></color>",
     "9": "I have a <color=#ff8933><b >magnetic tool</b></color> with me! You can press <color=#ff8933><b >Z</b></color> to turn it on and off and <color=#ff8933><b >X</b></color> to change poles.",
     "10": "You can also hold down the <color=#ff8933><b >↑</b></color> and <color=#ff8933><b >↓</b></color> keys to rotate the pole upwards and downwards! The <sprite index=0> above my head will mark the direction",
     "11": "<b >Beware:</b> Using my tool consumes <color=#ff8933>energy</color>. Right now I need some <color=#ECC81F>batteries</color> to recharge it. Keep an eye out not to run out of energy.",
