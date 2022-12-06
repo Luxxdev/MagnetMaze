@@ -782,7 +782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4229747280029443881, guid: 51166d013bdadcdd7b5a0895c31b550c, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -0.91416574
+      value: -0.86096597
       objectReference: {fileID: 0}
     - target: {fileID: 4229747280029443881, guid: 51166d013bdadcdd7b5a0895c31b550c, type: 3}
       propertyPath: m_Positions.Array.data[1].z
@@ -794,7 +794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4229747280029443881, guid: 51166d013bdadcdd7b5a0895c31b550c, type: 3}
       propertyPath: m_Positions.Array.data[2].y
-      value: -0.9141657
+      value: -0.8609659
       objectReference: {fileID: 0}
     - target: {fileID: 4229747280029443881, guid: 51166d013bdadcdd7b5a0895c31b550c, type: 3}
       propertyPath: m_Positions.Array.data[2].z
@@ -827,6 +827,14 @@ PrefabInstance:
     - target: {fileID: 4229747280029443882, guid: 51166d013bdadcdd7b5a0895c31b550c, type: 3}
       propertyPath: tipo
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229747280029443882, guid: 51166d013bdadcdd7b5a0895c31b550c, type: 3}
+      propertyPath: active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229747280029443882, guid: 51166d013bdadcdd7b5a0895c31b550c, type: 3}
+      propertyPath: chargingBattery
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4229747280029443883, guid: 51166d013bdadcdd7b5a0895c31b550c, type: 3}
       propertyPath: m_Name
