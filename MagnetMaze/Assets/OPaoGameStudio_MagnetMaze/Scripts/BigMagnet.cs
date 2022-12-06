@@ -110,6 +110,11 @@ namespace OPaoGameStudio_MagnetMaze
 
             if (collision.gameObject.CompareTag("PlayerToolArea") && isActive)
             {
+                if (!player.onBigMagnet)
+                {
+                    player.onBigMagnet = true;
+                }
+
                 if (collision.gameObject.layer == 10 && playerPositive != collision)
                 {
                     playerPositive = collision;
@@ -143,6 +148,10 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 collision.attachedRigidbody.sleepMode = RigidbodySleepMode2D.StartAwake;
             }
+            if (collision.gameObject.CompareTag("PlayerToolArea"))
+            {
+                player.onBigMagnet = false;
+            }
             if (positiveCollision != null && collision == positiveCollision)
             {
                 positiveCollision = null;
@@ -151,6 +160,7 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 negativeCollision = null;
             }
+
         }
         public void MagnetMovement(Collider2D obj)
         {

@@ -39,6 +39,7 @@ namespace OPaoGameStudio_MagnetMaze
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float magneticForce = 10;
         [SerializeField] private Collider2D coll;
+        public bool onBigMagnet = false;
         public GameObject staticArea;
         public bool onCarpet = false;
         private enum MovementState { idle, running, jumping, falling }
@@ -383,7 +384,8 @@ namespace OPaoGameStudio_MagnetMaze
                     else if (!currentBoxMagnetized.canInteract && !currentBoxMagnetized.held)
                     {
                         obj.attachedRigidbody.AddForce(-MagneticForceCalc(obj));
-                        rigidBody.AddForce(MagneticForceCalc(obj));
+                        if (!onBigMagnet)
+                            rigidBody.AddForce(MagneticForceCalc(obj));
                     }
                 }
             }
@@ -394,7 +396,8 @@ namespace OPaoGameStudio_MagnetMaze
                     currentBoxMagnetized.held = false;
                     isHolding = false;
                     obj.attachedRigidbody.AddForce(MagneticForceCalc(obj));
-                    rigidBody.AddForce(-MagneticForceCalc(obj));
+                    if (!onBigMagnet)
+                        rigidBody.AddForce(-MagneticForceCalc(obj));
                 }
             }
         }
@@ -418,7 +421,7 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 distance = Vector2.Distance(new Vector2(0, obj.attachedRigidbody.transform.position.y), new Vector2(0, transform.position.y));
             }
-            return ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 1.2f), 30, 15f);
+            return ClampMagnitude((magneticForce * MagneticForceDirection(obj)) / Mathf.Pow(distance, 1.2f), 30, 5f);
         }
         //IEnumerator WaitForPoleChange()
         //{
