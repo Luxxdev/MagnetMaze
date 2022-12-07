@@ -31,6 +31,12 @@ namespace OPaoGameStudio_MagnetMaze
 
         public virtual void OnSwitchActivate()
         {
+            foreach (var item in interactableObject)
+            {
+                if (item.CompareTag("Battery"))
+                    if (item.GetComponent<Battery>().isFull)
+                        canActivate = false;
+            }
             if (canActivate)
             {
                 if (hasBattery)

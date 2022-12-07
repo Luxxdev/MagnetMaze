@@ -10,6 +10,7 @@ namespace OPaoGameStudio_MagnetMaze
         [SerializeField] private SpriteRenderer energyBar;
         public float requiredEnergy = 10;
         public float energy;
+        public int energyIncreaseRate = 3;
         public bool isFull = false;
         public float conectedSwitches = 1;
         public bool charging = false;
@@ -22,8 +23,8 @@ namespace OPaoGameStudio_MagnetMaze
             if (!isFull)
             {
                 enabled = true;
-                energy += Time.deltaTime;
-                energyBar.size += new Vector2(0, 0.04294457f * Time.deltaTime);
+                energy += Time.deltaTime * energyIncreaseRate;
+                energyBar.size += new Vector2(0, 0.04294457f * Time.deltaTime * energyIncreaseRate);
                 if (energy >= requiredEnergy - 0.1)
                 {
                     energy = requiredEnergy;
@@ -51,8 +52,8 @@ namespace OPaoGameStudio_MagnetMaze
             }
             if (!charging && !isFull && energy >= (requiredEnergy * pressedButtons / conectedSwitches) + 0.1f)
             {
-                energy -= Time.deltaTime;
-                energyBar.size -= new Vector2(0, 0.04294457f * Time.deltaTime);
+                energy -= Time.deltaTime * energyIncreaseRate;
+                energyBar.size -= new Vector2(0, 0.04294457f * Time.deltaTime * energyIncreaseRate);
 
                 if (energy <= 0)
                 {
