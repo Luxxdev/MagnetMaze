@@ -7,6 +7,11 @@
       },
       {
          "dialogueID": "31",
+         "image": "CHAR/normal",
+         "explanationImg": "EXP/coil"
+      },
+      {
+         "dialogueID": "32",
          "image": "CHAR/smile",
          "explanationImg": "EXP/coil"
       }

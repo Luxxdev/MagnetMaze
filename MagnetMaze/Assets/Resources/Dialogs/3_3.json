@@ -1,17 +1,17 @@
 {
    "Text": [
       {
-         "dialogueID": "32",
+         "dialogueID": "33",
          "image": "CHAR/normal",
          "explanationImg": "EXP/electric"
       },
       {
-         "dialogueID": "33",
+         "dialogueID": "34",
          "image": "CHAR/smile",
          "explanationImg": "EXP/electric"
       },
       {
-         "dialogueID": "34",
+         "dialogueID": "35",
          "image": "CHAR/question",
          "explanationImg": "EXP/electric"
       }

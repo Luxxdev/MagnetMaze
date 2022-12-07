@@ -33,12 +33,12 @@ namespace OPaoGameStudio_MagnetMaze
                 }
                 textShown = true;
                 Destroy(this.gameObject);
-            }
-            if (otherDialogs.Length > 0)
-            {
-                foreach (DialogTrigger dialog in otherDialogs)//for (int i = 0; i < otherDialogs, i++)
+                if (otherDialogs.Length > 0)
                 {
-                    dialog.textShown = false;
+                    foreach (DialogTrigger dialog in otherDialogs)
+                    {
+                        dialog.textShown = false;
+                    }
                 }
             }
         }
