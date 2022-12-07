@@ -17,7 +17,7 @@ namespace LoLSDK
 #if UNITY_EDITOR
     public interface ILOLSDK_EDITOR : ILOLSDK_EXTENSION
     {
-        void SpeakText (string text, Action<AudioClip> onDownloaded, MonoBehaviour owner, string currentLang = "en", string currentTTSLangKey = "en-US");
+        void SpeakText(string text, Action<AudioClip> onDownloaded, MonoBehaviour owner, string currentLang = "en", string currentTTSLangKey = "en-US");
     }
 #endif
 
@@ -313,7 +313,7 @@ namespace LoLSDK
         }
 
         Coroutine pollyTTSRequest;
-        public void SpeakText (string text, Action<AudioClip> onDownloaded, MonoBehaviour owner, string currentLang = "en", string currentTTSLangKey = "en-US")
+        public void SpeakText(string text, Action<AudioClip> onDownloaded, MonoBehaviour owner, string currentLang = "en", string currentTTSLangKey = "en-US")
         {
             if (string.IsNullOrEmpty(text))
                 return;
@@ -329,7 +329,7 @@ namespace LoLSDK
             pollyTTSRequest = owner.StartCoroutine(_PollyTTS(cleanString, currentLang, currentTTSLangKey, onDownloaded));
         }
 
-        IEnumerator _PollyTTS (string text, string currentLang, string currentTTSLangKey, Action<AudioClip> onDownloaded)
+        IEnumerator _PollyTTS(string text, string currentLang, string currentTTSLangKey, Action<AudioClip> onDownloaded)
         {
             string clipUrl = null;
             var postData = new JSONObject

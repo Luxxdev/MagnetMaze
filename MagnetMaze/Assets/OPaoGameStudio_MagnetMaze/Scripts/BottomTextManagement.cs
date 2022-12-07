@@ -109,6 +109,7 @@ namespace OPaoGameStudio_MagnetMaze
             textDisplay.text = "";
             isPaused = false;
             isDialogOpen = false;
+            ((ILOLSDK_EXTENSION)LOLSDK.Instance.PostMessage).CancelSpeakText();
         }
 
         public void NextPhrase()
