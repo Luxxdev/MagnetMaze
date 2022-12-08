@@ -20,7 +20,7 @@ namespace OPaoGameStudio_MagnetMaze
         void TextDisplayUpdate()
         {
             finishButton.transform.GetChild(0).GetComponent<TMP_Text>().text = SharedState.LanguageDefs["finish"];
-            endText.GetComponent<TMP_Text>().text = SharedState.LanguageDefs["completed1"];
+            endText.GetComponent<TMP_Text>().text = SharedState.LanguageDefs["completedText"];
         }
     }
 }

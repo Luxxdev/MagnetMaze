@@ -291,6 +291,7 @@ MonoBehaviour:
     m_Bits: 4160
   magneticForce: 10
   coll: {fileID: 5968601832341726686}
+  onBigMagnet: 0
   staticArea: {fileID: 5677108388722840844}
   onCarpet: 0
 --- !u!95 &4058572531331260509
@@ -354,7 +355,7 @@ GameObject:
   - component: {fileID: 8566935416285152799}
   - component: {fileID: 6506386204090151747}
   - component: {fileID: 3253965415906981778}
-  m_Layer: 3
+  m_Layer: 18
   m_Name: StaticArea
   m_TagString: StaticArea
   m_Icon: {fileID: 0}
