@@ -8,6 +8,7 @@ namespace OPaoGameStudio_MagnetMaze
     {
 
         private LineRenderer line;
+        public Texture[] textures;
         private Dictionary<string, Color> cores = new Dictionary<string, Color>(){
         {"positivo",new Color(0.90f, 0.27f, 0.22f,1f)},
         {"negativo",new Color(0.57f, 0.91f, 0.75f,1f)},
@@ -49,8 +50,13 @@ namespace OPaoGameStudio_MagnetMaze
         }
         public void ChangeColor(string cor)
         {
-            line.startColor = cores[cor];
-            line.endColor = cores[cor];
+            if (cor == "ligado")
+                line.material.SetTexture("_MainTex", textures[1]);
+            else if (cor == "desligado")
+                line.material.SetTexture("_MainTex", textures[0]);
+
+            // line.startColor = cores[cor];
+            // line.endColor = cores[cor];
             active = !active;
         }
     }
