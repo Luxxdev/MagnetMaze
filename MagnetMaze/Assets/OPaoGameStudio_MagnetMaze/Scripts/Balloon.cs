@@ -8,6 +8,13 @@ namespace OPaoGameStudio_MagnetMaze
     {
         public float speed = 1.0f;
         public int energyAmount = 20;
+        public Animator anim;
+
+        private void Start()
+        {
+            anim = GetComponent<Animator>();
+            anim.Play("Balloon", -1, Random.Range(0.0f, 1.0f));
+        }
         void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("StaticArea"))
