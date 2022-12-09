@@ -23,7 +23,7 @@ namespace OPaoGameStudio_MagnetMaze
         void Start()
         {
             line = GetComponent<LineRenderer>();
-            if (tipo == Mode.onOff)
+            if (tipo == Mode.onOff && !active)
             {
                 ChangeColor("desligado");
             }
