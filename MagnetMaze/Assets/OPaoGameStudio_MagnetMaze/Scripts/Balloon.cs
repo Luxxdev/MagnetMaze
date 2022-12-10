@@ -12,7 +12,6 @@ namespace OPaoGameStudio_MagnetMaze
 
         private void Start()
         {
-            anim = GetComponent<Animator>();
             anim.Play("Balloon", -1, Random.Range(0.0f, 1.0f));
         }
         void OnTriggerStay2D(Collider2D collision)
@@ -20,7 +19,7 @@ namespace OPaoGameStudio_MagnetMaze
             if (collision.gameObject.CompareTag("StaticArea"))
             {
                 var step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, collision.transform.parent.transform.position, step);
+                transform.parent.transform.position = Vector3.MoveTowards(transform.parent.transform.position, collision.transform.parent.transform.position, step);
             }
             if (collision.gameObject.CompareTag("Player"))
             {

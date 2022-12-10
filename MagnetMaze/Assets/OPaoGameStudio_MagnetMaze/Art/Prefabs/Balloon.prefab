@@ -230,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   energyAmount: 20
+  anim: {fileID: 1934406082408235042}
 --- !u!95 &1934406082408235042
 Animator:
   serializedVersion: 3
