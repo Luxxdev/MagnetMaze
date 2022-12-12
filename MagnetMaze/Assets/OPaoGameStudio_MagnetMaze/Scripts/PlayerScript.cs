@@ -189,10 +189,10 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 ActivateRestartPanel();
             }
-            // if (isToolActive && energy > 0)
-            // {
-            //     energy -= 5;
-            // }
+            if (isToolActive && energy > 0)
+            {
+                energy -= 1;
+            }
             ChangeText();
         }
         private void ToggleTool()
@@ -200,7 +200,7 @@ namespace OPaoGameStudio_MagnetMaze
             anim.SetTrigger("toolClick");
             AUM.Play("click");
             currentPole = !currentPole;
-            // energy -= 1;
+            energy -= 1;
             tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
             magnetIndicator.transform.localScale = new Vector3(magnetIndicator.transform.localScale.x * -1, magnetIndicator.transform.localScale.y, magnetIndicator.transform.localScale.z);
             ChangeText();
@@ -220,7 +220,7 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (objects[0].CompareTag("Box"))
             {
-                energy -= 5;
+                energy -= 1;
                 AUM.Play("magnetize");
                 if (lastBoxInteracted != null && lastBoxInteracted != objects[0])
                 {
