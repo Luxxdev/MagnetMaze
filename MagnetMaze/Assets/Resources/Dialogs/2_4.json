@@ -4,6 +4,11 @@
             "dialogueID": "35",
             "image": "CHAR/smile",
             "explanationImg": ""
+        },
+        {
+            "dialogueID": "36",
+            "image": "CHAR/smile",
+            "explanationImg": ""
         }
     ]
 }
