@@ -220,6 +220,7 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (objects[0].CompareTag("Box"))
             {
+                isHolding = false;
                 energy -= 1;
                 AUM.Play("magnetize");
                 if (lastBoxInteracted != null && lastBoxInteracted != objects[0])

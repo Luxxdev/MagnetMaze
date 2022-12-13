@@ -63,14 +63,31 @@ namespace OPaoGameStudio_MagnetMaze
                     gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
                     collisionBlocker.enabled = false;
                     gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                    float direction;
+                    if (!player.isFacingRight)
+                        direction = -1;
+                    else
+                        direction = 1;
                     if (!isHorizontal)
                     {
-                        float direction;
-                        if (!player.isFacingRight)
-                            direction = -1;
-                        else
-                            direction = 1;
                         ChangePole(lastPole, new Vector2(direction, 0));
+                    }
+                    else
+                    {
+                        if (lastPole == "Positive")
+                        {
+                            if ((player.isFacingRight && magnetOrientation.x != -1) || (!player.isFacingRight && magnetOrientation.x != 1))
+                            {
+                                ChangePole(lastPole, new Vector2(direction, 0));
+                            }
+                        }
+                        else if (lastPole == "Negative")
+                        {
+                            if ((player.isFacingRight && magnetOrientation.x != 1) || (!player.isFacingRight && magnetOrientation.x != -1))
+                            {
+                                ChangePole(lastPole, new Vector2(direction, 0));
+                            }
+                        }
                     }
                     polesAreaObject.SetActive(false);
                     heldSettings = true;
@@ -96,7 +113,7 @@ namespace OPaoGameStudio_MagnetMaze
             {
                 conducting = true;
                 touchingConductingBoxes.Add(collision.transform.parent.gameObject);
-                print("entrou" + name + conducting);
+                // print("entrou" + name + conducting);
             }
         }
 
@@ -112,7 +129,7 @@ namespace OPaoGameStudio_MagnetMaze
                         if (touchingConductingBoxes.Count == 0)
                         {
                             conducting = false;
-                            print("stay" + name + conducting);
+                            // print("stay" + name + conducting);
                         }
                     }
                 }
@@ -122,8 +139,7 @@ namespace OPaoGameStudio_MagnetMaze
                     {
                         touchingConductingBoxes.Add(collision.transform.parent.gameObject);
                         conducting = true;
-                        print("stay" + name + conducting);
-
+                        // print("stay" + name + conducting);
                     }
                 }
             }
@@ -136,13 +152,13 @@ namespace OPaoGameStudio_MagnetMaze
                 if (touchingConductingBoxes.Count != 0 && touchingConductingBoxes.Contains(collision.transform.parent.gameObject))
                 {
                     touchingConductingBoxes.Remove(collision.transform.parent.gameObject);
-                    print(touchingConductingBoxes.Count);
+                    // print(touchingConductingBoxes.Count);
                 }
 
                 if (touchingConductingBoxes.Count == 0)
                 {
                     conducting = false;
-                    print("saiu" + name + conducting);
+                    // print("saiu" + name + conducting);
                 }
             }
         }
