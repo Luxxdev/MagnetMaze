@@ -26857,7 +26857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4442883456383413767, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -177.99995
+      value: -177.99994
       objectReference: {fileID: 0}
     - target: {fileID: 4442883456694540817, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_Pivot.x
@@ -26963,6 +26963,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 271424243}
+    - target: {fileID: 5868850642184907431, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 271424243}
+    - target: {fileID: 5868850642184907431, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReloadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868850642184907431, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OPaoGameStudio_MagnetMaze.Goal, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6021151794122463226, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

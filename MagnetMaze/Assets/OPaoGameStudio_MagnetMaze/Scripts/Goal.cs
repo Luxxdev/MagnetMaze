@@ -8,6 +8,9 @@ namespace OPaoGameStudio_MagnetMaze
     {
         [SerializeField] private int nextScene;
         public bool isCompleted = false;
+        private bool reload = false;
+        public int levelToLoad;
+        public Animator animator;
         // [SerializeField] private int progressCount;
 
         void OnTriggerEnter2D(Collider2D other)
@@ -35,17 +38,36 @@ namespace OPaoGameStudio_MagnetMaze
 
         public void LoadNextScene(int scene)
         {
-            if (!isCompleted)
-                SceneManager.LoadScene($"LEVEL_{scene}"); //LoadScene("LEVEL_" + scene.ToString());
-            else
-                SceneManager.LoadScene(scene);
+            levelToLoad = scene;
+            animator.SetTrigger("FadeOut");
+
+            // if (!isCompleted)
+            //     SceneManager.LoadScene($"LEVEL_{scene}"); //LoadScene("LEVEL_" + scene.ToString());
+            // else
+            // {
+            //     SceneManager.LoadScene(scene);
+            // }
             return;
         }
         public void ReloadScene()
         {
-            Scene actualScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(actualScene.name);
-            return;
+            reload = true;
+            levelToLoad = SceneManager.GetActiveScene().buildIndex - 2;
+            animator.SetTrigger("FadeOut");
+
+            // Scene actualScene = SceneManager.GetActiveScene();
+            // SceneManager.LoadScene(actualScene.name);
+            // return;
+        }
+
+        public void onFadeComplete()
+        {
+            if (!isCompleted || reload)
+                SceneManager.LoadScene($"LEVEL_{levelToLoad}");
+
+            else
+                SceneManager.LoadScene(levelToLoad);
+
         }
     }
 }
