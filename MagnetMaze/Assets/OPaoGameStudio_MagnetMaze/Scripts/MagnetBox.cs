@@ -72,27 +72,14 @@ namespace OPaoGameStudio_MagnetMaze
                     {
                         ChangePole(lastPole, new Vector2(direction, 0));
                     }
-                    else
-                    {
-                        if (lastPole == "Positive")
-                        {
-                            if ((player.isFacingRight && magnetOrientation.x != -1) || (!player.isFacingRight && magnetOrientation.x != 1))
-                            {
-                                ChangePole(lastPole, new Vector2(direction, 0));
-                            }
-                        }
-                        else if (lastPole == "Negative")
-                        {
-                            if ((player.isFacingRight && magnetOrientation.x != 1) || (!player.isFacingRight && magnetOrientation.x != -1))
-                            {
-                                ChangePole(lastPole, new Vector2(direction, 0));
-                            }
-                        }
-                    }
                     polesAreaObject.SetActive(false);
                     heldSettings = true;
                 }
                 transform.position = playerBoxHolder.position;
+                if (polesAreaObject.activeSelf)
+                {
+                    polesAreaObject.SetActive(false);
+                }
             }
             else if (heldSettings)
             {
