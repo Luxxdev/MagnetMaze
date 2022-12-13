@@ -20,9 +20,9 @@ namespace OPaoGameStudio_MagnetMaze
                     Singleton.Instance.gameData.playerProgress = 12;
                     LOLSDK.Instance.SubmitProgress(0, 12, 12);
                 }
-                if (nextScene > 4)
+                if (nextScene > 5)
                 {
-                    Singleton.Instance.gameData.completedLevels = 4;
+                    Singleton.Instance.gameData.completedLevels = 5;
                 }
                 else
                 {

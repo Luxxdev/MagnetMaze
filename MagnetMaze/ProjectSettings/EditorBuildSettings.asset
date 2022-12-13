@@ -16,7 +16,7 @@ EditorBuildSettings:
     guid: e397b8f0bbe06f4b3bcf604cc0875e98
   - enabled: 1
     path: Assets/OPaoGameStudio_MagnetMaze/Scenes/Levels/LEVEL_1.unity
-    guid: 8eb21db77bbf2b88e85772a13b278a0f
+    guid: a6b19a5e55531da428428b4250d4bd75
   - enabled: 1
     path: Assets/OPaoGameStudio_MagnetMaze/Scenes/Levels/LEVEL_2.unity
     guid: db4ff4492bd93a886950cbcec135a779
@@ -25,7 +25,10 @@ EditorBuildSettings:
     guid: a15dce8edcd9ba561863bf134d596055
   - enabled: 1
     path: Assets/OPaoGameStudio_MagnetMaze/Scenes/Levels/LEVEL_4.unity
-    guid: a6b19a5e55531da428428b4250d4bd75
+    guid: b9b8bc27335446340a5551d6512bf381
+  - enabled: 1
+    path: Assets/OPaoGameStudio_MagnetMaze/Scenes/Levels/LEVEL_5.unity
+    guid: 8eb21db77bbf2b88e85772a13b278a0f
   - enabled: 1
     path: Assets/OPaoGameStudio_MagnetMaze/Scenes/Completed.unity
     guid: d6896b2ce5e4b8c9683092b20c76c149

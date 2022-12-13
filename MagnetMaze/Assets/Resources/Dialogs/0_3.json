@@ -9,6 +9,11 @@
             "dialogueID": "13",
             "image": "CHAR/smile",
             "explanationImg": ""
+        },
+        {
+            "dialogueID": "14",
+            "image": "CHAR/smile",
+            "explanationImg": ""
         }
     ]
 }
