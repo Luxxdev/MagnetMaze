@@ -16091,6 +16091,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1979438344}
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: goalScript
+      value: 
+      objectReference: {fileID: 271424243}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: failMessage
       value: F0
       objectReference: {fileID: 0}
