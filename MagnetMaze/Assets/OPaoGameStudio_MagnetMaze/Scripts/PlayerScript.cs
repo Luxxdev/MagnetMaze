@@ -76,7 +76,10 @@ namespace OPaoGameStudio_MagnetMaze
                 }
                 // -1 esquerda, 1 direita
                 horizontal = Input.GetAxisRaw("Horizontal");
-                vertical = Input.GetAxisRaw("Vertical");
+                if (!isHolding)
+                    vertical = Input.GetAxisRaw("Vertical");
+                else
+                    vertical = 0;
                 if (Input.GetButtonDown("ToggleTool"))
                 {
                     if (energy > 0)
@@ -230,12 +233,12 @@ namespace OPaoGameStudio_MagnetMaze
                 if (!currentPole)
                 {
                     objects[0].GetComponent<MagnetBox>().player = this;
-                    objects[0].GetComponent<MagnetBox>().ChangePole("Negative", MagneticForceDirection(objects[0].GetComponent<Collider2D>()));
+                    objects[0].GetComponent<MagnetBox>().ChangePole("Negative", new Vector2(MagneticForceDirection(objects[0].GetComponent<Collider2D>()).x, vertical));
                 }
                 else if (currentPole)
                 {
                     objects[0].GetComponent<MagnetBox>().player = this;
-                    objects[0].GetComponent<MagnetBox>().ChangePole("Positive", MagneticForceDirection(objects[0].GetComponent<Collider2D>()));
+                    objects[0].GetComponent<MagnetBox>().ChangePole("Positive", new Vector2(MagneticForceDirection(objects[0].GetComponent<Collider2D>()).x, vertical));
                 }
 
                 currentBoxMagnetized = objects[0].GetComponent<MagnetBox>();
