@@ -48074,7 +48074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4442883456383413767, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -178.00002
+      value: -178
       objectReference: {fileID: 0}
     - target: {fileID: 4442883456694540817, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: m_Pivot.x
@@ -48224,6 +48224,10 @@ PrefabInstance:
       propertyPath: textJSON
       value: 
       objectReference: {fileID: 4900000, guid: 945a58eed22061c18bceb5d164b65827, type: 3}
+    - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
+      propertyPath: goalScript
+      value: 
+      objectReference: {fileID: 271424243}
     - target: {fileID: 6891574256584644476, guid: b46c6f8947e6aa23b8aaeaa80724dfed, type: 3}
       propertyPath: failMessage
       value: F4

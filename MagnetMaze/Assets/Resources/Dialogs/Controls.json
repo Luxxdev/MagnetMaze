@@ -1,0 +1,24 @@
+{
+   "Text": [
+      {
+         "dialogueID": "100",
+         "image": "CHAR/normal",
+         "explanationImg": ""
+      },
+      {
+         "dialogueID": "101",
+         "image": "CHAR/normal",
+         "explanationImg": ""
+      },
+      {
+         "dialogueID": "102",
+         "image": "CHAR/normal",
+         "explanationImg": ""
+      },
+      {
+         "dialogueID": "103",
+         "image": "CHAR/normal",
+         "explanationImg": ""
+      }
+   ]
+}
