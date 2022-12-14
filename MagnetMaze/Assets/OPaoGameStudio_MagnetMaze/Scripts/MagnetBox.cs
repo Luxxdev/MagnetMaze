@@ -204,8 +204,8 @@ namespace OPaoGameStudio_MagnetMaze
                 lastPole = "Neutral";
                 magnetOrientation = new Vector2(0, 0);
             }
-            print(lastPole);
-            print(magnetOrientation);
+            // print(lastPole);
+            // print(magnetOrientation);
         }
     }
 }
