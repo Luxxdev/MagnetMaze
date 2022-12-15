@@ -139,7 +139,6 @@ namespace OPaoGameStudio_MagnetMaze
                 dialogueID = (int.Parse(dialogueID) + 1).ToString();
                 if (phraseIndex >= myTextList.Text.Length)
                 {
-                    print("called Close Dialog");
                     CloseDialog();
                     return;
                 }
