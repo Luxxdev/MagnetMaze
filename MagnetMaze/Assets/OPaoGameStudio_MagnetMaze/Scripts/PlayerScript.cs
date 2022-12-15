@@ -119,11 +119,6 @@ namespace OPaoGameStudio_MagnetMaze
                     rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * 0.5f);
                 }
                 //1 pra cima, -1 pra baixo
-                //if (Input.GetAxisRaw("Vertical") > 0)
-                //{
-                //    tool.transform.eulerAngles = new Vector3()
-                //}
-
                 if (vertical > 0 && !isHolding)
                 {
                     tool.transform.eulerAngles = new Vector3(0, 0, 180);
@@ -143,14 +138,6 @@ namespace OPaoGameStudio_MagnetMaze
                     magnetIndicator.transform.eulerAngles = new Vector3(0, 0, 0);
 
                     isHorizontal = true;
-                }
-                if (!onCarpet && staticArea.transform.localScale.x > 0.1f)
-                {
-                    staticArea.transform.localScale -= new Vector3(0.001f, 0.001f, 0.001f);
-                }
-                else if (staticArea.transform.localScale.x <= 0.1)
-                {
-                    staticArea.SetActive(false);
                 }
             }
             else
@@ -261,6 +248,17 @@ namespace OPaoGameStudio_MagnetMaze
         private void FixedUpdate()
         {
             rigidBody.velocity = new Vector2(horizontal * speed, rigidBody.velocity.y);
+            if (!hud.GetComponent<BottomTextManagement>().GetIsPaused())
+            {
+                if (!onCarpet && staticArea.transform.localScale.x > 0.1f)
+                {
+                    staticArea.transform.localScale -= new Vector3(0.007f, 0.007f, 0.007f);
+                }
+                else if (staticArea.transform.localScale.x <= 0.1)
+                {
+                    staticArea.SetActive(false);
+                }
+            }
         }
 
         private bool IsGrounded()

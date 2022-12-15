@@ -111,46 +111,50 @@ namespace OPaoGameStudio_MagnetMaze
                 explanationImage.DOFade(1, 0.8f);
             }
             isPaused = true;
-            isDialogOpen = true;
+            StartCoroutine(WaitDialog());//isDialogOpen = true;
         }
 
         public void CloseDialog()
         {
-            phraseIndex = 0;
+            isDialogOpen = false;
             darkenPanel.DOFade(0f, transTime);
             panelTransform.DOAnchorPosY(positions["hidden"].y, transTime);
             charExpression.DOFade(0, 0.2f);
             explanationImage.DOFade(0, 0.2f);
             textDisplay.text = "";
             isPaused = false;
-            isDialogOpen = false;
             ((ILOLSDK_EXTENSION)LOLSDK.Instance.PostMessage).CancelSpeakText();
             retryBTN.gameObject.SetActive(false);
             backBTN.gameObject.SetActive(false);
             nextBTN.gameObject.SetActive(true);
             gameObject.transform.GetChild(4).gameObject.SetActive(true);
+            phraseIndex = 0;
         }
 
         public void NextPhrase()
         {
-            phraseIndex++;
-            dialogueID = (int.Parse(dialogueID) + 1).ToString();
-            if (phraseIndex >= myTextList.Text.Length)
+            if (isDialogOpen)
             {
-                CloseDialog();
-                return;
+                phraseIndex++;
+                dialogueID = (int.Parse(dialogueID) + 1).ToString();
+                if (phraseIndex >= myTextList.Text.Length)
+                {
+                    print("called Close Dialog");
+                    CloseDialog();
+                    return;
+                }
+                AUM.Play("nextClick");
+                charExpression.sprite = Resources.Load<Sprite>(myTextList.Text[phraseIndex].image);
+                explanationImage.sprite = Resources.Load<Sprite>(myTextList.Text[phraseIndex].explanationImg);
+                explanationImage.color = new Color(1, 1, 1, 0);
+                explanationImage.SetNativeSize();
+                if (myTextList.Text[phraseIndex].explanationImg != "")
+                {
+                    explanationImage.color = new Color(1, 1, 1, 1);
+                }
+                textDisplay.text = SharedState.LanguageDefs[dialogueID];//myTextList.Text[phraseIndex].dialogue;
+                LOLSDK.Instance.SpeakText(dialogueID);
             }
-            AUM.Play("nextClick");
-            charExpression.sprite = Resources.Load<Sprite>(myTextList.Text[phraseIndex].image);
-            explanationImage.sprite = Resources.Load<Sprite>(myTextList.Text[phraseIndex].explanationImg);
-            explanationImage.color = new Color(1, 1, 1, 0);
-            explanationImage.SetNativeSize();
-            if (myTextList.Text[phraseIndex].explanationImg != "")
-            {
-                explanationImage.color = new Color(1, 1, 1, 1);
-            }
-            textDisplay.text = SharedState.LanguageDefs[dialogueID];//myTextList.Text[phraseIndex].dialogue;
-            LOLSDK.Instance.SpeakText(dialogueID);
         }
 
         public void UpdateVisibleChildren()
@@ -193,6 +197,11 @@ namespace OPaoGameStudio_MagnetMaze
                 charExpression.sprite = Resources.Load<Sprite>("CHAR/normal");
                 charExpression.DOFade(1, 0.8f);
             }
+        }
+        IEnumerator<WaitForSeconds> WaitDialog()
+        {
+            yield return new WaitForSeconds(0.8f);
+            isDialogOpen = true;
         }
     }
 }
