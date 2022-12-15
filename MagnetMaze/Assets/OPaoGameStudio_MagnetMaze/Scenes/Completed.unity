@@ -1080,6 +1080,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextScene: 0
   isCompleted: 1
+  levelToLoad: 0
+  animator: {fileID: 0}
 --- !u!1 &1731781231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,7 +1297,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f75aa9c29b4908d138080f67d113ecc6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69fb140ce41ed7996a57a61375727685, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
