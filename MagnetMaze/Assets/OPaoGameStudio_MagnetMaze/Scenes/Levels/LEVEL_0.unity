@@ -16527,7 +16527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5376859064819473375, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
       propertyPath: isPressure
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5376859064819473375, guid: 3cdf98b084fa777498c0666d48c91855, type: 3}
       propertyPath: interactableObject.Array.size
