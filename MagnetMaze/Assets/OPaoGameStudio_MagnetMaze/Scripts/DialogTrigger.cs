@@ -29,7 +29,7 @@ namespace OPaoGameStudio_MagnetMaze
                 {
                     Singleton.Instance.gameData.playerProgress = currentProgress;
                     Singleton.Instance.SetPlayerProgress(currentProgress);
-                    LOLSDK.Instance.SubmitProgress(0, currentProgress, 12);
+                    LOLSDK.Instance.SubmitProgress(0, currentProgress, 11);
                 }
                 textShown = true;
                 Destroy(this.gameObject);

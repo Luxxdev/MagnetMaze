@@ -23270,7 +23270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7331898539225215858, guid: c9f3226986306f813a46ac3af594a5b7, type: 3}
       propertyPath: isProgress
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7331898539225215858, guid: c9f3226986306f813a46ac3af594a5b7, type: 3}
       propertyPath: currentProgress
@@ -24024,7 +24024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812508102915740949, guid: 726eee4fc9c3ce2fb8b8f585291b2469, type: 3}
       propertyPath: nextScene
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2812508102915740949, guid: 726eee4fc9c3ce2fb8b8f585291b2469, type: 3}
       propertyPath: isCompleted
