@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 9f6fee5cf64388e07bf2f4b0659794b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -415,7 +415,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -634,6 +634,10 @@ PrefabInstance:
     - target: {fileID: 1513901236163905328, guid: 222f2a9dd02661b87b42c426e2ea9737, type: 3}
       propertyPath: m_Name
       value: MagnetField
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630861213962238117, guid: 222f2a9dd02661b87b42c426e2ea9737, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8922547208993215933, guid: 222f2a9dd02661b87b42c426e2ea9737, type: 3}
       propertyPath: m_RootOrder
