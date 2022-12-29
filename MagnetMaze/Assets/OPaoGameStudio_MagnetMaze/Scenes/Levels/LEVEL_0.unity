@@ -18663,6 +18663,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5643386252426206858, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
+      propertyPath: videoName
+      value: Gif2
+      objectReference: {fileID: 0}
     - target: {fileID: 5643386252426206859, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
       propertyPath: m_VideoClip
       value: 
@@ -20587,6 +20591,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5643386252426206858, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
+      propertyPath: videoName
+      value: Gif1
+      objectReference: {fileID: 0}
     - target: {fileID: 5643386252426206859, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
       propertyPath: m_VideoClip
       value: 
@@ -21394,6 +21402,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5643386252426206858, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
+      propertyPath: videoName
+      value: Gif3
+      objectReference: {fileID: 0}
     - target: {fileID: 5643386252426206859, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
       propertyPath: m_VideoClip
       value: 
@@ -21782,10 +21794,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5643386252426206858, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
+      propertyPath: videoName
+      value: Gif4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5643386252426206859, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
+      propertyPath: m_Url
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5643386252426206859, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
       propertyPath: m_VideoClip
       value: 
       objectReference: {fileID: 32900000, guid: ef68f505646f22c44b681be5a5e8eb7e, type: 3}
+    - target: {fileID: 5643386252426206859, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
+      propertyPath: m_DataSource
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5643386252426206859, guid: 5cda8869418c23a43ab972d06be72a1b, type: 3}
       propertyPath: m_ControlledAudioTrackCount
       value: 0

@@ -10,14 +10,20 @@ namespace OPaoGameStudio_MagnetMaze
         public VideoPlayer selfVideoPlayer;
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer borderSprite;
+        public string videoName;
 
+        private void Start()
+        {
+            selfVideoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, videoName + ".mp4");
+        }
         void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
             {
-                selfVideoPlayer.Play();
                 spriteRenderer.enabled = true;
                 borderSprite.enabled = true;
+                selfVideoPlayer.Play();
+                spriteRenderer.color = new Color(1, 1, 1, 1);
             }
         }
         void OnTriggerExit2D(Collider2D collision)
@@ -27,6 +33,8 @@ namespace OPaoGameStudio_MagnetMaze
                 spriteRenderer.enabled = false;
                 borderSprite.enabled = false;
                 selfVideoPlayer.Stop();
+                spriteRenderer.color = new Color(0, 0, 0, 1);
+
             }
         }
     }
