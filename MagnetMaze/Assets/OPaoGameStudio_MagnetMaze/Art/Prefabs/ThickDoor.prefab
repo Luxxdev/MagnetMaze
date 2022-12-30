@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5693530924544845853, guid: 356281acbec41ee4c95386ce9cfa0eb5, type: 3}
+      propertyPath: coll
+      value: 
+      objectReference: {fileID: 9020728503069765520}
     - target: {fileID: 5693530924544845854, guid: 356281acbec41ee4c95386ce9cfa0eb5, type: 3}
       propertyPath: m_Size.y
       value: 0.32
@@ -73,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693530924544845855, guid: 356281acbec41ee4c95386ce9cfa0eb5, type: 3}
       propertyPath: m_Size.y
-      value: 0.25820822
+      value: 0.34703678
       objectReference: {fileID: 0}
     - target: {fileID: 5693530924544845855, guid: 356281acbec41ee4c95386ce9cfa0eb5, type: 3}
       propertyPath: m_Offset.x
@@ -97,3 +101,34 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 62bb5376cbfa19f97968a3cd3efb7277, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 356281acbec41ee4c95386ce9cfa0eb5, type: 3}
+--- !u!1 &9020728503069765523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693530924544845852, guid: 356281acbec41ee4c95386ce9cfa0eb5, type: 3}
+  m_PrefabInstance: {fileID: 3617354713613502351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &9020728503069765520 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5693530924544845855, guid: 356281acbec41ee4c95386ce9cfa0eb5, type: 3}
+  m_PrefabInstance: {fileID: 3617354713613502351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &3116302528774919384
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9020728503069765523}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
