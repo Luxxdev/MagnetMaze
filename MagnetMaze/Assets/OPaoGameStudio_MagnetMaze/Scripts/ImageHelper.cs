@@ -23,7 +23,7 @@ namespace OPaoGameStudio_MagnetMaze
                 spriteRenderer.enabled = true;
                 borderSprite.enabled = true;
                 selfVideoPlayer.Play();
-                StartCoroutine(Wait());
+                StartCoroutine(WaitVideo());
             }
         }
         void OnTriggerExit2D(Collider2D collision)
@@ -36,12 +36,14 @@ namespace OPaoGameStudio_MagnetMaze
                 spriteRenderer.color = new Color(0, 0, 0, 1);
             }
         }
-        IEnumerator Wait()
+        IEnumerator WaitVideo()
         {
             selfVideoPlayer.Prepare();
 
             while (!selfVideoPlayer.isPrepared)
                 yield return null;
+
+            yield return new WaitForSeconds(0.05f);
 
             if (selfVideoPlayer.isPlaying)
                 spriteRenderer.color = new Color(1, 1, 1, 1);
