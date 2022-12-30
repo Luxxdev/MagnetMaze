@@ -38,13 +38,15 @@ namespace OPaoGameStudio_MagnetMaze
         }
         IEnumerator Wait()
         {
-            yield return new WaitForSeconds(0.1f);
+            selfVideoPlayer.Prepare();
+
+            while (!selfVideoPlayer.isPrepared)
+                yield return null;
+
             if (selfVideoPlayer.isPlaying)
                 spriteRenderer.color = new Color(1, 1, 1, 1);
             else
                 spriteRenderer.color = new Color(0, 0, 0, 1);
-
-
         }
     }
 }
