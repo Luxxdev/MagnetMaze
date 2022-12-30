@@ -115,7 +115,7 @@
     "33": "<b >Beware:</b> The dark static boxes ahead are made of a <color=#1b1f21><b >non-conductive material!</b></color>",
     "34": "Now it's time to throw it all together! Do you think you can do it?",
     "35": "<color=#ff8933><b >Remember: </b></color>If you <b >switch</b> my tool's polarity while holding a magnetized box, it will be thrown away by the magnetic force.",
-    "36": "Also, if you ever drop a box and you need to bring it back up, remember that it can also be magnetized vertically, by holding <color=#ff8933><b >up(↑)</b></color> and <color=#ff8933><b >down(↓)</b></color>.",
+    "36": "Also, if you ever drop a box and you need to bring it back up, remember that it can also be magnetized vertically, by interacting with the box while holding <color=#ff8933><b >up(↑)</b></color> and <color=#ff8933><b >down(↓)</b></color>.",
     "F0": "Don't forget to change your tool's <color=#ad2f45><b >polarity</b></color> to interact with the magnetic field.",
     "F1": "The closer the objects are, the stronger the <color=#f0b541><b >magnetic force</b></color> becomes! Throw the boxes and reach higher with it!",
     "F2": "When charged, move quickly to lose less static energy! Move the boxes wisely.",
