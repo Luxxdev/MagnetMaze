@@ -27,8 +27,8 @@ namespace OPaoGameStudio_MagnetMaze
                 deathOffset = transform.position - collision.transform.position;
                 if (deathOffset.x < 0.2f && deathOffset.x > -0.2f && deathOffset.y < 0.4f && deathOffset.y > -0.2f)
                 {
-                    if (!collision.gameObject.GetComponent<PlayerScript>().isRestartable)
-                        collision.gameObject.GetComponent<PlayerScript>().isRestartable = true;
+                    // if (!collision.gameObject.GetComponent<PlayerScript>().isRestartable)
+                    //     collision.gameObject.GetComponent<PlayerScript>().isRestartable = true;
                     collision.gameObject.GetComponent<PlayerScript>().energy += energyAmount;
                     collision.gameObject.GetComponent<PlayerScript>().ChangeText();
                     Destroy(this.gameObject);

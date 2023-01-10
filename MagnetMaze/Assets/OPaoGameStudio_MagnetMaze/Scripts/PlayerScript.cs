@@ -11,7 +11,7 @@ namespace OPaoGameStudio_MagnetMaze
         public GameObject magnetIndicator;
         public Transform boxHolder;
         public bool isHolding = false;
-        public bool isRestartable = true;
+        // public bool isRestartable = true;
         public Collider2D positiveToolArea;
         public Collider2D negativeToolArea;
         public AudioManager AUM;
@@ -57,23 +57,23 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (!hud.GetComponent<BottomTextManagement>().GetIsPaused())
             {
-                if (isToolActive && energy > 0)
-                {
-                    energyCounter += Time.deltaTime;
-                }
-                if (energyCounter >= 1)
-                {
-                    energyCounter = 0;
-                    energy -= 1;
-                    ChangeText();
-                }
-                if (energy <= 0)
-                {
-                    energy = 0;
-                    ChangeText();
-                    isToolActive = false;
-                    tool.SetActive(false);
-                }
+                // if (isToolActive && energy > 0)
+                // {
+                //     energyCounter += Time.deltaTime;
+                // }
+                // if (energyCounter >= 1)
+                // {
+                //     energyCounter = 0;
+                //     energy -= 1;
+                //     ChangeText();
+                // }
+                // if (energy <= 0)
+                // {
+                //     energy = 0;
+                //     ChangeText();
+                //     isToolActive = false;
+                //     tool.SetActive(false);
+                // }
                 // -1 esquerda, 1 direita
                 horizontal = Input.GetAxisRaw("Horizontal");
                 if (!isHolding)
@@ -82,15 +82,17 @@ namespace OPaoGameStudio_MagnetMaze
                     vertical = 0;
                 if (Input.GetButtonDown("ToggleTool"))
                 {
-                    if (energy > 0)
-                    {
-                        ToggleTool();
-                    }
-                    else
-                    {
-                        ActivateRestartPanel();
-                    }
+                    ToggleTool();
                 }
+                //     if (energy > 0)
+                //     {
+                //         ToggleTool();
+                //     }
+                //     else
+                //     {
+                //         ActivateRestartPanel();
+                //     }
+                // }
 
                 if (Input.GetButtonDown("ActivateTool"))
                 {
@@ -104,15 +106,17 @@ namespace OPaoGameStudio_MagnetMaze
 
                 if (Input.GetButtonDown("Interact") && canInteract)
                 {
-                    if (energy > 0)
-                    {
-                        Interact();
-                    }
-                    else
-                    {
-                        ActivateRestartPanel();
-                    }
+                    Interact();
                 }
+                //     if (energy > 0)
+                //     {
+                //         Interact();
+                //     }
+                //     else
+                //     {
+                //         ActivateRestartPanel();
+                //     }
+                // }
 
                 if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0.1f)
                 {
@@ -162,7 +166,8 @@ namespace OPaoGameStudio_MagnetMaze
         }
         private void ActivateTool()
         {
-            if (energy > 0 && !isToolActive)
+            // if (energy > 0 && !isToolActive)
+            if (!isToolActive)
             {
                 AUM.Play("toolOn");
                 anim.SetTrigger("toolOn");
@@ -175,14 +180,14 @@ namespace OPaoGameStudio_MagnetMaze
                 isToolActive = !isToolActive;
                 tool.SetActive(false);
             }
-            else if (energy == 0)
-            {
-                ActivateRestartPanel();
-            }
-            if (isToolActive && energy > 0)
-            {
-                energy -= 1;
-            }
+            // else if (energy == 0)
+            // {
+            //     ActivateRestartPanel();
+            // }
+            // if (isToolActive && energy > 0)
+            // {
+            //     energy -= 1;
+            // }
             ChangeText();
         }
         private void ToggleTool()
@@ -190,7 +195,7 @@ namespace OPaoGameStudio_MagnetMaze
             anim.SetTrigger("toolClick");
             AUM.Play("click");
             currentPole = !currentPole;
-            energy -= 1;
+            // energy -= 1;
             tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
             magnetIndicator.transform.localScale = new Vector3(magnetIndicator.transform.localScale.x * -1, magnetIndicator.transform.localScale.y, magnetIndicator.transform.localScale.z);
             ChangeText();
@@ -211,7 +216,7 @@ namespace OPaoGameStudio_MagnetMaze
             if (objects[0].CompareTag("Box"))
             {
                 isHolding = false;
-                energy -= 1;
+                // energy -= 1;
                 AUM.Play("magnetize");
                 if (lastBoxInteracted != null && lastBoxInteracted != objects[0])
                 {
@@ -289,10 +294,8 @@ namespace OPaoGameStudio_MagnetMaze
             }
             else if (collision.gameObject.CompareTag("Interactable"))
             {
-
                 objects.Insert(0, collision.gameObject);
                 canInteract = true;
-
             }
         }
 
@@ -443,11 +446,11 @@ namespace OPaoGameStudio_MagnetMaze
             UIText.GetComponent<TMPro.TextMeshProUGUI>().text = energy.ToString();
         }
 
-        private void ActivateRestartPanel()
-        {
-            if (isRestartable)
-                hud.transform.GetChild(2).gameObject.SetActive(true);
-        }
+        // private void ActivateRestartPanel()
+        // {
+        //     if (isRestartable)
+        //         hud.transform.GetChild(2).gameObject.SetActive(true);
+        // }
 
         private void UpdateAnimation()
         {
