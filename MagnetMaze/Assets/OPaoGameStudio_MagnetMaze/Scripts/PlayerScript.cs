@@ -443,15 +443,8 @@ namespace OPaoGameStudio_MagnetMaze
 
         public void ChangeText()
         {
-            UIText.GetComponent<TMPro.TextMeshProUGUI>().text = energy.ToString();
+            UIText.GetComponent<TMPro.TextMeshProUGUI>().text = Singleton.Instance.gameData.score.ToString() + " pts";
         }
-
-        // private void ActivateRestartPanel()
-        // {
-        //     if (isRestartable)
-        //         hud.transform.GetChild(2).gameObject.SetActive(true);
-        // }
-
         private void UpdateAnimation()
         {
             MovementState state;

@@ -269,11 +269,10 @@ MonoBehaviour:
   magnetIndicator: {fileID: 1659741041224420729}
   boxHolder: {fileID: 9081774356053093786}
   isHolding: 0
-  isRestartable: 1
   positiveToolArea: {fileID: 1649734305575213251}
   negativeToolArea: {fileID: 5678423450447932571}
   AUM: {fileID: 0}
-  energy: 10
+  energy: 0
   vertical: 0
   speed: 1.5
   isFacingRight: 1

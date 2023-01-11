@@ -53294,10 +53294,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 900729738}
     - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: energy
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
       propertyPath: staticArea
       value: 
       objectReference: {fileID: 1449367737}

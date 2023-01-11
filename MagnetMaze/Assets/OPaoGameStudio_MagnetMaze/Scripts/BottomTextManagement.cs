@@ -12,14 +12,14 @@ namespace OPaoGameStudio_MagnetMaze
         public TextAsset[] revisionTextsJSONList;
         public bool isDialogOpen = false;
         private bool isFinished = false;
+        private bool canPass = false;
         private string dialogueID;
         public string failMessage;
         public Image charExpression;
         public Image explanationImage;
         public bool isRevisionDialog = false;
         public Image darkenPanel;
-        public Button retryBTN, nextBTN, yesBTN, noBTN, controlsBTN, backBTN;
-        public TMPro.TextMeshProUGUI energyAlert;
+        public Button retryBTN, nextBTN, controlsBTN, backBTN;
         public AudioManager AUM;
         private int dialogCounter = 0;
         protected int phraseIndex = 0;
@@ -52,7 +52,7 @@ namespace OPaoGameStudio_MagnetMaze
         void Start()
         {
             dialogCounter = Singleton.Instance.gameData.seenDialogs;
-            buttonsParent = gameObject.transform.GetChild(6).transform.GetChild(0).transform.GetChild(0);
+            buttonsParent = gameObject.transform.GetChild(5).transform.GetChild(0).transform.GetChild(0);
             for (int i = 0; i < Singleton.Instance.gameData.storedDialogs; i++)
             {
                 buttonsParent.GetChild(i).gameObject.SetActive(true);
@@ -61,16 +61,11 @@ namespace OPaoGameStudio_MagnetMaze
             }
             TMPro.TextMeshProUGUI nextText = nextBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
             TMPro.TextMeshProUGUI retryText = retryBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            TMPro.TextMeshProUGUI yesText = yesBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            TMPro.TextMeshProUGUI noText = noBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
             TMPro.TextMeshProUGUI controlsText = controlsBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
             TMPro.TextMeshProUGUI backText = backBTN.GetComponentInChildren<TMPro.TextMeshProUGUI>();
             nextText.text = SharedState.LanguageDefs["next"];
             retryText.text = SharedState.LanguageDefs["reload"];
-            yesText.text = SharedState.LanguageDefs["yes"];
-            noText.text = SharedState.LanguageDefs["no"];
             controlsText.text = SharedState.LanguageDefs["RD-1"];
-            energyAlert.text = SharedState.LanguageDefs["alert"];
             backText.text = SharedState.LanguageDefs["back"];
         }
 
@@ -111,7 +106,8 @@ namespace OPaoGameStudio_MagnetMaze
                 explanationImage.DOFade(1, 0.8f);
             }
             isPaused = true;
-            StartCoroutine(WaitDialog());//isDialogOpen = true;
+            isDialogOpen = true;
+            StartCoroutine(WaitDialog());
         }
 
         public void CloseDialog()
@@ -133,8 +129,9 @@ namespace OPaoGameStudio_MagnetMaze
 
         public void NextPhrase()
         {
-            if (isDialogOpen)
+            if (isDialogOpen && canPass)
             {
+                canPass = false;
                 phraseIndex++;
                 dialogueID = (int.Parse(dialogueID) + 1).ToString();
                 if (phraseIndex >= myTextList.Text.Length)
@@ -151,8 +148,9 @@ namespace OPaoGameStudio_MagnetMaze
                 {
                     explanationImage.color = new Color(1, 1, 1, 1);
                 }
-                textDisplay.text = SharedState.LanguageDefs[dialogueID];//myTextList.Text[phraseIndex].dialogue;
+                textDisplay.text = SharedState.LanguageDefs[dialogueID];
                 LOLSDK.Instance.SpeakText(dialogueID);
+                StartCoroutine(WaitDialog());
             }
         }
 
@@ -172,7 +170,6 @@ namespace OPaoGameStudio_MagnetMaze
                     }
                     break;
                 }
-
             }
         }
 
@@ -199,8 +196,8 @@ namespace OPaoGameStudio_MagnetMaze
         }
         IEnumerator<WaitForSeconds> WaitDialog()
         {
-            yield return new WaitForSeconds(0.8f);
-            isDialogOpen = true;
+            yield return new WaitForSeconds(1.2f);
+            canPass = true;
         }
     }
 }

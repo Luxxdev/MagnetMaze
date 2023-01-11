@@ -20591,10 +20591,6 @@ PrefabInstance:
       propertyPath: UIText
       value: 
       objectReference: {fileID: 900729738}
-    - target: {fileID: 4644896693509032507, guid: 66719b5968f4f1caf83389a041939300, type: 3}
-      propertyPath: energy
-      value: 150
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66719b5968f4f1caf83389a041939300, type: 3}
 --- !u!1001 &1031174489
