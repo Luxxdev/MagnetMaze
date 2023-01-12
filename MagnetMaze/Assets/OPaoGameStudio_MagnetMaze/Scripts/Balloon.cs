@@ -27,7 +27,7 @@ namespace OPaoGameStudio_MagnetMaze
                 deathOffset = transform.position - collision.transform.position;
                 if (deathOffset.x < 0.2f && deathOffset.x > -0.2f && deathOffset.y < 0.4f && deathOffset.y > -0.2f)
                 {
-                    Singleton.Instance.gameData.score += amount;
+                    Singleton.Instance.gameData.stagePoints += amount;
                     collision.gameObject.GetComponent<PlayerScript>().ChangeText();
                     Destroy(this.gameObject);
                 }

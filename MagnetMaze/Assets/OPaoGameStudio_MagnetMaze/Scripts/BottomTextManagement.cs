@@ -181,6 +181,7 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (!isDialogOpen)
             {
+                Singleton.Instance.gameData.stagePoints = 0;
                 isPaused = true;
                 gameObject.transform.GetChild(4).gameObject.SetActive(false);
                 retryBTN.gameObject.SetActive(true);

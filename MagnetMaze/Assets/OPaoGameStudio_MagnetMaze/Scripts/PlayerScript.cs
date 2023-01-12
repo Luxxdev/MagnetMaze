@@ -443,7 +443,7 @@ namespace OPaoGameStudio_MagnetMaze
 
         public void ChangeText()
         {
-            UIText.GetComponent<TMPro.TextMeshProUGUI>().text = Singleton.Instance.gameData.score.ToString() + " pts";
+            UIText.GetComponent<TMPro.TextMeshProUGUI>().text = (Singleton.Instance.gameData.score + Singleton.Instance.gameData.stagePoints).ToString() + " pts";
         }
         private void UpdateAnimation()
         {

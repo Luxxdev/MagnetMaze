@@ -17,6 +17,8 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                Singleton.Instance.gameData.score += Singleton.Instance.gameData.stagePoints;
+                Singleton.Instance.gameData.stagePoints = 0;
                 Singleton.Instance.gameData.seenDialogs = 0;
                 if (isCompleted)
                 {
@@ -45,13 +47,6 @@ namespace OPaoGameStudio_MagnetMaze
         {
             levelToLoad = scene;
             animator.SetTrigger("FadeOut");
-
-            // if (!isCompleted)
-            //     SceneManager.LoadScene($"LEVEL_{scene}"); //LoadScene("LEVEL_" + scene.ToString());
-            // else
-            // {
-            //     SceneManager.LoadScene(scene);
-            // }
             return;
         }
         public void ReloadScene()
@@ -59,10 +54,6 @@ namespace OPaoGameStudio_MagnetMaze
             reload = true;
             levelToLoad = SceneManager.GetActiveScene().buildIndex - 2;
             animator.SetTrigger("FadeOut");
-
-            // Scene actualScene = SceneManager.GetActiveScene();
-            // SceneManager.LoadScene(actualScene.name);
-            // return;
         }
 
         public void onFadeComplete()
