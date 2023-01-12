@@ -57,24 +57,6 @@ namespace OPaoGameStudio_MagnetMaze
         {
             if (!hud.GetComponent<BottomTextManagement>().GetIsPaused())
             {
-                // if (isToolActive && energy > 0)
-                // {
-                //     energyCounter += Time.deltaTime;
-                // }
-                // if (energyCounter >= 1)
-                // {
-                //     energyCounter = 0;
-                //     energy -= 1;
-                //     ChangeText();
-                // }
-                // if (energy <= 0)
-                // {
-                //     energy = 0;
-                //     ChangeText();
-                //     isToolActive = false;
-                //     tool.SetActive(false);
-                // }
-                // -1 esquerda, 1 direita
                 horizontal = Input.GetAxisRaw("Horizontal");
                 if (!isHolding)
                     vertical = Input.GetAxisRaw("Vertical");
@@ -188,7 +170,7 @@ namespace OPaoGameStudio_MagnetMaze
             // {
             //     energy -= 1;
             // }
-            ChangeText();
+            // ChangeText();
         }
         private void ToggleTool()
         {
@@ -198,7 +180,7 @@ namespace OPaoGameStudio_MagnetMaze
             // energy -= 1;
             tool.transform.localScale = new Vector3(tool.transform.localScale.x, tool.transform.localScale.y * -1, tool.transform.localScale.z);
             magnetIndicator.transform.localScale = new Vector3(magnetIndicator.transform.localScale.x * -1, magnetIndicator.transform.localScale.y, magnetIndicator.transform.localScale.z);
-            ChangeText();
+            // ChangeText();
             if (currentBoxMagnetized != null)
             {
                 currentBoxMagnetized.held = false;
