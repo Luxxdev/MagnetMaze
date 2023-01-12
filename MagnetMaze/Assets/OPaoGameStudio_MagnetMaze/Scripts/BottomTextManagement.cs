@@ -52,7 +52,7 @@ namespace OPaoGameStudio_MagnetMaze
         void Start()
         {
             dialogCounter = Singleton.Instance.gameData.seenDialogs;
-            buttonsParent = gameObject.transform.GetChild(5).transform.GetChild(0).transform.GetChild(0);
+            buttonsParent = gameObject.transform.GetChild(7).transform.GetChild(0).transform.GetChild(0);
             for (int i = 0; i < Singleton.Instance.gameData.storedDialogs; i++)
             {
                 buttonsParent.GetChild(i).gameObject.SetActive(true);
